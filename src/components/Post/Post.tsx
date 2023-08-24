@@ -11,6 +11,7 @@ import { Meta } from "./Meta";
 import { Tags } from "./Tags";
 
 import * as styles from "./Post.module.scss";
+import Utterances from "./Utterances";
 
 interface Props {
   post: Node;
@@ -27,19 +28,17 @@ const Post: React.FC<Props> = ({ post }: Props) => {
         <Button className={styles.buttonArticles} title="All Articles" to="/" />
         <ThemeSwitcher />
       </div>
-
       <div className={styles.content}>
         <Content body={html} title={title} />
       </div>
-
       <div className={styles.footer}>
         <Meta date={date} />
         {tags && tagSlugs && <Tags tags={tags} tagSlugs={tagSlugs} />}
         <Author />
       </div>
-
       <div className={styles.comments}>
-        <Comments postSlug={slug} postTitle={post.frontmatter.title} />
+        {/* <Comments postSlug={slug} postTitle={post.frontmatter.title} /> */}
+        <Utterances repo="dltlaos11/dltlaos11.github.io" theme="github-light" />
       </div>
     </div>
   );
