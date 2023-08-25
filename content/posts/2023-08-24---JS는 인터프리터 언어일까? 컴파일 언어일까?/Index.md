@@ -4,7 +4,7 @@ date: "2023-08-24T21:40:32.169Z"
 template: "post"
 draft: false
 slug: "/posts/JS 인터프리터 언어, 컴파일 언어"
-category: "CS"
+category: "JavaScript"
 tags:
   - "CS"
   - "JavaScript"
