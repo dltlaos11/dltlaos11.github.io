@@ -1,4 +1,372 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Yong Jun]]></title><description><![CDATA[Blog by Yong Jun]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 01 Sep 2023 11:05:59 GMT</lastBuildDate><item><title><![CDATA[명령어 집합구조, CISC와 RISC]]></title><description><![CDATA[명령어 집합구조, CISC와 RISC에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/명령어 집합구조, CISC와 RISC</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/명령어 집합구조, CISC와 RISC</guid><pubDate>Fri, 01 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Yong Jun]]></title><description><![CDATA[Blog by Yong Jun]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 04 Sep 2023 14:34:08 GMT</lastBuildDate><item><title><![CDATA[다양한 메모리의 특성]]></title><description><![CDATA[다양한 메모리의 특성에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/cs</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/cs</guid><pubDate>Mon, 04 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#ram%EC%9D%98-%ED%8A%B9%EC%84%B1%EA%B3%BC-%EC%A2%85%EB%A5%98&quot;&gt;RAM의 특성과 종류&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#ram%EC%9D%98-%ED%8A%B9%EC%A7%95&quot;&gt;RAM의 특징&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#ram%EC%9D%98-%EC%A2%85%EB%A5%98&quot;&gt;RAM의 종류&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%9D%98-%EC%A3%BC%EC%86%8C-%EA%B3%B5%EA%B0%84&quot;&gt;메모리의 주소 공간&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%AC%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C%EC%99%80-%EB%85%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C&quot;&gt;물리 주소와 논리 주소&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%AC%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C&quot;&gt;물리 주소&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%85%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C&quot;&gt;논리 주소&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%AC%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C%EC%99%80-%EB%85%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C%EC%9D%98-%EB%B3%80%ED%99%98&quot;&gt;물리 주소와 논리 주소의 변환&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%B3%B4%ED%98%B8&quot;&gt;메모리 보호&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%BA%90%EC%8B%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC&quot;&gt;캐시 메모리&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%A0%80%EC%9E%A5-%EC%9E%A5%EC%B9%98-%EA%B3%84%EC%B8%B5-%EA%B5%AC%EC%A1%B0&quot;&gt;저장 장치 계층 구조&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%BA%90%EC%8B%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC&quot;&gt;캐시 메모리&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%B0%B8%EC%A1%B0-%EC%A7%80%EC%97%AD%EC%84%B1%EC%9D%98-%EC%9B%90%EB%A6%AC&quot;&gt;참조 지역성의(Locality of Reference) 원리&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%8B%A4%EC%96%91%ED%95%9C-%EB%B3%B4%EC%A1%B0-%EA%B8%B0%EC%96%B5%EC%9E%A5%EC%B9%98&quot;&gt;다양한 보조기억장치(하드디스크와 플래시 메모리)&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%95%98%EB%93%9C-%EB%94%94%EC%8A%A4%ED%81%AC&quot;&gt;하드 디스크&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%95%98%EB%93%9C-%EB%94%94%EC%8A%A4%ED%81%AC%EC%9D%98-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EA%B3%BC%EC%A0%95&quot;&gt;하드 디스크의 데이터 접근 과정&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%94%8C%EB%9E%98%EC%8B%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC&quot;&gt;플래시 메모리&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%94%8C%EB%9E%98%EC%8B%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%9D%98-%EC%A2%85%EB%A5%98&quot;&gt;플래시 메모리의 종류&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%94%8C%EB%9E%98%EC%8B%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%9D%98-%EC%A0%80%EC%9E%A5-%EB%8B%A8%EC%9C%84&quot;&gt;플래시 메모리의 저장 단위&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;ram의-특성과-종류&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ram%EC%9D%98-%ED%8A%B9%EC%84%B1%EA%B3%BC-%EC%A2%85%EB%A5%98&quot; aria-label=&quot;ram의 특성과 종류 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;ram의 특성과 종류&lt;/h2&gt;
+&lt;p&gt;주기억장치의 종류에는 크게 RAM과 ROM 두 가지가 있고, ‘메모리’라는 용어는 그 중 RAM을 지칭하는 경우가 많다.&lt;/p&gt;
+&lt;h3 id=&quot;ram의-특징&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ram%EC%9D%98-%ED%8A%B9%EC%A7%95&quot; aria-label=&quot;ram의 특징 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;ram의 특징&lt;/h3&gt;
+&lt;p&gt;CPU ↔ RAM(실행할 대상(ex_명령어, 프로그램) → 휘발성 저장 장치) ↔ 보조기억장치(보관할 대상 → 비회발성 저장 장치)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RAM이 클수록 많은 프로그램들을 동시에 실행하는 데에 유리(ROM에서 많이 가져올 수 있으므로)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;ram의-종류&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ram%EC%9D%98-%EC%A2%85%EB%A5%98&quot; aria-label=&quot;ram의 종류 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;ram의 종류&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;DRAM
+&lt;ul&gt;
+&lt;li&gt;Dynamic(=동적의) RAM
+&lt;ul&gt;
+&lt;li&gt;저장된 데이터가 &lt;Mark&gt;동적으로 사라지는&lt;/Mark&gt; RAM&lt;/li&gt;
+&lt;li&gt;데이터 소멸을 막기 위해 주기적으로 재활성화 해야&lt;/li&gt;
+&lt;li&gt;일반적으로 메모리로 사용되는 RAM
+&lt;ul&gt;
+&lt;li&gt;상대적으로 소비전력이 낮고 저렴하고 &lt;Mark&gt;집적도(=compact)&lt;/Mark&gt;가 높아 &lt;Mark&gt;대용량&lt;/Mark&gt;으로 설계하기 용이하기 때문&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SRAM
+&lt;ul&gt;
+&lt;li&gt;Static(=정적의) RAM&lt;/li&gt;
+&lt;li&gt;저장된 데이터가 정적인(사라지지 않는) RAM&lt;/li&gt;
+&lt;li&gt;DRAM보다 일반적으로 I/O가 더 빠름&lt;/li&gt;
+&lt;li&gt;일반적으로 &lt;Mark&gt;캐시 메모리&lt;/Mark&gt;에서 사용되는 RAM
+&lt;ul&gt;
+&lt;li&gt;상대적으로 소비 전력이 높고 가격이 높고 집적도가 낮아 “&lt;Mark&gt;대용량으로 설계할 필요가 없으나&lt;/Mark&gt; 빨라야 하는 장치”에 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/4314c8be-11bb-4323-9793-002d65235ad1&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SDRAM
+&lt;ul&gt;
+&lt;li&gt;Synchronous(=동기화) DRAM
+&lt;ul&gt;
+&lt;li&gt;특별한(발전된 형태의) DRAM&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;클럭 신호와 동기화된 DRAM&lt;/li&gt;
+&lt;li&gt;SDR(Signle Data Rate) SDRAM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;DDR SDRAM
+&lt;ul&gt;
+&lt;li&gt;Double Data Rate SDRAM
+&lt;ul&gt;
+&lt;li&gt;특별한 (발전된 형태의)SDRAM&lt;/li&gt;
+&lt;li&gt;최근 가장 대중적으로 사용하는 RAM&lt;/li&gt;
+&lt;li&gt;대역폭(데이터를 주고받는 길의 너비, 2배)을 넓혀 속도를 빠르게 만든 SDRAM&lt;/li&gt;
+&lt;li&gt;DDR2 SDRAM(4배), DDR3 SDRAM(8배), &lt;Mark&gt;DDR4 SDRAM(16배) 가장 대중적&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;메모리의-주소-공간&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%9D%98-%EC%A3%BC%EC%86%8C-%EA%B3%B5%EA%B0%84&quot; aria-label=&quot;메모리의 주소 공간 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;메모리의 주소 공간&lt;/h2&gt;
+&lt;p&gt;논리 주소와 물리 주소로 주소 공간을 나눈 이유와 논리 주소 → 물리 주소로 변환하는 방법에 대해 알아보자&lt;/p&gt;
+&lt;h3 id=&quot;물리-주소와-논리-주소&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%AC%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C%EC%99%80-%EB%85%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C&quot; aria-label=&quot;물리 주소와 논리 주소 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;물리 주소와 논리 주소&lt;/h3&gt;
+&lt;p&gt;CPU와 프로세스는 메모리 몇 번지에 무엇이 저장되어 있는지 다 알지 못함&lt;/p&gt;
+&lt;p&gt;→ 메모리에 저장된 값들은 시시각각 변하기 떄문&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;새롭게 실행되는 프로그램은 새롭게 메모리에 적재&lt;/li&gt;
+&lt;li&gt;실행이 끝난 프로그램은 메모리에서 삭제&lt;/li&gt;
+&lt;li&gt;같은 프로그램을 실행하더라도 실행할 때마다 적재되는 주소는 달라짐&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;🔥 &lt;Mark&gt;물리주소와 논리주소의 등장&lt;/p&gt;
+&lt;h3 id=&quot;물리-주소&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%AC%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C&quot; aria-label=&quot;물리 주소 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;물리 주소&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;메모리 입장에서 바라본 주소&lt;/li&gt;
+&lt;li&gt;말 그대로 정보가 실제로 저장된 하드웨어상의 주소&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;논리-주소&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%85%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C&quot; aria-label=&quot;논리 주소 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;논리 주소&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU와 실행중인 프로그램 입장에서 바라본 주소&lt;/li&gt;
+&lt;li&gt;실행 중인 프로그램 각각에게 부여된 0번지부터 시작하는 주소&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/4ff0c4b1-0f20-4881-9686-ae100844ed80&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;물리-주소와-논리-주소의-변환&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%AC%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C%EC%99%80-%EB%85%BC%EB%A6%AC-%EC%A3%BC%EC%86%8C%EC%9D%98-%EB%B3%80%ED%99%98&quot; aria-label=&quot;물리 주소와 논리 주소의 변환 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;물리 주소와 논리 주소의 변환&lt;/h3&gt;
+&lt;p&gt;&lt;Mark&gt;MMU(메모리 관리 장치)&lt;/Mark&gt;라는 하드웨어에 의해 변환&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/e2f02887-927c-452e-8c00-9eb399b9ffd8&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;p&gt;MMU는 &lt;Mark&gt;논리 주소&lt;/Mark&gt;와 &lt;Mark&gt;베이스 레지스터 값(프로그램의 기준 주소&lt;/Mark&gt;을 &lt;Mark&gt;더하여&lt;/Mark&gt; 논리 주소를 물리 주소로 변환&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/19568e7b-6331-45b0-b4ac-5b8bc8b1edd6&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;p&gt;베이스 레지스터: 프로그램의 &lt;Mark&gt;가장 작은 물리 주소(프로그램의 첫 물리 주소)&lt;/Mark&gt;를 저장하는 셈&lt;/p&gt;
+&lt;p&gt;논리 주소: 프로그램의 시작점(&lt;Mark&gt;기준 주소&lt;/Mark&gt;)으로부터 &lt;Mark&gt;떨어진 거리&lt;/p&gt;
+&lt;p&gt;c.f. ) 페이징: 주소변환방법&lt;/p&gt;
+&lt;h3 id=&quot;메모리-보호&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%B3%B4%ED%98%B8&quot; aria-label=&quot;메모리 보호 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;메모리 보호&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;한계 레지스터(=Init Register)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;프로그램의 영역을 침범할 수 있는 명령어의 실행을 막음&lt;/li&gt;
+&lt;li&gt;베이스 레지스터가 실행 중인 프로그램의 가장 작은 물리 주소를 저장한다면, 한계 레지스터는 논리 주소의 최대 크기를 저장&lt;/li&gt;
+&lt;li&gt;베이스 레지스터 값 ≤ 프로그램의 물리 주소 범위 &amp;#x3C; 베이스 레지스터 + 한계 레지스터 값&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;→ &lt;Mark&gt;CPU가 접근하려는 논리 주소는 한계 레지스터가 저장한 값보다 커서는 안됨&lt;/p&gt;
+&lt;p&gt;이처럼 CPU는 메모리에 접근하기 전 접근하고자 하는 논리 주소가 한계 레지스터보다 작은지를 항상 검사&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/4d7e8c91-a7f6-4b85-82bf-3ec0818fa18b&quot; alt=&quot;image&quot;&gt;
+실행 중인 프로그램의 독립적인 실행 공간을 확보 &amp;#x26; 하나의 프로그램이 다른 프로그램을 침범하지 못하게 메모리 보호&lt;/p&gt;
+&lt;h2 id=&quot;캐시-메모리&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%BA%90%EC%8B%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC&quot; aria-label=&quot;캐시 메모리 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;캐시 메모리&lt;/h2&gt;
+&lt;p&gt;CPU가 메모리에 접근하는 시간은 CPU 연산 속도보다 느리다  → CPU(ALU포함), 메모리는 외부&lt;/p&gt;
+&lt;h3 id=&quot;저장-장치-계층-구조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%A0%80%EC%9E%A5-%EC%9E%A5%EC%B9%98-%EA%B3%84%EC%B8%B5-%EA%B5%AC%EC%A1%B0&quot; aria-label=&quot;저장 장치 계층 구조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;저장 장치 계층 구조&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;memory hierarchy=메모리 계층 구조&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;Mark&gt;CPU와 가까운 저장 장치&lt;/Mark&gt;는 빠르고, 멀리 있는 저장 장치는 느리다.&lt;/li&gt;
+&lt;li&gt;속도가 빠른 저장 장치는 저장 용량이 적고, 가격이 비싸다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;→ 낮은 가격대의 대용량 저장 장치를 원한다면 느린 속도는 감수해야 하고(&lt;Mark&gt;USB&lt;/Mark&gt;), 빠른 속도의 저장 장치를 원한다면 작은 용량과 비싼 가격은 감수해야(&lt;Mark&gt;레지스터, RAM&lt;/Mark&gt;)&lt;/p&gt;
+&lt;h3 id=&quot;캐시-메모리-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%BA%90%EC%8B%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC-1&quot; aria-label=&quot;캐시 메모리 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;캐시 메모리&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;Mark&gt;CPU와 메모리 사이에 위치한&lt;/Mark&gt;, 레지스터보다 용량이 크고 메모리보다 빠른 SRAM 기반의 저장 장치&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;CPU의 연산 속도와 메모리 접근 속도의 차이를 조금이나마 줄이기 위한 저장 장치&lt;/li&gt;
+&lt;li&gt;“CPU가 매번 메모리에 왔다 갔다 하는 건 시간이 오래 걸리니, 메모리에서 CPU가 사용할 일부 데이터를 미리 캐시 메모리로 가지고 와서 쓴다”&lt;/li&gt;
+&lt;li&gt;캐시 메모리까지 반영한 저장 장치 계층 구조
+&lt;ul&gt;
+&lt;li&gt;레지스터 - 캐시 메모리 - 메모리(RAM) - 보조기억장치(USB)&lt;/li&gt;
+&lt;li&gt;c.f. ) CPU 내부에 캐시 메모리가 있는 경우도 있지만 &lt;Mark&gt;레지스터가 더 빠름&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SRAM 기반&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;계층적 캐시 메모리(L1-L2-L3 캐시)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/27ce3eee-c0b8-4931-998b-59d35f23ca4e&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;용량 비교
+
+레지스터 &amp;lt; L1 &amp;lt; L2 &amp;lt; L3 &amp;lt; 메모리
+
+- 일반적으로 L1 캐시와 L2 캐시는 코어 내부에, L3 캐시는 코어 외부에 존재&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;멀티코어 프로세서의 캐시 메모리&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/2c4a2723-e58c-4304-be1e-d7a16081d810&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;- 코어별 캐시 메모리가 동일한 메모리를 갖게끔 sync를 맞춰주는 것이 중요
+- L3는 공유하는 캐시 메모리로서 존재&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;분리형 캐시&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/1391f38d-a946-4727-bcf2-943b8f38ecef&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;L1D: 데이터만 담기 위한 캐시 메모리
+
+L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;참조-지역성의-원리&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%B0%B8%EC%A1%B0-%EC%A7%80%EC%97%AD%EC%84%B1%EC%9D%98-%EC%9B%90%EB%A6%AC&quot; aria-label=&quot;참조 지역성의 원리 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;참조 지역성의 원리&lt;/h3&gt;
+&lt;p&gt;캐시 메모리는 메모리보다 용량이 작으므로 메모리의 모든 내용을 저장 ❌&lt;/p&gt;
+&lt;p&gt;→ &lt;Mark&gt;캐시 메모리는 CPU가 자주 사용할 법한 내용을 예측해서 저장&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;예측이 들어맞을 경우(CPU가 캐시 메모리에 저장된 값을 활용할 경우)&lt;/p&gt;
+&lt;p&gt;⇒ &lt;Mark&gt;캐시 히트&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;예측이 틀렸을 경우(CPU가 메모리에 접근해야 하는 경우)&lt;/p&gt;
+&lt;p&gt;⇒ &lt;Mark&gt;캐시 미스(성능 하락)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;캐시 적중률: 캐시 히트 횟수 / (캐시 히트 횟수 + 캐시 미스 횟수)&lt;/p&gt;
+&lt;p&gt;→ CPU가 사용할 법한 데이터를 잘 예측해야 캐시 적중률을 높아진다.&lt;/p&gt;
+&lt;p&gt;캐시 메모리는 참조 지역성의 원리를 바탕으로 CPU가 자주 사용할 법한 대상을 예측하여 캐시 적중률을 높인다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;참조 지역성의 원리
+&lt;ul&gt;
+&lt;li&gt;CPU가 메모리에 접근할 떄의 주된 경향을 바탕으로 만들어진 원리
+&lt;ol&gt;
+&lt;li&gt;CPU는 최근에 접근했던 메모리 공간에 다시 접근하려는 경향&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/ef199f0f-b7d3-41bb-9742-61164a9a2b20&quot; alt=&quot;image&quot;&gt;
+2. CPU는 접근한 메모리 공간 근처를 접근하려는 경향
+&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/7dece4e5-4530-424b-8d9c-e1552b6575dc&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;다양한-보조-기억장치&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%8B%A4%EC%96%91%ED%95%9C-%EB%B3%B4%EC%A1%B0-%EA%B8%B0%EC%96%B5%EC%9E%A5%EC%B9%98&quot; aria-label=&quot;다양한 보조 기억장치 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;다양한 보조 기억장치&lt;/h2&gt;
+&lt;p&gt;하드 디스크, 플래시 메모리(SSD) → ROM(비휘발성)&lt;/p&gt;
+&lt;h3 id=&quot;하드-디스크&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%95%98%EB%93%9C-%EB%94%94%EC%8A%A4%ED%81%AC&quot; aria-label=&quot;하드 디스크 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;하드 디스크&lt;/h3&gt;
+&lt;p&gt;자기적인(N극과 S극) 방식으로 데이터 저장&lt;/p&gt;
+&lt;p&gt;구성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;플래터: 일반적으로 플래터 양면 모두 사용(겹겹이 존재)&lt;/li&gt;
+&lt;li&gt;스핀들 : 플래터를 회전&lt;/li&gt;
+&lt;li&gt;RPM: 분당 회전수&lt;/li&gt;
+&lt;li&gt;헤드: 플래터를 읽고 쓰는 역할, 플레터는 겹겹이 존재하므로 헤드 또한 겹겹이 존재&lt;/li&gt;
+&lt;li&gt;디스크 암: 일반적으로 모든 헤드가 디스크 암에 부착되어 &lt;Mark&gt;함께&lt;/Mark&gt; 이동&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/a3f63c69-8c06-490a-96d2-22bada14a5ed&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;기본적으로 트랙과 섹터단위로 데이터 저장
+&lt;ul&gt;
+&lt;li&gt;섹터의 크기: 512 바이트 ~ 4096 바이트&lt;/li&gt;
+&lt;li&gt;하나 이상의 섹터를 묶어 블록이라고 표현하기도&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/72c5ce4b-b050-4970-b396-41762a2b6fc8&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;플래터는 트랙과 섹터로 나뉘고, 같은 트랙이 모여 &lt;Mark&gt;실린더&lt;/Mark&gt;를 이룬다
+&lt;ul&gt;
+&lt;li&gt;실린더(cylinder)
+&lt;ul&gt;
+&lt;li&gt;여러 겁의 플래터 상에서 &lt;Mark&gt;같은 트랙이 위치 한 곳&lt;/Mark&gt;을 모아 연결한 논리적 단위&lt;/li&gt;
+&lt;li&gt;연속된 정보는 한 실린더(플래터의 앞,뒤)에 기록(디스크 암에 의해 헤드가 함께 이동하므로)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;하드-디스크의-데이터-접근-과정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%95%98%EB%93%9C-%EB%94%94%EC%8A%A4%ED%81%AC%EC%9D%98-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC-%EA%B3%BC%EC%A0%95&quot; aria-label=&quot;하드 디스크의 데이터 접근 과정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;하드 디스크의 데이터 접근 과정&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;하드 디스크가 저장된 데이터에 접근하는 시간&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;탐색 시간(seek time)
+&lt;ul&gt;
+&lt;li&gt;접근하려는 데이터가 저장된 트랙까지 헤드를 이동시키는 시간
+&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/74e45571-0bf1-41d1-992e-9ca7dcccfed2&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;회전 지연(rotational latency)
+&lt;ul&gt;
+&lt;li&gt;헤드가 있는 곳으로 플래터를 회전시키는 시간
+&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/2960cb8b-3b6c-4975-8e0f-9c8bf3c4e9d8&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;전송 시간(transfer time)
+&lt;ul&gt;
+&lt;li&gt;하드 디스크와 컴퓨터 간에 데이터를 전송하는 시간
+&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/0ec7e8f9-8b81-4804-b303-3f9e993dc2bb&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Jeff Dean - Numbers Every Programmer Should Know&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/e44f8cf5-5e83-49a4-867c-b468f6e9d373&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ns(나노초)는 10^-9초&lt;/li&gt;
+&lt;li&gt;패킷(packet)이란 네트워크의 기본적인 전송 단위&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;플래시-메모리&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%8C%EB%9E%98%EC%8B%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC&quot; aria-label=&quot;플래시 메모리 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;플래시 메모리&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;전기적으로 데이터를 읽고 쓰는 반도체 기반 저장 장치(SSD, SD CARD, USB)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;범용성이 넓기에 보조기억장치에’만’ 속한다고 보기는 어려움&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;플래시-메모리의-종류&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%8C%EB%9E%98%EC%8B%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%9D%98-%EC%A2%85%EB%A5%98&quot; aria-label=&quot;플래시 메모리의 종류 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;플래시 메모리의 종류&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;Mark&gt;NAND 플래시 메모리(대부분)&lt;/li&gt;
+&lt;li&gt;NOR 플래시 메모리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;플래시-메모리의-저장-단위&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%8C%EB%9E%98%EC%8B%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%9D%98-%EC%A0%80%EC%9E%A5-%EB%8B%A8%EC%9C%84&quot; aria-label=&quot;플래시 메모리의 저장 단위 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;플래시 메모리의 저장 단위&lt;/h3&gt;
+&lt;h4 id=&quot;셀cell&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%85%80cell&quot; aria-label=&quot;셀cell permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;셀(cell)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;플래시 메모리에서 데이터를 저장하는 가장 작은 단위&lt;/li&gt;
+&lt;li&gt;이 셀이 모이고 모여 수 MB, GB, TB 저장 장치가 된다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;한 셀에&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;Mark&gt;1 비트를 저장할 수 있는 플래시 메모리: SLC&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;2 비트를 저장할 수 있는 플래시 메모리: MLC&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;3 비트를 저장할 수 있는 플래시 메모리: TLC&lt;/li&gt;
+&lt;li&gt;4 비트를 저장할 수 있는 플래시 메모리: QLC&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;SLC
+&lt;ul&gt;
+&lt;li&gt;한 셀로 두 개의 정보 표현&lt;/li&gt;
+&lt;li&gt;비트의 빠른 입출력&lt;/li&gt;
+&lt;li&gt;긴 &lt;Mark&gt;수명&lt;/li&gt;
+&lt;li&gt;플래시 메모리(USB, SSD, SD CARD), 하드디스크에는 수명이 있다&lt;/li&gt;
+&lt;li&gt;용량 대비 고가격&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MLC
+&lt;ul&gt;
+&lt;li&gt;한 셀로 네 개의 정보 표현(대용량화 유리)&lt;/li&gt;
+&lt;li&gt;SLC보다 느린 입출력&lt;/li&gt;
+&lt;li&gt;SLC보다 짧은 수명&lt;/li&gt;
+&lt;li&gt;SLC보다 저렴&lt;/li&gt;
+&lt;li&gt;시중에서 많이 사용(MLC, TLC, QLC)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;TLC
+&lt;ul&gt;
+&lt;li&gt;한 셀로 8개의 정보 표현(대용량화 유리)&lt;/li&gt;
+&lt;li&gt;MLC보다 느린 입출력&lt;/li&gt;
+&lt;li&gt;MLC보다 짧은 수명&lt;/li&gt;
+&lt;li&gt;MLC보다 저렵&lt;/li&gt;
+&lt;li&gt;시중에서 많이 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;→ &lt;Mark&gt;같은 플래시 메모리라도 수명, 가격, 성능이 다르다
+&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/36848c42-a58e-4988-b2e4-730fe5977700&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/23b21cbf-8625-467e-a5e1-2d210a5adf39&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;셀들이 모여 페이지(page)
+&lt;ul&gt;
+&lt;li&gt;페이지의 상태
+&lt;ul&gt;
+&lt;li&gt;Free 상태
+&lt;ul&gt;
+&lt;li&gt;어떠한 데이터도 저장하고 있지 않아 새로운 데이터를 저장할 수 있는 상태&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Valid 상태
+&lt;ul&gt;
+&lt;li&gt;이미 유효한 데이터를 저장하고 있는 상태&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Invalid 상태
+&lt;ul&gt;
+&lt;li&gt;유효하지 않은 데이터(쓰레기값)를 저장하고 있는 상태&lt;/li&gt;
+&lt;li&gt;c.f. ) &lt;Mark&gt;플레시 메모리는 하드 디스크와 달리 덮어쓰기가 불가능 🔥&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;가비지 컬렉션&lt;/Mark&gt;(삭제는 블록단위 읽/쓰는 페이지 단위)
+&lt;ul&gt;
+&lt;li&gt;A를 A`로 수정시&lt;/li&gt;
+&lt;li&gt;유효한 페이지들만을 새로운 블록으로 복사&lt;/li&gt;
+&lt;li&gt;기존의 블록(&lt;Mark&gt;Invalid&lt;/Mark&gt;)을 삭제하여 공간을 정리
+&lt;img src=&quot;https://github.com/dltlaos11/CodeSolving/assets/74396128/f8328c62-f6e6-429b-a2f0-c351b7158b28&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;페이지들이 블록(block)&lt;/li&gt;
+&lt;li&gt;블록이 모여 플레인(plane)&lt;/li&gt;
+&lt;li&gt;플레인이 모여 다이(die)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;읽기/쓰기 단위와 삭제 단위는 다르다&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;Mark&gt;읽기와 쓰기&lt;/Mark&gt;는 &lt;Mark&gt;페이지 단위&lt;/Mark&gt;로 이루어짐&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;삭제&lt;/Mark&gt;는 &lt;Mark&gt;블록(페이지보다 큰) 단위&lt;/Mark&gt;로 이루어짐&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[명령어 집합구조, CISC와 RISC]]></title><description><![CDATA[명령어 집합구조, CISC와 RISC에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/명령어 집합구조, CISC와 RISC</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/명령어 집합구조, CISC와 RISC</guid><pubDate>Fri, 01 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A7%91%ED%95%A9%EA%B5%AC%EC%A1%B0,-CISC%EC%99%80-RISC&quot;&gt;명령어 집합구조, CISC와 RISC&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A7%91%ED%95%A9&quot;&gt;명령어 집합&lt;/a&gt;&lt;/li&gt;
