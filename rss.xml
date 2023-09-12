@@ -1,4 +1,297 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Yong Jun]]></title><description><![CDATA[Blog by Yong Jun]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 09 Sep 2023 15:09:48 GMT</lastBuildDate><item><title><![CDATA[운영체제의 큰 그림]]></title><description><![CDATA[운영체제를 알아야 하는 이유에 대해서 배웁니다]]></description><link>https://dltlaos11.github.io//posts/cs</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/cs</guid><pubDate>Sat, 09 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Yong Jun]]></title><description><![CDATA[Blog by Yong Jun]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 12 Sep 2023 15:25:02 GMT</lastBuildDate><item><title><![CDATA[프로세스와 스레드]]></title><description><![CDATA[프로세스와 스레드에 대해서 배웁니다]]></description><link>https://dltlaos11.github.io//posts/os</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/os</guid><pubDate>Tue, 12 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C%EC%99%80-%EA%B3%84%EC%B8%B5%EA%B5%AC%EC%A1%B0&quot;&gt;프로세스 상태와 계층구조&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C&quot;&gt;프로세스 상태&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B3%84%EC%B8%B5-%EA%B5%AC%EC%A1%B0&quot;&gt;프로세스 계층 구조&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%9D%EC%84%B1-%EA%B8%B0%EB%B2%95&quot;&gt;프로세스 생성 기법&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#rom-bios&quot;&gt;ROM-BIOS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%8A%A4%EB%A0%88%EB%93%9C&quot;&gt;스레드&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80-%EC%8A%A4%EB%A0%88%EB%93%9C&quot;&gt;프로세스와 스레드&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%A9%80%ED%8B%B0-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80-%EB%A9%80%ED%8B%B0-%EC%8A%A4%EB%A0%88%EB%93%9C&quot;&gt;멀티 프로세스와 멀티 스레드&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0&quot;&gt;프로세스 확인하기&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%8A%A4%EB%A0%88%EB%93%9C-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0&quot;&gt;스레드 확인하기&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EA%B0%9C%EC%9A%94&quot;&gt;CPU 스케줄링 개요&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84&quot;&gt;프로세스 우선순위&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%ED%81%90&quot;&gt;스케줄링 큐&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%84%A0%EC%A0%90%ED%98%95%EA%B3%BC-%EB%B9%84%EC%84%A0%EC%A0%90%ED%98%95-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81&quot;&gt;선점형(Preemptive)과 비선점형 스케줄링(Non-preemptive)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;프로세스-상태와-계층구조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C%EC%99%80-%EA%B3%84%EC%B8%B5%EA%B5%AC%EC%A1%B0&quot; aria-label=&quot;프로세스 상태와 계층구조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로세스 상태와 계층구조&lt;/h2&gt;
+&lt;h3 id=&quot;프로세스-상태&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C&quot; aria-label=&quot;프로세스 상태 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로세스 상태&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;생성상태
+&lt;ul&gt;
+&lt;li&gt;이제 막 메모리에 적재되어 PCB를 할당 받은 상태&lt;/li&gt;
+&lt;li&gt;준비가 완료되었다면 준비 상태로&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;준비상태
+&lt;ul&gt;
+&lt;li&gt;당장이라도 CPU를 할당 받아 실행할 수 있지만&lt;/li&gt;
+&lt;li&gt;자신의 차례가 아니기에 기다리는 상태&lt;/li&gt;
+&lt;li&gt;자신의 차례가 된다면 실행 상태로(=&lt;Mark&gt;디스패치&lt;/Mark&gt;(준비→실행))&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;실행상태
+&lt;ul&gt;
+&lt;li&gt;CPU를 할당 받아 실행 중인 상태&lt;/li&gt;
+&lt;li&gt;할당된 시간 모두 사용 시(&lt;Mark&gt;타이머 인터럽트&lt;/Mark&gt;(할당된 시간을 전부 사용했음을 나타내는 하드웨어 인터럽트) 발생 시) 준비 상태로&lt;/li&gt;
+&lt;li&gt;실행 도중 입출력장치를 사용하면 입출력 작업이 끝날 때까지(&lt;Mark&gt;입출력 완료 인터럽트를 받을 때까지&lt;/Mark&gt;) 대기 상태로&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;대기상태(block state)
+&lt;ul&gt;
+&lt;li&gt;프로세스가 실행 도중 입출력장치를 사용하는 경우&lt;/li&gt;
+&lt;li&gt;입출력 작업은 CPU에 비해 느리기에 이 경우 대기 상태로 접어듬&lt;/li&gt;
+&lt;li&gt;입출력 작업이 끝나면 (입출력 완료 인터럽트를 받으면) 준비 상태로&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;종료상태
+&lt;ul&gt;
+&lt;li&gt;프로세스가 종료된 상태&lt;/li&gt;
+&lt;li&gt;PCB, 프로세스의 메모리 영역 정리
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/eccf0a31-0da9-4dbb-83c2-c9b5983bc9e0&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;프로세스-계층-구조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B3%84%EC%B8%B5-%EA%B5%AC%EC%A1%B0&quot; aria-label=&quot;프로세스 계층 구조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로세스 계층 구조&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;프로세스 실행 도중(&lt;Mark&gt;시스템 호출을 통해&lt;/Mark&gt;) 다른 프로세스 생성 가능&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;새 프로세스를 생성한 프로세스: 부모 프로세스&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;부모 프로세스에 의해 생성된 프로세스: 자식 프로세스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;부모 프로세스와 자식 프로세스는 &lt;Mark&gt;별개의 프로세스&lt;/Mark&gt;이므로 &lt;Mark&gt;각기 다른 PID&lt;/Mark&gt;를 가짐&lt;/li&gt;
+&lt;li&gt;일부 운영체제에서는 자식 프로세스 &lt;Mark&gt;PCB에 부모 프로세스 PID(PPID)를 명시하기도&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;→ 프로세스의 게층적인 구조 형성&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;OS에서 데몬 프로세스는 백그라운드에서 실행되는 시스템 서비스나 작업을 수행하는 프로세스를 의미, 데몬 프로세스는 주로 리눅스와 유닉스 기반 운영 체제에서 많이 사용되며, Windows 운영 체제에서는 “서비스”&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;데몬 프로세스는 처음으로 시작되는 프로세스의 자식 프로세스&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;최초의 프로세스 확인
+pstree&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;c.f.) Windows는 계층 구조 ❌&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;프로세스-생성-기법&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%9D%EC%84%B1-%EA%B8%B0%EB%B2%95&quot; aria-label=&quot;프로세스 생성 기법 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로세스 생성 기법&lt;/h3&gt;
+&lt;p&gt;부모 프로세스는 &lt;Mark&gt;fork 시스템 호출&lt;/Mark&gt;을 통해 자신의 복사본을 자식 프로세스로 생성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;복사본(=자식 프로세스) 생성&lt;/li&gt;
+&lt;li&gt;부모 프로세스의 자원 상속&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;자식 프로세스는 &lt;Mark&gt;exec 시스템 호출&lt;/Mark&gt;을 통해 &lt;Mark&gt;자신의 메모리 공간을 다른 프로그램으로 교체&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;메모리 공간을 새로운 프로그램으로 덮어쓰기&lt;/li&gt;
+&lt;li&gt;코드/데이터 영역은 실행할 프로그램 내용으로 바뀌고 나머지 영역은 초기화
+&lt;ul&gt;
+&lt;li&gt;&lt;Mark&gt;이때 부모 프로세스가 갖고있는 프로그램 내용은 자식 프로세스와 다르다.(별개)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;rom-bios&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#rom-bios&quot; aria-label=&quot;rom bios permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;rom bios&lt;/h3&gt;
+&lt;p&gt;ROM-BIOS(Read-Only Memory - Basic Input/Output System)은 운영 체제나 프로세스와 직접적으로 관련된 프로세스가 아니다. ROM-BIOS는 컴퓨터의 부팅 및 기본 입출력 시스템을 관리하는 하드웨어와 소프트웨어의 조합&lt;/p&gt;
+&lt;p&gt;ROM-BIOS는 컴퓨터의 기본 입력 및 출력 작업을 처리하며, 부팅 시 초기 하드웨어 설정 및 컴퓨터의 기본 동작을 관리. 이는 운영 체제의 부팅 전 단계에서 실행되며, 컴퓨터의 기본 하드웨어를 초기화하고 저장 장치에서 운영 체제를 로드. 이후 운영 체제가 로드되면 운영 체제가 컴퓨터 시스템을 제어하고 프로세스를 관리한다.&lt;/p&gt;
+&lt;p&gt;따라서 ROM-BIOS는 운영 체제나 프로세스와는 &lt;Mark&gt;구분되는 역할&lt;/Mark&gt;을 한다. ROM-BIOS는 컴퓨터의 하드웨어와 초기 부팅 프로세스를 다루는데 사용되며, 운영 체제와 어플리케이션은 이후에 실행되는 소프트웨어.&lt;/p&gt;
+&lt;h2 id=&quot;스레드&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8A%A4%EB%A0%88%EB%93%9C&quot; aria-label=&quot;스레드 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;스레드&lt;/h2&gt;
+&lt;p&gt;스레드(thread)는 프로세스를 구성하는 실행 흐름의 단위&lt;/p&gt;
+&lt;p&gt;하나의 프로세스는 하나 이상의 스레드를 가질 수 있다
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/3c4fb422-9e0c-496e-972e-2e78e2e8897b&quot; alt=&quot;image&quot;&gt;
+한 프로세스를 여러개의 스레드로 동시에 실행&lt;/p&gt;
+&lt;h3 id=&quot;프로세스와-스레드&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80-%EC%8A%A4%EB%A0%88%EB%93%9C&quot; aria-label=&quot;프로세스와 스레드 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로세스와 스레드&lt;/h3&gt;
+&lt;p&gt;실행 흐름이 하나인 프로세스(단일 스레드 프로세스)&lt;/p&gt;
+&lt;p&gt;실행 흐름이 여러 개인 프로세스(멀티 스레드 프로세스)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스를 이루는 여러 명령어 동시 실행 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;스레드의 구성 요소&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;스레드 ID, 프로그램 카운터를 비롯한 레지스터값, 스택 등&lt;/p&gt;
+&lt;p&gt;&lt;Mark&gt;실행에 필요한 최소한의 정보
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/d3363057-79d0-4a5d-a4a3-dcc086240e2f&quot; alt=&quot;image&quot;&gt;
+🔥&lt;Mark&gt;프로세스를 이루는 모든 스레드들은 그 프로세스의 자원을 공유할 수 있다&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;Mark&gt;리눅스&lt;/Mark&gt; 운영체제에서의 스레드
+&lt;ul&gt;
+&lt;li&gt;&lt;Mark&gt;프로세스와 스레드는 “실행의 문맥(context of execution)”, 별개의 것으로 구분할 필요 ❌ - 리눅스 토발즈&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;task&lt;/Mark&gt;라는 용어로 대체하여 사용&lt;/li&gt;
+&lt;li&gt;다른 운영체제에서는 아직까지 구분한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;c.f. ) 전통적인 관점의 전공서에서는 CPU한테 처리해야할 작업을 처리할 때 &lt;Mark&gt;프로세스 단위&lt;/Mark&gt;로 전달한다고 나와있지만, 실제로 확인해보면 CPU한테 처리해야 할 작업을 전달하거나 CPU를 할당받아 실행되는 단위는 프로세스가 아니라 &lt;Mark&gt;스레드 단위&lt;/Mark&gt;인 경우가 많다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;멀티-프로세스와-멀티-스레드&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A9%80%ED%8B%B0-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80-%EB%A9%80%ED%8B%B0-%EC%8A%A4%EB%A0%88%EB%93%9C&quot; aria-label=&quot;멀티 프로세스와 멀티 스레드 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;멀티 프로세스와 멀티 스레드&lt;/h3&gt;
+&lt;p&gt;동일한 작업을 수행하는 &lt;Mark&gt;단일 스레드 프로세스 여러 개&lt;/Mark&gt; 실행 vs 하나의 프로세스를 &lt;Mark&gt;여러 스레드&lt;/Mark&gt;로 실행
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/6d5006ba-9a51-4c5c-9017-6607c1a8498e&quot; alt=&quot;image&quot;&gt;
+→ 프로세스끼리는 기본적으로 자원을 공유하지 않지만 스레드끼리는 같은 프로세스의 자원을 공유하는 차이점이 있다&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;process
+&lt;ul&gt;
+&lt;li&gt;프로세스를 fork하면 코드/데이터/힙 영역 등 모든 자원이 복제되어 저장됨&lt;/li&gt;
+&lt;li&gt;저장된 메모리 주소를 제외하면 모든 것이 동일한 프로세스 두 개가 통째로 메모리에 적재
+&lt;ul&gt;
+&lt;li&gt;c.f. ) 실제로는 fork 직후 같은 프로세스를 &lt;Mark&gt;통째로 메모리에 중복 저장하지 않으면서&lt;/Mark&gt; 동시에 프로세스끼리 자원을 공유하지 않는 방법이 있다. 이를 &lt;Mark&gt;쓰기 시 복사(copy on write)기법&lt;/Mark&gt;이라 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;thread
+&lt;ul&gt;
+&lt;li&gt;스레드들은 각기 다른 스레드 ID, (별도의 실행을 위해 꼭 필요한) 프로그램 카운터 값을 포함한 레지스터 값, 스택을 가질 뿐 프로세스가 가지는 자원을 공유
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/52f79880-1bda-4bac-abd2-e0e0c012361d&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;프로세스끼리는 자원을 공유하지 않는다 → 남남처럼 독립적으로 실행
+&lt;ul&gt;
+&lt;li&gt;프로세스 간에도 자원을 주고받을 수 있다 → 프로세스 간 통신(IPC)&lt;/li&gt;
+&lt;li&gt;파일을 통한 프로세스 간 통신, 공유 메모리를 통한 프로세스 간 통신&lt;/li&gt;
+&lt;li&gt;c.f.) socket, pipe …&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;스레드는 프로세스의 자원을 공유 → 비교적 멀티프로세스에 비해 협력과 통신에 유리
+&lt;ul&gt;
+&lt;li&gt;스레드 하나에 문제가 생기면 전체 프로세스에 문제가 생길 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;프로세스-확인하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0&quot; aria-label=&quot;프로세스 확인하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로세스 확인하기&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;vi test&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;py
+&lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;hello, os&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+python3 test&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;py
+
+&lt;span class=&quot;token comment&quot;&gt;// PID 확인&lt;/span&gt;
+vi test&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;py
+
+import os
+os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// PID 22662&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// -----------------------------------&lt;/span&gt;
+from multiprocessing import Process
+import os
+
+def &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token char&quot;&gt;&apos;foo: child process: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 자식 PID&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token char&quot;&gt;&apos;foo: paraent process: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getppid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 자식의 부모 PID(22784)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; __name__ &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token char&quot;&gt;&apos;__main__&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token char&quot;&gt;&apos;paraent process: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// paraent process:  22784&lt;/span&gt;
+    child &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Process&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;target&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;foo&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 자식 프로세스 생성&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// ------------------------------------&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// 멀티 process 생성&lt;/span&gt;
+from multiprocessing import Process
+import os
+
+def &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token char&quot;&gt;&apos;foo: child process: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token char&quot;&gt;&apos;foo: paraent process: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getppid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; __name__ &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token char&quot;&gt;&apos;__main__&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token char&quot;&gt;&apos;paraent process: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    child1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Process&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;target&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;foo&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    child2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Process&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;target&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;foo&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    child3 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Process&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;target&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;foo&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;스레드-확인하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8A%A4%EB%A0%88%EB%93%9C-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0&quot; aria-label=&quot;스레드 확인하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;스레드 확인하기&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;vi test&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;py
+&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;
+import threading
+import os
+
+def &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token char&quot;&gt;&apos;foo: thread id is: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; threading&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get_native_id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token char&quot;&gt;&apos;foo: my pid is: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 
+		&lt;span class=&quot;token comment&quot;&gt;// 23222, thread는 process의 자원 공유&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; __name__ &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token char&quot;&gt;&apos;__main__&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token char&quot;&gt;&apos;PID: &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 23222&lt;/span&gt;
+    thread1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; threading&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;target&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;foo&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;cpu-스케줄링-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;cpu 스케줄링 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;cpu 스케줄링 개요&lt;/h2&gt;
+&lt;p&gt;운영체제가 프로세스들에게 공정하고 합리적으로 CPU 자원을 배분하는 것&lt;/p&gt;
+&lt;h3 id=&quot;프로세스-우선순위&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84&quot; aria-label=&quot;프로세스 우선순위 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로세스 우선순위&lt;/h3&gt;
+&lt;p&gt;&lt;Mark&gt;입출력 작업&lt;/Mark&gt;이 많은 프로세스(=&lt;Mark&gt;I/O Bound Process&lt;/Mark&gt;, 입출력 집중 프로세스)의 우선순위는&lt;/p&gt;
+&lt;p&gt;&lt;Mark&gt;CPU 작업&lt;/Mark&gt;이 많은 프로세스(=&lt;Mark&gt;CPU Bound Process&lt;/Mark&gt;, CPU 집중 프로세스)의 우선순위 보다 높다&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I/O Bound Process는 대기 상태에서 더 많이 존재하기에 입출력 작업이 우선순위가 높아서 프로세스 먼저 실행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;스케줄링-큐&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%ED%81%90&quot; aria-label=&quot;스케줄링 큐 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;스케줄링 큐&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;반드시 FIFO일 필요는 ❌&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;특정 자원(cpu,hdd, i/o devcie)을 이용하고 싶어하는 프로세스들을 큐에 삽입해서 자원을 이용하도록 만듦&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;준비 큐와 대기 큐
+&lt;ul&gt;
+&lt;li&gt;준비 큐: CPU를 이용하기 위해 기다리는 줄&lt;/li&gt;
+&lt;li&gt;대기 큐: 입출력장치를 이용하기 위해 기다리는 줄
+&lt;ul&gt;
+&lt;li&gt;같은 장치를 요구한 프로세스들은 같은 큐에서 대기
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/dca033ec-bdaf-4241-a16c-d5189c97c5a9&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;먼저 큐에 삽입되더라도 반드시 먼저 실행되는 것은 아님, 우선순위가 높은 프로세스가 CPU를 이용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;선점형과-비선점형-스케줄링&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%84%A0%EC%A0%90%ED%98%95%EA%B3%BC-%EB%B9%84%EC%84%A0%EC%A0%90%ED%98%95-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81&quot; aria-label=&quot;선점형과 비선점형 스케줄링 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;선점형과 비선점형 스케줄링&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;선점형 스케줄링(Preemptive)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;현재 CPU를 사용중인 프로세스로부터 CPU 자원을 빼앗아 다른 프로세스에 할당&lt;/li&gt;
+&lt;li&gt;어떤 프로세스 하나가 CPU 자원 하나를 독점해서 쓸 수 없는 스케줄링 방식&lt;/li&gt;
+&lt;li&gt;프로세스마다 정해진 시간만큼 CPU를 쓰게 하고 정해진 시간을 모두써서 타임아웃 인터럽트가 발생하면 OS가 다음 프로세스에게 CPU자원을 넘겨줌&lt;/li&gt;
+&lt;li&gt;장점
+&lt;ul&gt;
+&lt;li&gt;어느 한 프로세스의 자원 독점을 막고 프로세스들에 골고루 자원을 배분 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;단점
+&lt;ul&gt;
+&lt;li&gt;그만큼 문맥 교환 과정에서 오버헤드가 발생할 수 있다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;비선점형 스케줄링((Non-preemptive))&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;현재 CPU를 사용중인 프로세스의 작업이 끝날 때까지 프로세스 기다리기&lt;/li&gt;
+&lt;li&gt;어느 한 프로세스가 자원을 이용하고 있다면 종료되거나 대기상태에 접어들기 전까지 다른 끼어들 수 ❌&lt;/li&gt;
+&lt;li&gt;장점
+&lt;ul&gt;
+&lt;li&gt;선점형 스케줄링에 비해 문맥 교환에서 발생하는 오버헤드가 적다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;단점
+&lt;ul&gt;
+&lt;li&gt;모든 프로세스가 골고루 자원을 이용하기 어렵다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;c.f. ) 문맥교환
+다중 프로그래밍 및 다중 작업 환경에서 발생하는 프로세스 간의 전환 작업을 의미&lt;/p&gt;
+&lt;p&gt;문맥 교환은 현재 실행 중인 프로세스의 상태(문맥)를 저장하고, 다음으로 실행될 프로세스의 상태를 복원하는 과정을 포함. 이를 통해 여러 프로세스가 CPU를 공유하며 실행될 수 있습니다.&lt;/p&gt;
+&lt;p&gt;문맥 교환은 다음과 같은 상황에서 발생할 수 있음:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;인터럽트: 하드웨어 인터럽트(예: 타이머 인터럽트, 입출력 완료 인터럽트) 또는 소프트웨어 인터럽트(예: 시스템 호출)에 의해 발생.&lt;/li&gt;
+&lt;li&gt;스케줄러 결정: &lt;Mark&gt;스케줄러는 실행 중인 프로세스 중 하나를 중단하고 다른 프로세스를 실행하도록 결정할 때 발생&lt;/Mark&gt;합니다. 이를 통해 다양한 프로세스 간에 CPU 시간을 공정하게 분배할 수 있음.&lt;/li&gt;
+&lt;li&gt;입출력 작업: 입출력 작업을 수행하는 동안 CPU가 대기 상태에 들어가는 경우, 다른 프로세스로 전환하여 시스템 자원을 최대한 활용합니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;문맥 교환은 오버헤드를 발생시킬 수 있으므로, 효율적으로 수행하기 위해 하드웨어와 운영 체제가 최적화되어야 한다. 문맥 교환은 다중 프로그래밍 환경에서 여러 작업이 동시에 실행될 수 있도록 해주는 핵심적인 운영 체제 기능 중 하나&lt;/p&gt;</content:encoded></item><item><title><![CDATA[운영체제의 큰 그림]]></title><description><![CDATA[운영체제를 알아야 하는 이유에 대해서 배웁니다]]></description><link>https://dltlaos11.github.io//posts/os</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/os</guid><pubDate>Sat, 09 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%EB%A5%BC-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0&quot;&gt;운영체제를 알아야 하는 이유&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%EC%9D%98-%ED%81%B0-%EA%B7%B8%EB%A6%BC&quot;&gt;운영체제의 큰 그림&lt;/a&gt;
 &lt;ul&gt;
@@ -310,7 +603,7 @@ $ csrutil enable&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;커널영역은 따로 존재, 메모리 안에서&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[다양한 입출력장치의 특성]]></title><description><![CDATA[다양한 입출력장치의 특성에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/cs</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/cs</guid><pubDate>Tue, 05 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[다양한 입출력장치의 특성]]></title><description><![CDATA[다양한 입출력장치의 특성에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Tue, 05 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#raid%EC%9D%98-%EC%A0%95%EC%9D%98%EC%99%80-%EC%A2%85%EB%A5%98&quot;&gt;RAID의 정의와 종류&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#raid%EC%9D%98-%EC%A0%95%EC%9D%98&quot;&gt;RAID의 정의&lt;/a&gt;&lt;/li&gt;
@@ -689,7 +982,7 @@ c.f. ) 패리티 비트는 오류 검출만 가능할 뿐 오류 복구는 불�
 &lt;p&gt;e.g. PCI 버스, PCI express (PCIe) 버스와 입출력 장치를 연결짓는 슬롯&lt;/p&gt;
 &lt;p&gt;슬롯 → 입출력 버스 → 시스템 버스&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://github.com/adamschwartz/magic-of-css/assets/74396128/50b5411e-9d17-4757-9de1-4fd77493e52a&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
-&lt;p&gt;더욱 발전한 DMA, 입출력 프로세서(입출력 채널) → 입출력장치가 입출력 전용 CPU, RAM을 탑재한 경우도 있다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[다양한 메모리의 특성]]></title><description><![CDATA[다양한 메모리의 특성에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/cs</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/cs</guid><pubDate>Mon, 04 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;더욱 발전한 DMA, 입출력 프로세서(입출력 채널) → 입출력장치가 입출력 전용 CPU, RAM을 탑재한 경우도 있다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[다양한 메모리의 특성]]></title><description><![CDATA[다양한 메모리의 특성에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Mon, 04 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#ram%EC%9D%98-%ED%8A%B9%EC%84%B1%EA%B3%BC-%EC%A2%85%EB%A5%98&quot;&gt;RAM의 특성과 종류&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#ram%EC%9D%98-%ED%8A%B9%EC%A7%95&quot;&gt;RAM의 특징&lt;/a&gt;&lt;/li&gt;
@@ -1057,7 +1350,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;ul&gt;
 &lt;li&gt;&lt;Mark&gt;읽기와 쓰기&lt;/Mark&gt;는 &lt;Mark&gt;페이지 단위&lt;/Mark&gt;로 이루어짐&lt;/li&gt;
 &lt;li&gt;&lt;Mark&gt;삭제&lt;/Mark&gt;는 &lt;Mark&gt;블록(페이지보다 큰) 단위&lt;/Mark&gt;로 이루어짐&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[명령어 집합구조, CISC와 RISC]]></title><description><![CDATA[명령어 집합구조, CISC와 RISC에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/명령어 집합구조, CISC와 RISC</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/명령어 집합구조, CISC와 RISC</guid><pubDate>Fri, 01 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[명령어 집합구조, CISC와 RISC]]></title><description><![CDATA[명령어 집합구조, CISC와 RISC에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Fri, 01 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A7%91%ED%95%A9%EA%B5%AC%EC%A1%B0,-CISC%EC%99%80-RISC&quot;&gt;명령어 집합구조, CISC와 RISC&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A7%91%ED%95%A9&quot;&gt;명령어 집합&lt;/a&gt;&lt;/li&gt;
@@ -1133,7 +1426,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;/ul&gt;
 &lt;h4 id=&quot;summary&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#summary&quot; aria-label=&quot;summary permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Summary&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/f15253b0-64e9-4923-85c8-b3fc803cfd4a&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
-&lt;p&gt;c.f. ) 현대 CISC의 활용: 마이크로 명령어, 가급적 명령어의 실행을 1 클럭 내로 잘게 쪼개서 실행하므로, 내부적으로는 RISC처럼 실행&lt;/p&gt;</content:encoded></item><item><title><![CDATA[명령어 병렬 처리 기법]]></title><description><![CDATA[명령어 병렬 처리 기법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/명령어 병렬 처리 기법</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/명령어 병렬 처리 기법</guid><pubDate>Fri, 01 Sep 2023 18:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;c.f. ) 현대 CISC의 활용: 마이크로 명령어, 가급적 명령어의 실행을 1 클럭 내로 잘게 쪼개서 실행하므로, 내부적으로는 RISC처럼 실행&lt;/p&gt;</content:encoded></item><item><title><![CDATA[명령어 병렬 처리 기법]]></title><description><![CDATA[명령어 병렬 처리 기법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Fri, 01 Sep 2023 18:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%B3%91%EB%A0%AC-%EC%B2%98%EB%A6%AC%EA%B8%B0%EB%B2%95&quot;&gt;명령어 병렬 처리기법&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8&quot;&gt;명령어 파이프라인&lt;/a&gt;
@@ -1239,7 +1532,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;/li&gt;
 &lt;li&gt;슈퍼스칼라 기법: 명령어 파이프라인을 여러개 두는 방식&lt;/li&gt;
 &lt;li&gt;비순차적 명령어 처리: 의존성이 없는 명령어간 순서를 바꿔서 실행하는 방식&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[명령어 사이클과 인터럽트]]></title><description><![CDATA[명령어 사이클과 인터럽트에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/명령어 사이클과 인터럽트</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/명령어 사이클과 인터럽트</guid><pubDate>Mon, 28 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[명령어 사이클과 인터럽트]]></title><description><![CDATA[명령어 사이클과 인터럽트에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Mon, 28 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%82%AC%EC%9D%B4%ED%81%B4&quot;&gt;명령어 사이클&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -1397,7 +1690,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;ul&gt;
 &lt;li&gt;실행 사이클이 끝나고 인터럽트 여부를 확인했을 떄 인터럽트가 발생했을 경우&lt;/li&gt;
 &lt;li&gt;결국 CPU는 메모리에 있는 프로그램을 위와 같은 &lt;Mark&gt;정형화된 흐름&lt;/Mark&gt;에 따라서 처리&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[빠른 CPU를 위한 설계 기법]]></title><description><![CDATA[빠른 CPU를 위한 설계 기법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/빠른 CPU를 위한 설계 기법</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/빠른 CPU를 위한 설계 기법</guid><pubDate>Mon, 28 Aug 2023 18:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[빠른 CPU를 위한 설계 기법]]></title><description><![CDATA[빠른 CPU를 위한 설계 기법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Mon, 28 Aug 2023 18:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%ED%81%B4%EB%9F%AD&quot;&gt;클럭&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#cpu-%EC%86%8D%EB%8F%84%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95&quot;&gt;CPU 속도를 빠르게 하는 방법&lt;/a&gt;&lt;/li&gt;
@@ -1525,7 +1818,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[CPU의 내부 구성]]></title><description><![CDATA[컴퓨터 구조의 CPU의 내부 구성 - ALU&제어장치&레지스터에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/CPU(ALU&amp;제어장치&amp;레지스터)</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/CPU(ALU&amp;제어장치&amp;레지스터)</guid><pubDate>Fri, 25 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[CPU의 내부 구성]]></title><description><![CDATA[컴퓨터 구조의 CPU의 내부 구성 - ALU&제어장치&레지스터에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Fri, 25 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#CPU%EC%9D%98-%EB%82%B4%EB%B6%80-%EA%B5%AC%EC%84%B1&quot;&gt;CPU의 내부 구성&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#ALU&quot;&gt;ALU&lt;/a&gt;&lt;/li&gt;
@@ -1657,7 +1950,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;p&gt;베이스 레지스터는 &lt;Mark&gt;기준 주소 저장&lt;/Mark&gt; 역할&lt;/p&gt;
 &lt;p&gt;c.f.) 메모리에 저장되어 있는 주소(200, 250번지)와 CPU가 인식하는 주소는 다르다.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[C 언어의 컴파일 과정]]></title><description><![CDATA[컴퓨터 구조, C 언어의 컴파일 과정에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/C 언어의 컴파일 과정</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/C 언어의 컴파일 과정</guid><pubDate>Fri, 25 Aug 2023 22:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[C 언어의 컴파일 과정]]></title><description><![CDATA[컴퓨터 구조, C 언어의 컴파일 과정에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/c</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/c</guid><pubDate>Fri, 25 Aug 2023 22:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%A0%84%EC%B2%98%EB%A6%AC&quot;&gt;전처리 과정&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%BB%B4%ED%8C%8C%EC%9D%BC&quot;&gt;컴파일 과정&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%96%B4%EC%85%88%EB%B8%94&quot;&gt;어셈블 과정&lt;/a&gt;&lt;/li&gt;
@@ -1730,7 +2023,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;img width=&quot;653&quot; alt=&quot;image&quot; src=&quot;https://github.com/dltlaos11/dltlaos11.github.io/assets/74396128/9ee1e23d-270c-4a3f-b146-ed960efb0959&quot;&gt;
 &lt;/br&gt;
 &lt;img width=&quot;662&quot; alt=&quot;image&quot; src=&quot;https://github.com/dltlaos11/dltlaos11.github.io/assets/74396128/d0c535dc-77b9-4ea6-aca3-477bf316c512&quot;&gt;
-&lt;p&gt;→ main.o와 helper.o의 목적코드를 하나의 실행파일로 연결시켜주는 링킹 작업이 필요&lt;/p&gt;</content:encoded></item><item><title><![CDATA[배열과 연결리스트]]></title><description><![CDATA[자바스크립트에서 사용되는 배열과 연결리스트에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/배열과 연결리스트</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/배열과 연결리스트</guid><pubDate>Fri, 25 Aug 2023 21:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;→ main.o와 helper.o의 목적코드를 하나의 실행파일로 연결시켜주는 링킹 작업이 필요&lt;/p&gt;</content:encoded></item><item><title><![CDATA[배열과 연결리스트]]></title><description><![CDATA[자바스크립트에서 사용되는 배열과 연결리스트에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/algorithms</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/algorithms</guid><pubDate>Fri, 25 Aug 2023 21:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%B0%B0%EC%97%B4&quot;&gt;배열&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%A0%95%EC%9D%98%EC%99%80-%EC%84%B1%EC%A7%88&quot;&gt;정의와 성질&lt;/a&gt;&lt;/li&gt;
@@ -2019,7 +2312,7 @@ linkedList&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span
 console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;linkedList&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// [&apos;A&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h5 id=&quot;reference&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#reference&quot; aria-label=&quot;reference permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Reference&lt;/h5&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=C6MX5u7r72E&amp;#x26;list=PLtqbFd2VIQv4O6D6l9HcD732hdrnYb6CY&amp;#x26;index=5&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;[바킹독의 실전 알고리즘] 0x04강 - 연결 리스트&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=dvKuG3gfLFQ&amp;#x26;t=752s&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;[2022 JS 알고리즘] 002. 연결리스트&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[명령어의 구조와 주소 지정 방식]]></title><description><![CDATA[컴퓨터 구조의 명령어의 구조와 주소 지정 방식에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/명령어의 구조와 주소 지정 방식</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/명령어의 구조와 주소 지정 방식</guid><pubDate>Thu, 24 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=dvKuG3gfLFQ&amp;#x26;t=752s&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;[2022 JS 알고리즘] 002. 연결리스트&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[명령어의 구조와 주소 지정 방식]]></title><description><![CDATA[컴퓨터 구조의 명령어의 구조와 주소 지정 방식에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Thu, 24 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%97%B0%EC%82%B0-%EC%BD%94%EB%93%9C&quot;&gt;연산 코드&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%98%A4%ED%8D%BC%EB%9E%9C%EB%93%9C&quot;&gt;오퍼랜드&lt;/a&gt;
 &lt;ul&gt;
@@ -2119,7 +2412,7 @@ CPU마다 연산코드의 종류가 다르므로 유형을 파악
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[JS 인터프리터 언어, 컴파일 언어🤔]]></title><description><![CDATA[자바스크립트 코드 실행 동작 원리: 엔진, 가상머신, 인터프리터, AST 기초 등에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/JS 인터프리터 언어, 컴파일 언어</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/JS 인터프리터 언어, 컴파일 언어</guid><pubDate>Thu, 24 Aug 2023 21:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[JS 인터프리터 언어, 컴파일 언어🤔]]></title><description><![CDATA[자바스크립트 코드 실행 동작 원리: 엔진, 가상머신, 인터프리터, AST 기초 등에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/javaScript</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/javaScript</guid><pubDate>Thu, 24 Aug 2023 21:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EA%B3%A0%EA%B8%89%EC%96%B8%EC%96%B4%EC%99%80-%EC%A0%80%EA%B8%89%EC%96%B8%EC%96%B4&quot;&gt;고급언어와 저급언어&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EA%B3%A0%EA%B8%89%EC%96%B8%EC%96%B4&quot;&gt;고급언어&lt;/a&gt;&lt;/li&gt;
@@ -2228,7 +2521,7 @@ CPU마다 연산코드의 종류가 다르므로 유형을 파악
 &lt;/ul&gt;
 &lt;h3 id=&quot;참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;참고자료&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://velog.io/@seungchan__y/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-Compiler-Interpreter-%EC%96%B8%EC%96%B4%EB%8B%A4#%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B5%AC%EB%8F%99%EC%9B%90%EB%A6%AC&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;자바스크립트는 Compiler / Interpreter 언어다?&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://devlog-of-yein.tistory.com/m/6&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;컴파일이란 무엇이며, 자바스크립트는 인터프리터 언어인가?&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[0과1로 문자,숫자를 표현하는 방법]]></title><description><![CDATA[컴퓨터 구조의 0과1로 문자,숫자를 표현하는 방법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/0과1로 문자,숫자를 표현하는 방법</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/0과1로 문자,숫자를 표현하는 방법</guid><pubDate>Thu, 24 Aug 2023 20:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://devlog-of-yein.tistory.com/m/6&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;컴파일이란 무엇이며, 자바스크립트는 인터프리터 언어인가?&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[0과1로 문자,숫자를 표현하는 방법]]></title><description><![CDATA[컴퓨터 구조의 0과1로 문자,숫자를 표현하는 방법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Thu, 24 Aug 2023 20:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#0%EA%B3%BC-1%EB%A1%9C-%EC%88%AB%EC%9E%90%EB%A5%BC-%ED%91%9C%ED%98%84%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95&quot;&gt;0과 1로 숫자를 표현하는 방법&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%A0%95%EB%B3%B4-%EB%8B%A8%EC%9C%84&quot;&gt;정보 단위&lt;/a&gt;&lt;/li&gt;
@@ -2437,7 +2730,7 @@ c.f.) 이전 단위를 1024개씩 묶은 단위는 kiB, MiB, GiB, …&lt;/p&gt;
 &lt;img width=&quot;705&quot; alt=&quot;image&quot; src=&quot;https://github.com/boost-library/yong-study/assets/74396128/3d746a61-4e43-4b3f-b7d7-963007aa7479&quot;&gt;
 &lt;img width=&quot;702&quot; alt=&quot;image&quot; src=&quot;https://github.com/boost-library/yong-study/assets/74396128/125a4af8-837d-45cd-a3f0-e512f7c46441&quot;&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;⇒ utf-8은 유니코드 문자를 인코딩하는 방법, utf-8로 인코딩한 값은 &lt;Mark&gt;가변길이 인코딩&lt;/Mark&gt;이기 떄문에 1바이트~4바이트가 될 수 있다. 어떤 식으로 인코딩이 진행되는지는 &lt;Mark&gt;유니코드 문자에 부여된 코드 포인트의 범위&lt;/Mark&gt;에 따라서 코드 포인트를 형식에 맞게 넣어주면 인코딩 된 결과.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[알고리즘 기초 코드 작성 요령]]></title><description><![CDATA[알고리즘의 기초 코드 작성 요령에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/기초 코드 작성 요령</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/기초 코드 작성 요령</guid><pubDate>Thu, 24 Aug 2023 17:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;⇒ utf-8은 유니코드 문자를 인코딩하는 방법, utf-8로 인코딩한 값은 &lt;Mark&gt;가변길이 인코딩&lt;/Mark&gt;이기 떄문에 1바이트~4바이트가 될 수 있다. 어떤 식으로 인코딩이 진행되는지는 &lt;Mark&gt;유니코드 문자에 부여된 코드 포인트의 범위&lt;/Mark&gt;에 따라서 코드 포인트를 형식에 맞게 넣어주면 인코딩 된 결과.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[알고리즘 기초 코드 작성 요령]]></title><description><![CDATA[알고리즘의 기초 코드 작성 요령에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/algorithms</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/algorithms</guid><pubDate>Thu, 24 Aug 2023 17:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%8B%9C%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84&quot;&gt;시간복잡도&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%B9%85%EC%98%A4%ED%91%9C%EA%B8%B0%EB%B2%95&quot;&gt;빅오표기법(Big-O)&lt;/a&gt;&lt;/li&gt;
@@ -2619,7 +2912,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
 &lt;ul&gt;
 &lt;li&gt;출력 맨 마지막 공백 혹은 줄바꿈이 추가로 있어도 상관이 없다.&lt;/li&gt;
 &lt;li&gt;디버거는 굳이 사용하지 않아도 된다. log 사용 권장&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[컴퓨터 구조의 큰 그림]]></title><description><![CDATA[컴퓨터 구조의 큰 그림에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/컴퓨터 구조의 큰 그림</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/컴퓨터 구조의 큰 그림</guid><pubDate>Wed, 23 Aug 2023 17:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[컴퓨터 구조의 큰 그림]]></title><description><![CDATA[컴퓨터 구조의 큰 그림에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Wed, 23 Aug 2023 17:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%BB%B4%ED%93%A8%ED%84%B0-%EA%B5%AC%EC%A1%B0%EB%A5%BC-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0&quot;&gt;컴퓨터 구조를 알아야 하는 이유&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%BB%B4%ED%93%A8%ED%84%B0-%EA%B5%AC%EC%A1%B0&quot;&gt;컴퓨터 구조&lt;/a&gt;
 &lt;ul&gt;
