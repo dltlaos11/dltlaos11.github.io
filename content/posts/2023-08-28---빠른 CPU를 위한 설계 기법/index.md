@@ -3,9 +3,10 @@ title: 빠른 CPU를 위한 설계 기법
 date: "2023-08-28T18:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/빠른 CPU를 위한 설계 기법"
+slug: "/posts/computer_architecture"
 category: "CS"
 tags:
+  - "Computer Architecture"
   - "CS"
 description: "빠른 CPU를 위한 설계 기법에 대해서 배웁니다."
 ---

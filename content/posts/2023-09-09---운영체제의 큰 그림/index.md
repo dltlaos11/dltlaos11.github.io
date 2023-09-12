@@ -3,9 +3,10 @@ title: 운영체제의 큰 그림
 date: "2023-09-09T20:35:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/cs"
-category: "CS"
+slug: "/posts/os"
+category: "OS"
 tags:
+  - "OS"
   - "CS"
 description: "운영체제를 알아야 하는 이유에 대해서 배웁니다"
 ---

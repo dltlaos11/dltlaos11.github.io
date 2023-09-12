@@ -3,9 +3,10 @@ title: 명령어 병렬 처리 기법
 date: "2023-09-01T18:35:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/명령어 병렬 처리 기법"
+slug: "/posts/computer_architecture"
 category: "CS"
 tags:
+  - "Computer Architecture"
   - "CS"
 description: "명령어 병렬 처리 기법에 대해서 배웁니다."
 ---

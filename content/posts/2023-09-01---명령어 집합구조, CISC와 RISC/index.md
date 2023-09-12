@@ -3,9 +3,10 @@ title: 명령어 집합구조, CISC와 RISC
 date: "2023-09-01T20:35:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/명령어 집합구조, CISC와 RISC"
-category: "CS"
+slug: "/posts/computer_architecture"
+category: "Computer Architecture"
 tags:
+  - "Computer Architecture"
   - "CS"
 description: "명령어 집합구조, CISC와 RISC에 대해서 배웁니다."
 ---

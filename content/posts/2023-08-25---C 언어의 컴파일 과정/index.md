@@ -3,11 +3,12 @@ title: C 언어의 컴파일 과정
 date: "2023-08-25T22:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/C 언어의 컴파일 과정"
+slug: "/posts/c"
 category: "C"
 tags:
-  - "CS"
   - "C"
+  - "CS"
+  - "Computer Architecture"
 description: "컴퓨터 구조, C 언어의 컴파일 과정에 대해서 배웁니다."
 ---
 

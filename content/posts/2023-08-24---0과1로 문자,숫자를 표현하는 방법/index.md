@@ -3,9 +3,10 @@ title: 0과1로 문자,숫자를 표현하는 방법
 date: "2023-08-24T20:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/0과1로 문자,숫자를 표현하는 방법"
-category: "CS"
+slug: "/posts/computer_architecture"
+category: "Computer Architecture"
 tags:
+  - "Computer Architecture"
   - "CS"
 description: "컴퓨터 구조의 0과1로 문자,숫자를 표현하는 방법에 대해서 배웁니다."
 ---

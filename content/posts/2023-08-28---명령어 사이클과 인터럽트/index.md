@@ -3,9 +3,10 @@ title: 명령어 사이클과 인터럽트
 date: "2023-08-28T23:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/명령어 사이클과 인터럽트"
+slug: "/posts/computer_architecture"
 category: "CS"
 tags:
+  - "Computer Architecture"
   - "CS"
 description: "명령어 사이클과 인터럽트에 대해서 배웁니다."
 ---

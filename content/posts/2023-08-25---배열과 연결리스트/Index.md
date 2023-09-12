@@ -3,7 +3,7 @@ title: 배열과 연결리스트
 date: "2023-08-25T21:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/배열과 연결리스트"
+slug: "/posts/algorithms"
 category: "Algorithms"
 tags:
   - "Algorithms"

@@ -3,9 +3,10 @@ title: 다양한 메모리의 특성
 date: "2023-09-04T20:35:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/cs"
-category: "CS"
+slug: "/posts/computer_architecture"
+category: "Computer Architecture"
 tags:
+  - "Computer Architecture"
   - "CS"
 description: "다양한 메모리의 특성에 대해서 배웁니다."
 ---

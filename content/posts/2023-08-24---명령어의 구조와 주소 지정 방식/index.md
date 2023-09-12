@@ -3,9 +3,10 @@ title: 명령어의 구조와 주소 지정 방식
 date: "2023-08-24T23:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/명령어의 구조와 주소 지정 방식"
-category: "CS"
+slug: "/posts/computer_architecture"
+category: "Computer Architecture"
 tags:
+  - "Computer Architecture"
   - "CS"
 description: "컴퓨터 구조의 명령어의 구조와 주소 지정 방식에 대해서 배웁니다."
 ---
