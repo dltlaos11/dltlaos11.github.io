@@ -15,10 +15,6 @@
     {
       "label": "About me",
       "path": "/pages/about"
-    },
-    {
-      "label": "Contact me",
-      "path": "/pages/contacts"
     }
   ],
   "author": {
@@ -27,8 +23,8 @@
     "bio": "안녕하세요 Web Developer 주용준 입니다.",
     "contacts": {
       "rss": "",
-      "email": "dltlaos11@gmail.com",
-      "github": "https://github.com/dltlaos11",
+      "email": "dltlaos14@naver.com",
+      "github": "dltlaos11",
       "facebook": "#",
       "telegram": "#",
       "twitter": "#",

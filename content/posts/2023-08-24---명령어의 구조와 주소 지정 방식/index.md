@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/computer_architecture"
 category: "Computer Architecture"
 tags:
-  - "Computer Architecture"
+  - "ComputerArchitecture"
   - "CS"
 description: "컴퓨터 구조의 명령어의 구조와 주소 지정 방식에 대해서 배웁니다."
 ---

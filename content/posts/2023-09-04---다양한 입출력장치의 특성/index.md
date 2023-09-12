@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/computer_architecture"
 category: "Computer Architecture"
 tags:
-  - "Computer Architecture"
+  - "ComputerArchitecture"
   - "CS"
 description: "다양한 입출력장치의 특성에 대해서 배웁니다."
 ---

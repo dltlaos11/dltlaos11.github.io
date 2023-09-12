@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/computer_architecture"
 category: "CS"
 tags:
-  - "Computer Architecture"
+  - "ComputerArchitecture"
   - "CS"
 description: "컴퓨터 구조의 CPU의 내부 구성 - ALU&제어장치&레지스터에 대해서 배웁니다."
 ---

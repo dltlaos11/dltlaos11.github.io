@@ -8,7 +8,7 @@ category: "C"
 tags:
   - "C"
   - "CS"
-  - "Computer Architecture"
+  - "ComputerArchitecture"
 description: "컴퓨터 구조, C 언어의 컴파일 과정에 대해서 배웁니다."
 ---
 

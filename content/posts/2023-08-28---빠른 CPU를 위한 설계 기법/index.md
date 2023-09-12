@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/computer_architecture"
 category: "CS"
 tags:
-  - "Computer Architecture"
+  - "ComputerArchitecture"
   - "CS"
 description: "빠른 CPU를 위한 설계 기법에 대해서 배웁니다."
 ---

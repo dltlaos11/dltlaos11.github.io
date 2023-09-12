@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/computer_architecture"
 category: "Computer Architecture"
 tags:
-  - "Computer Architecture"
+  - "ComputerArchitecture"
   - "CS"
 description: "컴퓨터 구조의 0과1로 문자,숫자를 표현하는 방법에 대해서 배웁니다."
 ---

@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/computer_architecture"
 category: "CS"
 tags:
-  - "Computer Architecture"
+  - "ComputerArchitecture"
   - "CS"
 description: "명령어 사이클과 인터럽트에 대해서 배웁니다."
 ---

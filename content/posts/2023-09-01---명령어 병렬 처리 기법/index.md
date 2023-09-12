@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/computer_architecture"
 category: "CS"
 tags:
-  - "Computer Architecture"
+  - "ComputerArchitecture"
   - "CS"
 description: "명령어 병렬 처리 기법에 대해서 배웁니다."
 ---

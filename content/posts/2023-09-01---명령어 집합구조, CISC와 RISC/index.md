@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/computer_architecture"
 category: "Computer Architecture"
 tags:
-  - "Computer Architecture"
+  - "ComputerArchitecture"
   - "CS"
 description: "명령어 집합구조, CISC와 RISC에 대해서 배웁니다."
 ---

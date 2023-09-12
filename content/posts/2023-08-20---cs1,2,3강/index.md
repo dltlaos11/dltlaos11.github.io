@@ -4,9 +4,9 @@ date: "2023-08-23T17:40:32.169Z"
 template: "post"
 draft: false
 slug: "/posts/computer_architecture"
-category: "Computer_Architecture"
+category: "Computer Architecture"
 tags:
-  - "Computer Architecture"
+  - "ComputerArchitecture"
   - "CS"
 description: "컴퓨터 구조의 큰 그림에 대해서 배웁니다."
 ---
