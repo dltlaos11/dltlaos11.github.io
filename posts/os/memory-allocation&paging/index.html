@@ -1,0 +1,598 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.25.7"/><meta name="description" content="메모리 할당 및 페이징에 대해서 배웁니다" data-gatsby-head="true"/><meta name="twitter:card" content="summary_large_image" data-gatsby-head="true"/><meta name="twitter:title" content="메모리 할당 및 페이징 - Blog by Yong Jun" data-gatsby-head="true"/><meta name="twitter:description" content="메모리 할당 및 페이징에 대해서 배웁니다" data-gatsby-head="true"/><meta name="og:title" content="메모리 할당 및 페이징 - Blog by Yong Jun" data-gatsby-head="true"/><meta name="og:type" content="website" data-gatsby-head="true"/><meta name="og:description" content="메모리 할당 및 페이징에 대해서 배웁니다" data-gatsby-head="true"/><meta name="theme-color" content="hsl(31, 92%, 62%)"/><style data-href="/styles.47a42cfb2e9f2b180db6.css" data-identity="gatsby-global-css">:after,:before,:root{--color-white:hsla(0,0%,100%,.994);--color-primary:#5c92ff;--color-secondary:#f7a145;--color-prism-background:#eaeaeb;--color-typographic-base-font:#242933;--color-typographic-link-p-font:#5c92ff;--color-typographic-link-s-font:#f7a145;--color-page-border:#eaeaeb;--color-page-background:hsla(0,0%,100%,.994);--color-sidebar-border:#eaeaeb;--color-sidebar-border-fade:hsla(0,0%,100%,.994);--color-contacts-border:#eaeaeb;--color-button-border:#eaeaeb;--color-button-color:#242933;--color-theme-switcher:#3f485a;--color-theme-switcher-hover:#5c92ff}.dark :after,.dark :before,:root.dark{--color-white:hsla(0,0%,100%,.994);--color-primary:#5c92ff;--color-secondary:#f7a145;--color-prism-background:#191d24;--color-typographic-base-font:hsla(0,0%,100%,.994);--color-typographic-link-p-font:#5c92ff;--color-typographic-link-s-font:#f7a145;--color-page-border:#3f485a;--color-page-background:#242933;--color-sidebar-border:#3f485a;--color-sidebar-border-fade:#242933;--color-contacts-border:#3f485a;--color-button-border:#3f485a;--color-button-color:hsla(0,0%,100%,.994);--color-theme-switcher:#eaeaeb;--color-theme-switcher-hover:#5c92ff}html{font-size:100}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background:var(--color-page-background);color:var(--color-typographic-base-font);font-size:16px;line-height:1.625;margin:0 0 0 calc(100vw - 100%);text-rendering:optimizelegibility}body,h1,h2,h3,h4,h5,h6{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:40px;line-height:52px;margin-bottom:26px;margin-top:104px}h2{font-size:27px;line-height:39px}h2,h3{margin-bottom:13px;margin-top:52px}h3{font-size:22px;line-height:26px}h4{font-size:19.2px;margin-top:39px}h4,h5{line-height:26px;margin-bottom:13px}h5,h6{font-size:16px;margin-top:65px}h6{line-height:26px;margin-bottom:13px}img{max-width:100%}hr,img{border:0;display:block}hr{background-image:linear-gradient(180deg,transparent 1px,transparent 11px,#242933 0,#242933 15px,transparent 0,transparent 26px);background-size:100% 26px;color:var(--color-typographic-base-font);height:26px;margin:52px auto;width:100px}a{color:var(--color-typographic-link-p-font);text-decoration:none}a:active,a:focus,a:hover{color:var(--color-typographic-link-s-font)}b,strong{font-weight:600}ul{list-style:square;margin-bottom:26px}ul li{margin-bottom:10px;padding:0 5px}p{line-height:26px;margin-bottom:26px}blockquote{font-style:italic;padding:0;text-align:center}figure{display:block;height:auto;width:100%}figcaption{color:var(--color-typographic-base-font);font-size:14px;font-style:italic;line-height:19.5px;margin-bottom:0;margin-top:6.5px;text-align:center}@media screen and (min-width:685px){figure.float-left,figure.float-right{max-width:310px;padding:0 26px}.float-right{float:right}.float-left{float:left}}code[class*=language-],pre[class*=language-]{word-wrap:normal;color:#657b83;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:var(--color-prism-background)}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:#073642}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#93a1a1}.token.punctuation{color:#586e75}.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#268bd2}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string,.token.url{color:#2aa198}.token.entity{background:#eee8d5;color:#657b83;cursor:help}.token.atrule,.token.attr-value,.token.keyword{color:#859900}.token.class-name,.token.function{color:#b58900}.token.important,.token.regex,.token.variable{color:#cb4b16}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.Feed-module--feed--a6204 .Feed-module--item--c7a63{margin-bottom:32.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63:last-child{margin-bottom:13px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f{font-size:27px;line-height:39px;margin-bottom:13px;margin-top:0}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b{color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:hover{border-bottom:1px solid #242933;color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--description--57348{font-size:16px;line-height:26px;margin-bottom:19.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--time--72864{color:var(--color-typographic-base-font);font-size:14px;font-weight:600;text-transform:uppercase}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--divider--81a18{margin:0 13px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b{color:var(--color-secondary);font-size:14px;font-weight:600;text-transform:uppercase}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:hover{color:#5c92ff}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e{color:var(--color-primary);font-size:16px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:hover{border-bottom:1px solid #5c92ff;color:var(--color-primary)}.Layout-module--layout--2c933{margin-left:auto;margin-right:auto;max-width:1070px}.Layout-module--layout--2c933:before{content:"";display:table}.Layout-module--layout--2c933:after{clear:both;content:"";display:table}.Page-module--page--24e03{margin-bottom:52px}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:26px 19.5px 0}.Page-module--page--24e03 .Page-module--title--90338{font-size:40px;font-weight:600;line-height:52px;margin-bottom:37.7px;margin-top:0}.Page-module--page--24e03 .Page-module--body--561c4{font-size:16px;line-height:26px;margin:0 0 26px}@media screen and (min-width:685px){.Page-module--page--24e03{width:calc(58.275% - 12.5px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(12n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(12n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:32.5px 19.5px 0}}@media screen and (min-width:960px){.Page-module--page--24e03{width:calc(66.6% - 10px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(3n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(3n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:39px 26px 0}}.Pagination-module--pagination--d61cb{display:flex;margin-top:52px}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b{text-align:left;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:focus,.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8{text-align:right;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:focus,.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.ThemeSwitcher-module--themeSwitcher--8a77f{--color:var(--color-theme-switcher)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b{align-items:center;background:transparent;border:0;cursor:pointer;display:flex;justify-content:center;outline:0}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b svg{stroke:var(--color);pointer-events:none;transition:stroke .4s}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b:hover{--color:var(--color-theme-switcher-hover)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--moon--10537{stroke-dasharray:0 1px;opacity:0;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--sun--2163a{stroke-dasharray:1px 1px;opacity:1;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--moon--10537{stroke-dasharray:1px 1px;opacity:1}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--sun--2163a{stroke-dasharray:0 1px;opacity:0}.Author-module--author--cbd31 .Author-module--photo--9787b{background-clip:padding-box;border-radius:50%;display:inline-block;height:75px;margin-bottom:0;width:75px}.Author-module--author--cbd31 .Author-module--photo--9787b img{border-radius:50%}.Author-module--author--cbd31 .Author-module--title--cf7e5{font-size:18px;font-weight:600;line-height:29.25px;margin:0}.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:focus,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:hover{color:var(--color-typographic-base-font)}.Author-module--author--cbd31 .Author-module--subtitle--86ec5{color:#7f8ba4;line-height:26px;margin-bottom:26px}.Author-module--author--cbd31 .Author-module--titleContainer--4f576{align-items:center;display:flex;justify-content:space-between;margin:13px 0}.Icon-module--icon--1d7da{fill:currentcolor;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;speak:none;stroke:currentcolor;stroke-width:0;display:inline-block;font-style:normal;font-variant:normal;font-weight:400;height:1em;line-height:1em;text-align:center;text-transform:none;width:1em}.Contacts-module--contacts--09178{margin-bottom:26px}.Contacts-module--contacts--09178 .Contacts-module--list--9670b{display:flex;flex-flow:row wrap;flex-grow:0;flex-shrink:0;list-style:none;margin:13px 0;max-width:165px;padding:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0{align-content:center;align-items:center;border:1px solid var(--color-contacts-border);border-radius:50%;display:flex;height:40px;justify-content:center;line-height:40px;margin:6.5px;padding:0;text-align:center;width:40px}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0:nth-child(3n+1){margin-left:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0{border:0;color:var(--color-typographic-base-font);cursor:pointer;display:flex}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:focus,.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:hover{color:var(--color-typographic-link-p-font)}.Menu-module--menu--113a9{margin-bottom:26px}.Menu-module--menu--113a9 .Menu-module--list--e1ae3{list-style:none;margin:0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679{margin:13px 0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02{border:0;color:var(--color-typographic-base-font);font-size:16px;font-weight:400}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:focus,.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:hover{border-bottom:1px solid #5c92ff;color:#5c92ff}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02.Menu-module--active--6cb74{border-bottom:1px solid var(--color-typographic-base-font);color:var(--color-typographic-base-font)}.Sidebar-module--sidebar--1bfa1{width:100%}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:26px 19.5px 0;position:relative}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{background:var(--color-sidebar-border);background:linear-gradient(to bottom,var(--color-sidebar-border) 0,var(--color-sidebar-border) 48%,var(--color-sidebar-border-fade) 100%)}@media screen and (min-width:685px){.Sidebar-module--sidebar--1bfa1{width:calc(41.625% - 17.5px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:32.5px 19.5px 0}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{bottom:0;content:"";height:540px;position:absolute;right:-10px;top:30px;width:1px}}@media screen and (min-width:960px){.Sidebar-module--sidebar--1bfa1{width:calc(33.3% - 20px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:39px}}.Button-module--button--b1113{border:1px solid var(--color-button-border);border-radius:20px;color:var(--color-button-color);display:inline-block;font-size:16px;font-weight:400;height:40px;line-height:40px;margin-left:auto;margin-right:auto;padding:0 26px;text-align:center;text-decoration:none}.Button-module--button--b1113:focus,.Button-module--button--b1113:hover{color:#5c92ff}.Author-module--author--1c58d{border-top:1px solid var(--color-page-border);line-height:26px;margin-bottom:52px;margin-top:26px;max-width:940px;padding-top:26px}.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647{display:block;text-decoration:underline}.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647:focus,.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647:hover{color:var(--color-typographic-link-s-font)}@media screen and (min-width:685px){.Author-module--author--1c58d{margin-left:auto;margin-right:auto}}.Content-module--content--80d58{margin:0 auto;max-width:1245px;padding:0 13px}.Content-module--content--80d58 .Content-module--title--09504{font-size:32px;font-weight:600;line-height:42.9px;margin:26px auto 0;max-width:940px;text-align:center}.Content-module--content--80d58 .Content-module--body--726c2 figure{margin-bottom:26px}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote{font-style:italic;margin-top:0;padding:26px 0;text-align:center}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote p{font-size:26.9072px;line-height:39px;margin-bottom:26px;margin-top:0;max-width:940px}.Content-module--content--80d58 .Content-module--body--726c2 a{text-decoration:underline}.Content-module--content--80d58 .Content-module--body--726c2 *{margin-left:auto;margin-right:auto;max-width:940px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{visibility:hidden}.Content-module--content--80d58 .Content-module--body--726c2 h2>a>svg{fill:var(--color-typographic-base-font)}.Content-module--content--80d58 .Content-module--body--726c2 img{max-width:100%}@media screen and (min-width:960px){.Content-module--content--80d58{padding:0}.Content-module--content--80d58 .Content-module--title--09504{font-size:48px;line-height:58.5px;margin-bottom:39px;margin-top:58.5px}.Content-module--content--80d58 .Content-module--body--726c2,.Content-module--content--80d58 .Content-module--body--726c2 p{font-size:18px;line-height:29.25px;margin-bottom:29.25px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{padding-right:13px;visibility:unset}}.Meta-module--meta--dae0a .Meta-module--date--4d30d{font-style:italic}.Tags-module--tags--18589{margin-bottom:13px}.Tags-module--tags--18589 .Tags-module--list--82ae6{list-style:none;padding:0}.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015{display:inline-block;margin:6.5px 0}@media screen and (min-width:685px){.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015:first-child{margin-left:0;padding-left:0}}.Post-module--post--3a994 .Post-module--content--3c6e5{margin:0 auto}.Post-module--post--3a994 .Post-module--comments--d3b99,.Post-module--post--3a994 .Post-module--footer--f8705{margin:0 auto;max-width:940px;padding:0 13px}.Post-module--post--3a994 .Post-module--buttons--2972d{align-items:center;display:flex;justify-content:center;margin:26px 0 0;text-align:center}.Post-module--post--3a994 .Post-module--buttons--2972d .Post-module--buttonArticles--d793a{margin:0 13px 0 0}@media screen and (min-width:960px){.Post-module--post--3a994 .Post-module--comments--d3b99,.Post-module--post--3a994 .Post-module--footer--f8705{padding:0}.Post-module--post--3a994 .Post-module--buttons--2972d{left:30px;margin:0 13px 0 0;max-width:none;position:fixed;top:30px}}</style><title data-gatsby-head="true">메모리 할당 및 페이징 - Blog by Yong Jun</title><link rel="alternate" type="application/rss+xml" title="Blog by Yong Jun" href="/rss.xml"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73379983-2"></script><script>
+      
+      
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer && window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-73379983-2', {"send_page_view":false});
+      }
+      </script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><link rel="icon" href="/favicon-32x32.png?v=ffb0298fbaec30f9528f8f5fb1f12bde" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><script>
+          void function() {
+            var cachedMode;
+
+            try {
+              var preferredTheme = JSON.parse(localStorage.getItem('diesel:theme-atom'));
+
+              if (preferredTheme && preferredTheme.mode) {
+                cachedMode = preferredTheme.mode;
+              }
+            } catch (err) { }
+
+            function setTheme(newTheme) {
+              document.documentElement.className = newTheme;
+            }
+
+            var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+            setTheme(cachedMode || (darkQuery.matches ? 'dark' : 'light'));
+          }()
+        </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--2c933"><div class="Post-module--post--3a994"><div class="Post-module--buttons--2972d"><a class="Button-module--button--b1113 Post-module--buttonArticles--d793a" href="/">All Articles</a></div><div class="Post-module--content--3c6e5"><div class="Content-module--content--80d58"><h1 class="Content-module--title--09504">메모리 할당 및 페이징</h1><div class="Content-module--body--726c2"><ul>
+<li><a href="#%EC%97%B0%EC%86%8D-%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9">연속 메모리 할당</a>
+<ul>
+<li><a href="#%EC%8A%A4%EC%99%80%ED%95%91">스와핑</a></li>
+<li><a href="#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9">메모리 할당</a></li>
+<li><a href="#%EC%99%B8%EB%B6%80-%EB%8B%A8%ED%8E%B8%ED%99%94">외부 단편화</a></li>
+</ul>
+</li>
+<li><a href="#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%9D%84-%ED%86%B5%ED%95%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC">페이징을 통한 가상 메모리 관리</a>
+<ul>
+<li><a href="#%ED%8E%98%EC%9D%B4%EC%A7%95">페이징</a></li>
+<li><a href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%85%8C%EC%9D%B4%EB%B8%94">페이지 테이블</a></li>
+<li><a href="#ptbr">PTBR</a></li>
+<li><a href="#tlb">TLB</a></li>
+<li><a href="#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%97%90%EC%84%9C%EC%9D%98-%EC%A3%BC%EC%86%8C-%EB%B3%80%ED%99%98">페이징에서의 주소 변환</a></li>
+<li><a href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%97%94%ED%8A%B8%EB%A6%AC">페이지 테이블 엔트리</a></li>
+</ul>
+</li>
+<li><a href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%90%EC%B2%B4%EC%99%80-%ED%94%84%EB%A0%88%EC%9E%84-%ED%95%A0%EB%8B%B9">페이지 교체와 프레임 할당</a>
+<ul>
+<li><a href="#%EC%9A%94%EA%B5%AC-%ED%8E%98%EC%9D%B4%EC%A7%95">요구 페이징</a></li>
+<li><a href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%90%EC%B2%B4-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">페이지 교체 알고리즘</a></li>
+<li><a href="#%EC%8A%A4%EB%9E%98%EC%8B%B1%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%95%A0%EB%8B%B9">스래싱과 프레임 할당</a></li>
+</ul>
+</li>
+<li><a href="#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%9D%98-%EC%9D%B4%EC%A0%90%EA%B3%BC-%EA%B3%84%EC%B8%B5%EC%A0%81-%ED%8E%98%EC%9D%B4%EC%A7%95">페이징의 이점과 계층적 페이징</a>
+<ul>
+<li><a href="#%EC%93%B0%EA%B8%B0-%EC%8B%9C-%EB%B3%B5%EC%82%AC">쓰기 시 복사</a></li>
+<li><a href="#%EA%B3%84%EC%B8%B5%EC%A0%81-%ED%8E%98%EC%9D%B4%EC%A7%80">계층적 페이지</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="연속-메모리-할당" style="position:relative;"><a href="#%EC%97%B0%EC%86%8D-%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9" aria-label="연속 메모리 할당 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>연속 메모리 할당</h2>
+<p><img src="https://github.com/boost-library/yong-study/assets/74396128/32ac8300-3bb5-4504-9f7c-e9927ce6c95f" alt="image"></p>
+<p>프로세스에 연속적인 메모리 공간을 할당</p>
+<h3 id="스와핑" style="position:relative;"><a href="#%EC%8A%A4%EC%99%80%ED%95%91" aria-label="스와핑 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>스와핑</h3>
+<p>현재 사용되지 않는 프로세스들을 보조기억장치의 일부 영역(<Mark>스왑 영역</Mark>)으로 쫓아내고, 그렇게 생긴 빈 공간에 새 프로세스 적재
+<img src="https://github.com/boost-library/yong-study/assets/74396128/c96b4cf5-f5a0-4461-8db9-896656bb5b7a" alt="image">
+→ 당장 사용할 수 있는 프로세스만 메모리(<Mark>스왑 인</Mark>)에 배치 가능, 메모리에서 보조기억장치로 프로세스 이동(<Mark>스왑 아웃</Mark>)</p>
+<p>스와핑을 통해 프로세스들이 요구하는 메모리 공간 크기가 메모리보다 큰 경우 적절한 메모리 적재가 가능
+<img src="https://github.com/boost-library/yong-study/assets/74396128/ae060b26-5f8d-40ba-a503-a8c6e9224584" alt="image"></p>
+<ul>
+<li>스왑 영역 크기 확인: free, top</li>
+</ul>
+<h3 id="메모리-할당" style="position:relative;"><a href="#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9" aria-label="메모리 할당 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>메모리 할당</h3>
+<ul>
+<li>프로세스는 메모리의 빈 공간에 할당되어야 한다.
+<ul>
+<li>
+<p>최초 적합, 최적 적합, 최악 적합 → <Mark>연속 메모리 할당 방식</p>
+<ul>
+<li>연속적으로 프로세스를 메모리에 내에 배치할 떄 어떤 빈 공간에 어떻게 적재할지에 따라서 나뉜 방식</li>
+</ul>
+</li>
+<li>
+<p>최초 적합(first-fit)</p>
+<ul>
+<li>운영체제가 메모리 내의 빈 공간을 순서대로 검색하다 적재할 수 있는 공간을 발견하면 그 공간에 프로세스를 배치하는 방식</li>
+</ul>
+</li>
+<li>
+<p>최적 적합(best-fit)</p>
+<ul>
+<li>운영체제가 빈 공간을 모두 검색해본 뒤, 적재 가능한 가장 작은 공간에 할당</li>
+<li>외부 단편화 발생 가능성 크다</li>
+</ul>
+</li>
+<li>
+<p>최악 적합(worst-fit)</p>
+<ul>
+<li>운영체제가 빈 공간을 모두 검색해본 뒤, 적재 가능한 가장 큰 공간에 할당</li>
+<li>외부 단편화 발생 가능성 적다</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="외부-단편화" style="position:relative;"><a href="#%EC%99%B8%EB%B6%80-%EB%8B%A8%ED%8E%B8%ED%99%94" aria-label="외부 단편화 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>외부 단편화</h3>
+<p>프로세스를 연속적으로 할당하는 방식은 메모리를 효율적으로 사용하는 방법이 아니다.</p>
+<p>외부 단편화<strong>external fragmentation</strong>라는 문제가 발생하기 때문</p>
+<ul>
+<li>
+<p><Mark>프로세스들이 실행되고 종료되길 반복하며 메모리 사이에 빈 공간 발생</p>
+</li>
+<li>
+<p><Mark>외부 단편화</p>
+<ul>
+<li>프로세스를 할당하기 어려울 만큼 <Mark>작은 메모리 공간들</Mark>로 인해 <Mark>메모리가 낭비</Mark>되는 현상</li>
+</ul>
+</li>
+<li>
+<p>외부 단편화 해결</p>
+<ol>
+<li>메모리 압축(compaction)
+<ul>
+<li>흩어져 있는 빈 공간들을 하나로 모으는 방식</li>
+<li>프로세스를 적당히 재배치시켜 흩어져 있는 작은 빈 공간들을 하나의 큰 빈 공간으로 만드는 방법</li>
+<li>부작용
+<ul>
+<li>빈 공간을 하나로 압축시키는 과정과, 프로세스들을 재배치하는 과정에서 오버헤드 발생</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>가상 메모리 기법, 페이징</li>
+</ol>
+</li>
+</ul>
+<h2 id="페이징을-통한-가상-메모리-관리" style="position:relative;"><a href="#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%9D%84-%ED%86%B5%ED%95%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC" aria-label="페이징을 통한 가상 메모리 관리 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>페이징을 통한 가상 메모리 관리</h2>
+<p>연속 메모리 할당의 두 가지 문제점</p>
+<ul>
+<li>외부 단편화</li>
+<li>물리 메모리보다 큰 프로세스 실행 불가</li>
+</ul>
+<p>가상 메모리</p>
+<ul>
+<li>실행하고자 하는 프로그램을 일부만 메모리에 적재하여 실제 물리 메모리크기보다 더 큰 프로세스를 실행할 수 있게 하는 기술</li>
+<li>페이징, 세그멘테이션</li>
+</ul>
+<h3 id="페이징" style="position:relative;"><a href="#%ED%8E%98%EC%9D%B4%EC%A7%95" aria-label="페이징 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>페이징</h3>
+<ul>
+<li>각기 다른 크기의 프로세스가 메모리에 연속적으로 할당되었기 때문에 외부 단편화  발생</li>
+<li>메모리에 적재되는 대상이 모두 일정한 크기를 갖고 있다면 외부 단편화 발생 ❌</li>
+<li>페이징은 프로세스를 일정한 크기로 자르고, 이를 메모리에 불연속적으로 할당하여 외부 단편화를 해결한다</li>
+<li>프로세스의 <Mark>논리 주소 공간을 페이지(page)</Mark>라는 일정 단위로 자르고,</li>
+<li>메모리의 <Mark>물리 주소 공간을 프레임(frame)</Mark>이라는 페이지와 동일한 일정한 단위로 자른 뒤</li>
+<li><Mark>페이지를 프레임에 할당하는 가상 메모리 관리 기법
+<img src="https://github.com/boost-library/yong-study/assets/74396128/19e5c44a-42dd-49a2-aa28-2a49377c733d" alt="image"></li>
+<li>페이징에서의 스와핑
+<ul>
+<li>프로세스 단위의 스왑 인, 스왑 아웃이 아닌 페이지 단위의 스왑 인(<Mark>페이지 인</Mark>), 스왑 아웃(<Mark>페이지 아웃</Mark>)</li>
+<li>메모리에 적재된 필요가 없는 페이지들은 보조기억장치로 스왑 아웃</li>
+<li>실행에 필요한 페이지들은 메모리로 스왑 인
+<img src="https://github.com/boost-library/yong-study/assets/74396128/9114af0d-6764-416c-a5c6-6e6b6fd833c9" alt="image"></li>
+<li>프로세스를 실행하기 위해 모든 페이지가 적재될 필요 없다</li>
+<li>달리 말해 <Mark>물리 메모리보다 큰 프로세스도</Mark> 실행 가능</li>
+</ul>
+</li>
+</ul>
+<h3 id="페이지-테이블" style="position:relative;"><a href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%85%8C%EC%9D%B4%EB%B8%94" aria-label="페이지 테이블 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>페이지 테이블</h3>
+<ul>
+<li>프로세스를 이루는 페이지가 어느 프레임에 적재되어 있는지 CPU가 일일이 알기란 어렵다</li>
+<li>프로세스가 메모리에 불연속적으로 배치되어 있다면 CPU 입장에서 이를 순차적으로 실행할 수 ❌</li>
+<li>CPU입장에서 ‘다음에 실행할 명령어 위치’를 찾기가 어려워짐</li>
+<li>(실제 메모리 내의 주소인) 물리 주소에 불연속적으로 배치되더라도 (CPU가 바라보는 주소인)논리 주소에는 연속적으로 배치되도록 하는 방법</li>
+<li><Mark>페이지 번호와 프레임 번호를 짝지어 주는 일종의 이정표</li>
+<li>프로세스마다 페이지 테이블이 있다
+<img src="https://github.com/boost-library/yong-study/assets/74396128/021409ee-3f14-4a98-9b97-17231c42f184" alt="image"></li>
+<li>물리적으로는 분산되어 저장되더라도 CPU 입장에서 바라본 논리 주소는 연속적으로 보임</li>
+<li><Mark>CPU는 그저 논리 주소를 순차적으로 실행하면 될 뿐</li>
+<li>내부 단편화
+<ul>
+<li>페이지 크기가 10KB, 프로세스 크기 108KB일 경우</li>
+<li><Mark>2KB: 내부 단편화</li>
+<li>하나의 페이지 크기보다 작은 크기로 발생</li>
+<li>세그멘테이션 해결 가능 → 외부단편화 발생
+<img src="https://github.com/boost-library/yong-study/assets/74396128/1cf3a22a-d0d8-4121-9ae9-bfb6faee9018" alt="image"></li>
+</ul>
+</li>
+</ul>
+<h3 id="ptbr" style="position:relative;"><a href="#ptbr" aria-label="ptbr permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ptbr</h3>
+<ul>
+<li>
+<p>프로세스마다 페이지 테이블이 있고, 각 페이지 테이블은 CPU내의 <Mark>프로세스 테이블 베이스 레지스터(PTBR)</Mark>가 가리킨다(저장).
+<img src="https://github.com/boost-library/yong-study/assets/74396128/a71f5f98-a406-4fdb-b2ed-37b64d4374fb" alt="image">
+프로세스 B 실행 시 PTBR은 프로세스 B의 페이지테이블 주소를 가리키고 이를 통해 CPU는 B의 페이지테이블에 접근해서 프로세스 B의 페이지가 각각 어떤 프레임에 할당되어 있는지 알 수 있다</p>
+</li>
+<li>
+<p>그런데, 페이지 테이블이 메모리에 있다면 <Mark>메모리 접근 시간이 두배로 걸리는 문제가 생김</p>
+<ul>
+<li>페이지 테이블(어떤 페이지가 어떤 프레임에 할당되어있는지 알 수 있다) 참조하기 위해 한번</li>
+<li>페이지 참조하기 위해 한번</li>
+</ul>
+</li>
+</ul>
+<h3 id="tlb" style="position:relative;"><a href="#tlb" aria-label="tlb permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>tlb</h3>
+<ul>
+<li>CPU 곁에 페이지 테이블의 캐시 메모리</li>
+<li>페이지 테이블의 일부를 가져와 저장하여 불필요한 메모리 접근을 줄일 수 있다</li>
+<li>CPU가 접근하려는 논리 주소가 TLB에 있다면 → TLB 히트
+<ul>
+<li>메모리 접근 1번</li>
+</ul>
+</li>
+<li>CPU가 접근하려는 논리 주소가 TLB에 없다면 → TLB 미스
+<ul>
+<li>메모리 접근 2번
+<img src="https://github.com/boost-library/yong-study/assets/74396128/cd7e653f-6dd9-4570-b7b1-057f8e16afdd" alt="image"></li>
+</ul>
+</li>
+</ul>
+<h3 id="페이징에서의-주소-변환" style="position:relative;"><a href="#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%97%90%EC%84%9C%EC%9D%98-%EC%A3%BC%EC%86%8C-%EB%B3%80%ED%99%98" aria-label="페이징에서의 주소 변환 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>페이징에서의 주소 변환</h3>
+<ul>
+<li>특정 주소에 접근할 때 필요한 정보
+<ul>
+<li>어떤 페이지/프레임에 접근하고 싶은지</li>
+<li>접근하려는 주소가 그 페이지 혹은 프레임으로부터 <Mark>얼마나 떨어져 있는지</li>
+</ul>
+</li>
+<li>페이징 시스템에서의 논리 주소
+<ul>
+<li>페이지 번호(page number)와 변위(offset)</li>
+</ul>
+</li>
+<li><Mark>&#x3C;페이지 번호, 변위></Mark>로 이루어진 논리 주소는 페이지 테이블을 통해 <Mark>&#x3C;프레임 번호, 변위></Mark>로 이루어진 물리주소로 변환
+<ul>
+<li>논리주소에서의 변위와 물리주소에서의 변위는 <Mark>같다
+<img src="https://github.com/boost-library/yong-study/assets/74396128/36004ddb-27a5-4e54-88a9-2f1330ae98c7" alt="image"></li>
+</ul>
+</li>
+</ul>
+<h3 id="페이지-테이블-엔트리" style="position:relative;"><a href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%97%94%ED%8A%B8%EB%A6%AC" aria-label="페이지 테이블 엔트리 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>페이지 테이블 엔트리</h3>
+<ul>
+<li>페이지 테이블 각각의 행: 페이지 테이블 엔트리(PTE)
+<ul>
+<li>PTE에는 페이지 번호, 프레임 번호 등이 있으며 이외에도 여러가지 정보가 있음
+<ul>
+<li>유효비트
+<ul>
+<li>현재 해당 페이지에 접근 가능한지 여부
+<ul>
+<li>현재 페이지가 스왑 영역으로  스왑아웃 되있는지 아닌지, 메모리에 적재되어 있는지 아닌지를 나타낸다
+<img src="https://github.com/boost-library/yong-study/assets/74396128/0fc11f87-f1f4-4735-81ba-350858a873cd" alt="image">
+<ul>
+<li>유효 비트가 0인 페이지(메모리에 적재❌)에 접근하는 경우
+<ul>
+<li>페이지 폴트(page fault)라는 인터럽트 발생
+<ol>
+<li>CPU는 기존의 작업 내용을 백업</li>
+<li>페이지 폴트 처리 루틴(<Mark>인터럽트 서비스 루틴</Mark>)을 실행</li>
+<li>페이지 처리 루틴은 원하는 페이지를 메모리로 가져온 뒤 유효 비트를 1로 변경</li>
+<li>페이지 폴트를 처리했다면 이제 CPU는 해당 페이지에 접근할 수 있음</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>보호 비트
+<ul>
+<li>
+<p>페이지 보호 기능을 위해 존재하는 비트
+<img src="https://github.com/boost-library/yong-study/assets/74396128/275f2846-329a-43a7-bd5b-046d98310b91" alt="image"></p>
+<ul>
+<li>c.f. )프로세스의 코드 영역은 read-only영역, 읽기만 가능하므로 쓰기 권한</li>
+<li>페이지에 접근할 권한을 제한하여 페이지를 보호하는 비트</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>참조 비트
+<ul>
+<li>CPU가 이 페이지에 접근한 적이 있는지 여부
+<img src="https://github.com/boost-library/yong-study/assets/74396128/b2091785-2d8f-4154-974d-6a1f26287f63" alt="image"></li>
+</ul>
+</li>
+<li>수정 비트(=dirty bit)
+<ul>
+<li>CPU가 이 페이지에 데이터를 쓴 적이 있는지 여부
+<img src="https://github.com/boost-library/yong-study/assets/74396128/c6528fbf-7e16-4582-ac40-ca44915f7320" alt="image"></li>
+<li>수정비트의 존재 이유 → 스와핑
+<ul>
+<li>페이지가 메모리에서 삭제될 때 보조기억장치의 쓰기작업을 해야 되는지 여부를 판단하기 위해서 존재</li>
+<li>만약 CPU 페이지의 내용을 변경했다면(쓰기) 해당 페이지는 스왑 아웃될 때 변경된 내용을 보조기억장치에도 반영해야(쓰기) 한다 → 수정 비트를 통해서 판단</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="페이지-교체와-프레임-할당" style="position:relative;"><a href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%90%EC%B2%B4%EC%99%80-%ED%94%84%EB%A0%88%EC%9E%84-%ED%95%A0%EB%8B%B9" aria-label="페이지 교체와 프레임 할당 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>페이지 교체와 프레임 할당</h2>
+<p>물리 메모리보다 큰 프로세스를 실행할 수 있지만, 그럼에도 <Mark>물리 메모리의 크기는 한정</Mark>되어 있다</p>
+<ul>
+<li>기존에 적재된 불필요한 페이지를 선별해 보조기억장치로 내보내야하고 → <Mark>페이지 교체 알고리즘</li>
+<li>프로세스들에게 적절한 수의 프레임을 할당해야 한다 → <Mark>프레임 할당</li>
+</ul>
+<h3 id="요구-페이징" style="position:relative;"><a href="#%EC%9A%94%EA%B5%AC-%ED%8E%98%EC%9D%B4%EC%A7%95" aria-label="요구 페이징 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>요구 페이징</h3>
+<ul>
+<li>처음부터 모든 페이지를 적재하지 않고 필요한 페이지만을 메모리에 적재하는 기법</li>
+<li><Mark>요구되는 페이지만</Mark> 적재하는 기법
+<ol>
+<li>CPU가 특정 페이지에 접근하는 명령어를 실행</li>
+<li>해당 페이지가 현재 메모리에 있을 경우(<Mark>페이지 테이블 엔트리에 유효비트가 1일 경우</Mark>) CPU는 페이지가 적재된 프레임에 접근</li>
+<li><Mark><strong>해당 페이지가 현재 메모리에 없을 경우</strong>(유효비트:0)</Mark> <Mark>페이지 폴트</Mark>가 발생</li>
+<li>페이지 폴트 처리 루틴은 해당 페이지를 메모리로 적재하고 유효 비트를 1로 설정</li>
+<li>다시 1️⃣을 수행</li>
+</ol>
+</li>
+<li>c.f.) 어떤 프로세스를 실행하고자 할 때 어떤 페이지도 적재하지 않은채 실행하는 기법을 <Mark>순수 요구 페이징</Mark>이라 함</li>
+<li>요구 페이징 시스템이 안정적으로 작동하려면 <Mark>페이지 교체</Mark>와 <Mark>프레임 할당</Mark>을 해야 함</li>
+</ul>
+<h3 id="페이지-교체-알고리즘" style="position:relative;"><a href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%90%EC%B2%B4-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" aria-label="페이지 교체 알고리즘 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>페이지 교체 알고리즘</h3>
+<ul>
+<li>요구 페이징 기법으로 페이지들을 적재하다보면 언젠가 메모리가 가득 차게 된다</li>
+<li>당장 실행에 필요한 페이지를 적재하려면 적재된 페이지를 보조기억장치로 내보내야 하는데 <Mark>어떤 페이지를</Mark> 내보내는 방법(알고리즘)이 <Mark>페이지 교체 알고리즘</li>
+<li><Mark>페이지 폴트가 적은 알고리즘</Mark>이 좋은 페이지 교체 알고리즘🔥
+<ul>
+<li>페이지 폴트가 발생하면 보조기억장치로부터 필요한 페이지를 다시 갖고와야 하므로 메모리에 적재된 페이지를 가지고 오는 것보다 느려지기 떄문 → 보조기억장치에 접근해야 해서 성능 저하
+<ul>
+<li>e.g. ) 어떤 페이지 교체 알고리즘을 통해서 페이지를 스왑아웃시켰더니 페이지 폴트가 자주 발생  == 보조기억장치로 내보내야 할 페이지를 잘 못 골랐다, 내보내면 안되는 페이지를 보조기억장치로 내보냄</li>
+<li>e.g. ) 어떤 페이지 교체 알고리즘을 통해 고른 페이지를 스왑아웃시켜도 페이지폴트가 자주 발생하지 않는다면 보조기억장치로 내보낼 페이지를 잘 골랐음을 의미</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>페이지 폴트 횟수
+<ul>
+<li>페이지 참조열(page reference string)
+<ul>
+<li>CPU가 참조하는 페이지들 중 연속된 페이지를 생략한 페이지열
+<ul>
+<li>e.g. )2 2 2 3 5 5 5 3 3 7 → 2 3 5 3 7</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>FIFO 페이지 교체 알고리즘
+<ul>
+<li>가장 단순한 방식</li>
+<li>메모리에 가장 먼저 올라온 페이지부터 내보내는 방식
+<img src="https://github.com/boost-library/yong-study/assets/74396128/55266032-0a5d-4dc5-8d73-e6ce40ce3469" alt="image"></li>
+<li>프로그램 실행 초기에 잠깐 실행될 페이지</li>
+<li><Mark>프로그램 실행 내내 사용될 페이지</Mark> ← 먼저 적재되었다고 내보내면 ❌</li>
+</ul>
+</li>
+<li>FIFO 페이지 교체 알고리즘 - 보완책
+<ul>
+<li><Mark>2차 기회(second-chance) 페이지 교체 알고리즘</li>
+<li>참조 비트 1: CPU가 한 번 참조한 적이 있는 페이지 → 바로 내보내지 않고 참조 비트를 0으로 초기화 후 적재된 시간을 현재 시간으로 설정하고 가장 최근에 적재된 페이지로 간주</li>
+<li>참조 비트 0: CPU가 참조한 적이 없는 페이지 →  가장 오랬동안 메모리에 머물렀음에도 CPU가 참조한 적이 없음을 의미하므로 내보냄
+<img src="https://github.com/boost-library/yong-study/assets/74396128/ba7d2b7f-6d8c-482b-9812-0c7ce3d39497" alt="image">
+</br>
+<img src="https://github.com/boost-library/yong-study/assets/74396128/255c0d2d-d4f7-46d9-b426-77679fb7f8aa" alt="image"></li>
+</ul>
+</li>
+<li>최적 페이지 교체 알고리즘
+<ul>
+<li>CPU에 의해 참조되는 횟수를 고려</li>
+<li>메모리에 오래 남아야 할 페이지는 <Mark>자주 사용될 페이지</li>
+<li>메모리에 없어도 될 페이지는 오랫동안 <Mark>사용되지 않을 페이지</li>
+<li>앞으로의 사용 빈도가 가장 낮은 페이지를 교체하는 알고리즘
+<img src="https://github.com/boost-library/yong-study/assets/74396128/b2af5866-39da-49fd-89e8-808ec778fc06" alt="image"></li>
+<li><Mark>가장 낮은 페이 폴트율을 보장</Mark>하는 페이지 교체 알고리즘</li>
+<li><Mark>실제 구현이 어렵다</Mark> → 예측할 수 ❌</li>
+<li>다른 페이지 교체 알고리즘 성능을 평가하기 위한 하한선으로 간주</li>
+</ul>
+</li>
+<li>LRU(Least-Recently-Used) 페이지 교체 알고리즘
+<ul>
+<li>최적 페이지 교체 알고리즘: 가장 오래 사용되지 <Mark>않을</Mark> 페이지 교체</li>
+<li>LRU 페이지 교체 알고리즘: 가장 오래 사용되지 <Mark>않은</Mark> 페이지 교체
+<ul>
+<li>“최근에 사용되지 않은 페이지는 앞으로도 사용되지 않지 않을 것..”
+<img src="https://github.com/boost-library/yong-study/assets/74396128/71db495a-3ff0-42ee-81e9-8d1e8aabdece" alt="image"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>기타 페이지 교체 알고리즘
+<ul>
+<li>이외에도 많은 페이지 교체 알고리즘이 존재(e.g. LRU 페이지 교체 알고리즘의 파생 알고리즘)</li>
+</ul>
+</li>
+<li>페이지 교체 알고리즘이란 무엇인지</li>
+<li>페이지 교체는 왜 해야 하는지</li>
+<li>무엇이 좋은 페이지 교체 알고리즘인지</li>
+</ul>
+<h3 id="스래싱과-프레임-할당" style="position:relative;"><a href="#%EC%8A%A4%EB%9E%98%EC%8B%B1%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%95%A0%EB%8B%B9" aria-label="스래싱과 프레임 할당 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>스래싱과 프레임 할당</h3>
+<ul>
+<li>
+<p>페이지 폴트가 자주 발생하는 이유</p>
+<ul>
+<li>나쁜 페이지 교체 알고리즘을 사용해서</li>
+<li><Mark>프로세스가 사용할 수 있는 프레임 자체가 적어서, 많으면 상대적으로 자주 일어나지 않을 것</li>
+</ul>
+</li>
+<li>
+<p>스래싱</p>
+<ul>
+<li>프로세스가 실행되는 시간보다 페이징에 더 많은 시간을 소요하여 성능(CPU 이용률)이 저해되는 문제
+<img src="https://github.com/boost-library/yong-study/assets/74396128/ead703e8-3ff7-43ef-aba6-c470835a53e2" alt="image"></li>
+<li>동시 실행되는 프로세스의 수를 늘린다고 CPU 이용률이 높아지는 것이 아니다</li>
+<li>페이지 폴트가 너무 빈번하게 발생하기 때문에 막상 실행해야 하는 프로세스를 실행하지 못하는 상태
+<img src="https://github.com/boost-library/yong-study/assets/74396128/c33d9220-ad92-415d-b002-8ebde9e8f386" alt="image">
+<ul>
+<li>멀티프로그래밍의 정도: 메모리에 동시에 실행되는 프로세스의 수</li>
+</ul>
+</li>
+<li>각 프로세스가 필요로 하는 최소한의 프레임 수가 보장되지 않았기 때문</li>
+<li><Mark>각 프로세스가 필요로 하는 최소한의 프레임 수를 파악하고 프로세스들에게 적절한 프레임을 할당해주어야 함</li>
+</ul>
+</li>
+<li>
+<p>운영체제의 프레임 할당 방식</p>
+<ul>
+<li>균등 할당(equal allocation)
+<ul>
+<li>가장 단순한 할당 방식</li>
+<li><Mark>모든 프로세스들에게 균등하게 프레임을 할당하는 방식 → 실행되는 프로세스들의 크기는 각기 다를텐데 동일한 프레임의 수를 할당하는 방식은 비합리적</li>
+</ul>
+</li>
+<li>비례 할당(proportional allocation)
+<ul>
+<li>프로세스의 크기를 고려</li>
+<li><Mark>프로세스 크기에 비례하여 프레임 할당 방식</li>
+<li>크기가 큰 프로세스인데 막상 실행해보니 많은 프레임을 필요로 하지 않을 수도있고 크기가 작은 프로세스인데 막상 실행해보니 많은 프레임을 필요로 할 수 도 있음 → 결국 프로세스가 필요로 하는 프레임 수는 <Mark>실행해봐야 알 수 있음</li>
+</ul>
+</li>
+</ul>
+<p>c.f.) 균등, 비례 할당은 프로세스의 실행 과정을 고려하지 않고 프로세스의 크기나 물리 메모리의 크기만 고려한 방식이라는 점에서  <Mark>정적 할당 방식</Mark>이라 부르기도</p>
+<ul>
+<li>작업 집합 모델(Working set Model)
+<ul>
+<li>프로세스가 실행하는 과정에서 배분할 프레임 결정</li>
+<li>스레싱이 발생하는 이유는 빈번한 페이지 교체 때문
+<ul>
+<li>그렇다면 <Mark>CPU가 특정 시간 동안 주로 참조한 페이지 개수만큼만 프레임을 할당</Mark>하면 된다</li>
+</ul>
+</li>
+<li>‘프로세스가 일정 기간 동안 참조한 페이지 집합’을 기억하여 빈번한 페이 교체를 방지하는 방식이 작업 집합 모델 기반의 프레임 할당 방식
+<ul>
+<li><Mark>작업 집합</Mark>이란 “실행 중인 프로세스가 일정 시간 동안 참조한 페이지의 집합”을 의미</li>
+</ul>
+</li>
+<li>작업 집합을 구하려면
+<ol>
+<li>프로세스가 참조한 페이지</li>
+<li>시간 간격이 필요
+<img src="https://github.com/boost-library/yong-study/assets/74396128/f3f3ee0d-d97e-4bd6-9282-ed3541a9514d" alt="image">
+최소 5개의 프레임이 t2라는 순간에 필요 → 작업 집합 모델 기반의 프레임 할당 방식</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>페이지 폴트 빈도
+<ul>
+<li>프로세스가 실행하는 과정에서 배분할 프레임 결정</li>
+<li>두 개의 가정에서 생겨난 아이디어
+<ol>
+<li>페이지 폴트율이 너무 높으면 그 프로세스는 너무 적은 프레임을 갖고 있다</li>
+<li>페이지 폴트율이 너무 낮으면 그 프로세스는 너무 많은 프레임을 갖고 있다
+<img src="https://github.com/boost-library/yong-study/assets/74396128/0bf93504-be6e-419d-add9-c6650cf4e5cd" alt="image">
+<ul>
+<li>페이지 폴트율에 상한선과 하한선을 정하고, 그 내부 범위 안에서만 프레임을 할당하는 방식</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>c.f.) 작업 집합 모델, 페이지 폴트 빈도: <Mark>동적 할당 방식</Mark> → 프로세스가 실행하는 과정을 통해서 프레임을 할당하는 방식</p>
+</li>
+</ul>
+<h2 id="페이징의-이점과-계층적-페이징" style="position:relative;"><a href="#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%9D%98-%EC%9D%B4%EC%A0%90%EA%B3%BC-%EA%B3%84%EC%B8%B5%EC%A0%81-%ED%8E%98%EC%9D%B4%EC%A7%95" aria-label="페이징의 이점과 계층적 페이징 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>페이징의 이점과 계층적 페이징</h2>
+<h3 id="쓰기-시-복사" style="position:relative;"><a href="#%EC%93%B0%EA%B8%B0-%EC%8B%9C-%EB%B3%B5%EC%82%AC" aria-label="쓰기 시 복사 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>쓰기 시 복사</h3>
+<p>페이징 → 외부 단편화 해결 가능, 프로세스 간 페이지 공유 가능(<strong>쓰기 시 복사,</strong> 공유 라이브러리)</p>
+<ul>
+<li>이론적인 fork()
+<ul>
+<li>
+<p>프로세스는 기본적으로 자원을 공유하지 ❌</p>
+<p>→ 부모 프로세스가 적재된 별도의 공간에 자식 프로세스가 통째로 복제되어 적재(<Mark>프로세스 생성 시간 지연, 메모리 낭비</Mark>)
+<img src="https://github.com/boost-library/yong-study/assets/74396128/a5c20ba4-9dcb-4555-a251-752e4d9d2573" alt="image"></p>
+</li>
+</ul>
+</li>
+<li>쓰기 시 복사
+<ul>
+<li>부모 프로세스와 동일한 자식 프로세스가 복제되어 생성되면 자식 프로세스는 부모 프로세스와 <Mark>동일한 프레임</Mark>을 가리킴(<Mark>쓰기 작업 없다면 이 상태 유지</Mark>)
+<img src="https://github.com/boost-library/yong-study/assets/74396128/d050921c-7473-43da-a0b1-b935e1100d53" alt="image"></li>
+<li>프로세스 간 기본적으로는 자원을 공유 ❌ → <Mark>부모 프로세스/자식 프로세스 둘 중 하나가 페이지에 쓰기 작업 수행 시</Mark> 해당 페이지는 별도의 공간으로 복제(<Mark>프로세스 생성 시간 절약, 메모리 절약</Mark>)
+<img src="https://github.com/boost-library/yong-study/assets/74396128/8d2d048d-782a-4953-8db0-9802cc7a18d7" alt="image">
+<ul>
+<li>부모 프로세스와 자식 프로세스가 별도의 자원을 유지하면서 중복해서 메모리를 저장❌ (메모리 효율 &#x26; 프로세스 간 자원 공유를 막는 방식 → <Mark>쓰기 시 복사</Mark>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="계층적-페이지" style="position:relative;"><a href="#%EA%B3%84%EC%B8%B5%EC%A0%81-%ED%8E%98%EC%9D%B4%EC%A7%80" aria-label="계층적 페이지 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>계층적 페이지</h3>
+<ul>
+<li>프로세스 테이블의 크기는 생각보다 작지 않다</li>
+<li>프로세스를 이루는 모든 페이지 테이블 엔트리를 메모리에 두는 것은 큰 낭비</li>
+<li>프로세스를 이루는 모든 페이지 테이블 엔트리를 항상 메모리에 유지하지 않을 방법</li>
+<li><Mark>페이지 테이블을 페이징</Mark>하여 여러 단계의 페이지를 두는 방식
+<img src="https://github.com/boost-library/yong-study/assets/74396128/c1936155-89a9-4630-a5ae-0ea4703436b3" alt="image">
+<ul>
+<li>페이지 테이블을 여러 페이지로 쪼개고 이 페이지를 가리키는 페이지 테이블(Outer 페이지 테이블)을 두는 방식</li>
+</ul>
+</li>
+<li>모든 페이지 테이블을 항상 메모리에 있을 필요가 없어짐
+<ul>
+<li>CPU와 가장 가까이 위치한 페이지 테이블(Outer 페이지 테이블)은 항상 메모리에 유지</li>
+</ul>
+</li>
+<li>계층적 페이징을 이용하는 환경에서의 논리 주소
+<ul>
+<li>
+<p><Mark>바깥 페이지 번호 + 안쪽 페이지 번호 + 변위(2단계, 이상의 단계도 가능)</p>
+<ol>
+<li>바깥 페이지 번호를 통해 <Mark>페이지 테이블의 페이지</Mark>를 찾기</li>
+<li><Mark>페이지 테이블의 페이지</Mark>를 통해 <Mark>프레임 번호</Mark>를 찾고 변위를 더함으로서 물리 주소 얻기</li>
+</ol>
+<p>c.f.) 계층이 많을 경우, 페이지 폴트(참조하고자 하는 페이지가 현재 메모리에 존재하지 않는 경우)가 발생했을 경우에 메모리를 많이 참조해야 하기 때문에 계층이 많다고 해서 반드시 좋은 것은 ❌</p>
+</li>
+</ul>
+</li>
+</ul></div></div></div><div class="Post-module--footer--f8705"><div class="Meta-module--meta--dae0a"><p class="Meta-module--date--4d30d">Published<!-- --> <!-- -->Sep 15, 2023</p></div><div class="Tags-module--tags--18589"><ul class="Tags-module--list--82ae6"><li class="Tags-module--item--52015"><a class="Button-module--button--b1113" href="/tag/os/">OS</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113" href="/tag/cs/">CS</a></li></ul></div><div class="Author-module--author--1c58d"><p class="Author-module--bio--08950">안녕하세요 Web Developer 주용준 입니다.<a class="Author-module--twitter--90647" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"></a></p></div></div><div class="Post-module--comments--d3b99"><div></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/os/memory-allocation&paging";window.___webpackCompilationHash="1c1385ac869436d9885a";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-19c76501ff95dc31920e.js"],"app":["/app-6e5933bc9309ffd7a771.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-0c915c7b1bdb5eac4fdf.js"],"component---src-templates-categories-template-categories-template-tsx":["/component---src-templates-categories-template-categories-template-tsx-591f3455d53c3b8ef831.js"],"component---src-templates-category-template-category-template-tsx":["/component---src-templates-category-template-category-template-tsx-17938cc106fc95d14669.js"],"component---src-templates-index-template-index-template-tsx":["/component---src-templates-index-template-index-template-tsx-943badbf7518b3416f8c.js"],"component---src-templates-not-found-template-not-found-template-tsx":["/component---src-templates-not-found-template-not-found-template-tsx-7471aa4b082ff96c2ebc.js"],"component---src-templates-page-template-page-template-tsx":["/component---src-templates-page-template-page-template-tsx-2a71e80d83152f260a5a.js"],"component---src-templates-post-template-post-template-tsx":["/component---src-templates-post-template-post-template-tsx-d85673e1cfef65e7fb92.js"],"component---src-templates-tag-template-tag-template-tsx":["/component---src-templates-tag-template-tag-template-tsx-1899bf0abfbfc5726bf7.js"],"component---src-templates-tags-template-tags-template-tsx":["/component---src-templates-tags-template-tags-template-tsx-4c5531dc9d52ed72d7d1.js"]};/*]]>*/</script><script src="/polyfill-19c76501ff95dc31920e.js" nomodule=""></script><script src="/app-6e5933bc9309ffd7a771.js" async=""></script><script src="/framework-745d5d28c0250a1a333b.js" async=""></script><script src="/webpack-runtime-6cc06eb29695dce59a63.js" async=""></script></body></html>

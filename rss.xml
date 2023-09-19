@@ -1,4 +1,1184 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Yong Jun]]></title><description><![CDATA[Blog by Yong Jun]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 12 Sep 2023 15:25:02 GMT</lastBuildDate><item><title><![CDATA[프로세스와 스레드]]></title><description><![CDATA[프로세스와 스레드에 대해서 배웁니다]]></description><link>https://dltlaos11.github.io//posts/os</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/os</guid><pubDate>Tue, 12 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Yong Jun]]></title><description><![CDATA[Blog by Yong Jun]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 19 Sep 2023 09:57:31 GMT</lastBuildDate><item><title><![CDATA[파일 시스템]]></title><description><![CDATA[파일 시스템에 대해서 배웁니다]]></description><link>https://dltlaos11.github.io//posts/os/filesystem</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/os/filesystem</guid><pubDate>Sat, 16 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8C%8C%EC%9D%BC%EA%B3%BC-%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC&quot;&gt;파일과 디렉터리&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8C%8C%EC%9D%BC&quot;&gt;파일&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC&quot;&gt;디렉터리&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C&quot;&gt;파일 시스템&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8C%8C%ED%8B%B0%EC%85%94%EB%8B%9D%EA%B3%BC-%ED%8F%AC%EB%A7%A4%ED%8C%85&quot;&gt;파티셔닝과 포매팅&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8C%8C%EC%9D%BC-%ED%95%A0%EB%8B%B9-%EB%B0%A9%EB%B2%95&quot;&gt;파일 할당 방법&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0&quot;&gt;파일 시스템 살펴보기&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%9C%A0%EB%8B%89%EC%8A%A4-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C&quot;&gt;유닉스 파일 시스템&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;파일과-디렉터리&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8C%8C%EC%9D%BC%EA%B3%BC-%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC&quot; aria-label=&quot;파일과 디렉터리 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;파일과 디렉터리&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;파일 시스템
+&lt;ul&gt;
+&lt;li&gt;파일과 디렉터리를 관리하는 운영체제 내의 프로그램&lt;/li&gt;
+&lt;li&gt;파일과 디렉터리를 다루어 주는 프로그램&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;파일과 디럭터리
+&lt;ul&gt;
+&lt;li&gt;보조기억장치의 데이터 덩어리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;파일&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8C%8C%EC%9D%BC&quot; aria-label=&quot;파일 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;파일&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;보조기억장치에 저장된 관련 정보의 집합&lt;/li&gt;
+&lt;li&gt;의미있고 관련있는 정보를 모은 논리적 단위&lt;/li&gt;
+&lt;li&gt;파일을 이루는 정보
+&lt;ul&gt;
+&lt;li&gt;파일을 실행하기 위한 정보 + 부가 정보(= 속성, 메타 데이터)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;디렉터리&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC&quot; aria-label=&quot;디렉터리 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;디렉터리&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;윈도우에서는 폴더&lt;/li&gt;
+&lt;li&gt;1단계 디렉터리&lt;/li&gt;
+&lt;li&gt;여러 계층으로 파일 및 폴더를 관리하는 &lt;Mark&gt;트리 구조 디렉터리&lt;/li&gt;
+&lt;li&gt;최상위 디렉터리(루트 디렉터리, /, C:#), 서브 디렉터리&lt;/li&gt;
+&lt;li&gt;경로
+&lt;ul&gt;
+&lt;li&gt;디렉터리를 이용해 파일/디렉터리의 위치, 나아가 이름까지 특정 지을 수 있는 정보&lt;/li&gt;
+&lt;li&gt;절대경로: 루트 디렉터리에서 자기 자신까지 이르는 고유한 경로&lt;/li&gt;
+&lt;li&gt;상대경로: 현재 디렉터리에서 자기 자신까지 이르는 경로&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;디렉터리/파일 연산을 위한 시스템 호출
+&lt;ul&gt;
+&lt;li&gt;생성&lt;/li&gt;
+&lt;li&gt;삭제&lt;/li&gt;
+&lt;li&gt;열기&lt;/li&gt;
+&lt;li&gt;닫기&lt;/li&gt;
+&lt;li&gt;읽기&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;많은 운영체제에서 디렉터리를 그저 ‘&lt;Mark&gt;특별한 형태의 파일&lt;/Mark&gt;’로 간주&lt;/li&gt;
+&lt;li&gt;디렉터리 엔트리
+&lt;ul&gt;
+&lt;li&gt;파일의 내부에는 &lt;Mark&gt;파일과 관련된 정보&lt;/Mark&gt;들이 있다면, 디렉터리의 내부에는 &lt;Mark&gt;해당 디렉터리에 담겨 있는 대상과 관련된 정보들&lt;/Mark&gt;이 표의 형태(테이블)로 담겨 있음&lt;/li&gt;
+&lt;li&gt;각 엔트리(행)에 담기는 정보
+&lt;ul&gt;
+&lt;li&gt;디렉터리에 포함된 대상의 &lt;Mark&gt;이름&lt;/li&gt;
+&lt;li&gt;그 대상이 보조기억장치 내에 &lt;Mark&gt;저장된 위치&lt;/Mark&gt;(를 유추할 수 있는 정보)&lt;/li&gt;
+&lt;li&gt;파일 속성을 명시하는 경우도 있다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;파일-시스템&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C&quot; aria-label=&quot;파일 시스템 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;파일 시스템&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;파일 시스템이 파일과 디렉터리를 보조기억장치에 할당하고 접근하는 기법&lt;/li&gt;
+&lt;li&gt;대표적인 파일 시스템의 종류(FAT 파일 시스템, 유닉스 파일 시스템) 학습&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;파티셔닝과-포매팅&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8C%8C%ED%8B%B0%EC%85%94%EB%8B%9D%EA%B3%BC-%ED%8F%AC%EB%A7%A4%ED%8C%85&quot; aria-label=&quot;파티셔닝과 포매팅 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;파티셔닝과 포매팅&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;파티셔닝과 포매팅을 해야 파일 시스템을 통해서 파일과 디렉터리에 접근 가능하며 파일 시스템 이용 가능&lt;/li&gt;
+&lt;li&gt;한 번도 사용된 적이 없는 HDD/SSD는 파티셔닝, 포매팅 하기 전까지는 사용할 수 없음&lt;/li&gt;
+&lt;li&gt;파티셔닝
+&lt;ul&gt;
+&lt;li&gt;저장 장치의 논리적인 영역을 구획하는 작업(&lt;Mark&gt;파티션&lt;/Mark&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;포매팅
+&lt;ul&gt;
+&lt;li&gt;파일 시스템을 설정&lt;/li&gt;
+&lt;li&gt;어떤 방식으로 파일을 관리할지 결정, 새로운 데이터를 쓸 준비하는 작업&lt;/li&gt;
+&lt;li&gt;파일 시스템은 포매팅할 때 결정&lt;/li&gt;
+&lt;li&gt;파일 시스템에는 여러 종류가 있고, 파티션마다 다른 파일 시스템을 설정할 수 있음&lt;/li&gt;
+&lt;li&gt;포매팅까지 완료하여 파일 시스템을 설정했다면 이제 파일과 디렉터리 생성이 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;파일-할당-방법&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8C%8C%EC%9D%BC-%ED%95%A0%EB%8B%B9-%EB%B0%A9%EB%B2%95&quot; aria-label=&quot;파일 할당 방법 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;파일 할당 방법&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;포매팅까지 끝난 HDD에 파일을 저장하기&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HDD의 가장 작은 저장 단위는 섹터이지만 보통 블록 단위로 읽고 쓴다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;운영체제는 파일/디렉터리를 블록 단위로 읽고 쓴다&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;즉, 하나의 파일이 보조기억장치에 저장될 때에는 여러 블록에 걸쳐 저장&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;파일을 보조기억장치에 할당하는 두 가지 방법: 연속 할당, 불연속 할당&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;파일 할당
+&lt;ul&gt;
+&lt;li&gt;연속할당&lt;/li&gt;
+&lt;li&gt;불연속 할당
+&lt;ul&gt;
+&lt;li&gt;연결 할당&lt;/li&gt;
+&lt;li&gt;색인 할당&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;c.f. ) 오늘날 사용되는 방식은 불연속 할당&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;연속 할당&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;이름 그대로 보조기억장치 내 연속적인 블록에 파일 할당&lt;/li&gt;
+&lt;li&gt;연속된 파일에 접근하기 위해 파일의 첫 번째 블록 주소와 블록 단위의 길이만 알면 된다&lt;/li&gt;
+&lt;li&gt;디렉터리 엔트리: 파일 이름 &amp;#x26; &lt;Mark&gt;첫 번째 블록 주소 &amp;#x26; 블록 단위 길이 명시&lt;/li&gt;
+&lt;li&gt;구현이 단순하지만 &lt;Mark&gt;외부 단편화를 야기&lt;/Mark&gt;하는 단점&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;불연속 할당 - 연결 할당&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;각 블록의 일부에 다음 블록의 주소를 저장하여 각 블록이 다음 블록을 가리키는 형태로 할당&lt;/li&gt;
+&lt;li&gt;파일을 이루는 데이터 블록을 연결 리스트로 관리&lt;/li&gt;
+&lt;li&gt;불연속 할당의 일종: 파일이 여러 블록에 흩어져 저장되어도 무방&lt;/li&gt;
+&lt;li&gt;디렉터리 엔트리: 파일 이름 &amp;#x26; 첫 번째 블록 주소 &amp;#x26; 블록 단위의 길이
+&lt;ul&gt;
+&lt;li&gt;첫 번째 블록 주소와 마지막 블록 주소를 기록 할 수도
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/8110c710-611e-4bed-8222-3cbdc0dbeb76&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;단점
+&lt;ul&gt;
+&lt;li&gt;반드시 첫 번째 블록부터 하나씩 읽어들여야 함 → 임의 위치의 접근 속도가 느림&lt;/li&gt;
+&lt;li&gt;오류 발생시 해당 블록 이후 블록은 접근이 어렵다 → &lt;Mark&gt;FAT 해결&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;불연속 할당 - 색인 할당&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;파일의 모든 블록 주소를 색인 블록이라는 하나의 블록에 모아 관리하는 방식&lt;/li&gt;
+&lt;li&gt;파일 내 임의의 위치에 접근하기 용이&lt;/li&gt;
+&lt;li&gt;디렉터리 엔트리: &lt;Mark&gt;파일 이름 &amp;#x26; 색인 블록 주소
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/c1c1283b-fb80-402b-8bf3-656eff482cf0&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;파일-시스템-살펴보기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0&quot; aria-label=&quot;파일 시스템 살펴보기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;파일 시스템 살펴보기&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;FAT 파일 시스템
+&lt;ul&gt;
+&lt;li&gt;연결 할당 기반 파일 시스템&lt;/li&gt;
+&lt;li&gt;연결 할당의 단점을 보완&lt;/li&gt;
+&lt;li&gt;각 블록에 다음 블록 주소를 한데 모아 테이블(FAT: File Allocation Table)로 관리
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/4a608ddd-df08-41f1-8050-5deb30349d7f&quot; alt=&quot;image&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;Mark&gt;FAT가 메모리에 캐시될 경우 느린 임의 접근 속도 개선 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;HDD의 파티션을 FAT 파일 시스템으로 포매팅하면 다음과 같은 파티션이 설정(e.g. FAT 12 간략화)
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/840b06a1-e80c-4e6a-85f6-95cf2eedbb42&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;디렉터리 엔트리
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/793a90cf-376a-4580-9330-d0f5152b18fc&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;/home/minchul/a.sh를 읽는 과정 - FAT파일 시스템
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/36b25332-8e97-4b54-9544-37da66d883c9&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;유닉스-파일-시스템&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%9C%A0%EB%8B%89%EC%8A%A4-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C&quot; aria-label=&quot;유닉스 파일 시스템 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;유닉스 파일 시스템&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;색인 할당 기반 파일 시스템&lt;/li&gt;
+&lt;li&gt;색인 블록 == i-node
+&lt;ul&gt;
+&lt;li&gt;&lt;Mark&gt;파일의 속성 정보&lt;/Mark&gt;와 &lt;Mark&gt;15개의 블록 주소&lt;/Mark&gt; 저장 가능
+&lt;ul&gt;
+&lt;li&gt;15개 이상의 블록 주소를 저장하는 경우
+&lt;ol&gt;
+&lt;li&gt;블록 주소 중 12개에는 &lt;Mark&gt;직접 블록&lt;/Mark&gt; 주소 저장
+&lt;ul&gt;
+&lt;li&gt;직접 블록: 파일 데이터가 저장된 블록&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;1️⃣으로 충분하지 않다면 13번째 주소에 &lt;Mark&gt;단일 간접 블록&lt;/Mark&gt; 주소 저장
+&lt;ul&gt;
+&lt;li&gt;단일 간접 블록: &lt;Mark&gt;파일 데이터&lt;/Mark&gt;(데이터블록)를 저장한 블록 주소가 저장된 블록&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;2️⃣번으로 충분하지 않다면 14번째 주소에 &lt;Mark&gt;이중 간접 블록&lt;/Mark&gt; 주소 저장
+&lt;ul&gt;
+&lt;li&gt;이중 간접 블록: &lt;Mark&gt;단일 간접 블록들&lt;/Mark&gt;의 주소를 저장하는 블록&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;3️⃣번으로 충분하지 않다면 15번째 주소에 &lt;Mark&gt;삼중 간접 블록&lt;/Mark&gt; 주소 저장
+&lt;ul&gt;
+&lt;li&gt;삼중 간접 블록: &lt;Mark&gt;이중 간접 블록들&lt;/Mark&gt;의 주소를 저장하는 블록&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;i-node를 사용하는 파일 시스템의 파티션
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/1d475280-498d-4dff-bfa1-3ac7f4368f0c&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;디렉터리 엔트리
+&lt;ul&gt;
+&lt;li&gt;i-node가 파일 시스템의 핵심
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/13b412a0-96a3-4fea-a74e-d2425bc8ec16&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;/home/minchul/a.sh를 유닉스 파일 시스템으로 읽는 과정
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/f8f9b9aa-737f-4059-9ec6-49af4a58d48c&quot; alt=&quot;image&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;i-node에 루트 i-node가 저장되어 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[메모리 할당 및 페이징]]></title><description><![CDATA[메모리 할당 및 페이징에 대해서 배웁니다]]></description><link>https://dltlaos11.github.io//posts/os/memory-allocation&amp;paging</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/os/memory-allocation&amp;paging</guid><pubDate>Thu, 14 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%97%B0%EC%86%8D-%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9&quot;&gt;연속 메모리 할당&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%8A%A4%EC%99%80%ED%95%91&quot;&gt;스와핑&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9&quot;&gt;메모리 할당&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%99%B8%EB%B6%80-%EB%8B%A8%ED%8E%B8%ED%99%94&quot;&gt;외부 단편화&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%9D%84-%ED%86%B5%ED%95%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC&quot;&gt;페이징을 통한 가상 메모리 관리&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%95&quot;&gt;페이징&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%85%8C%EC%9D%B4%EB%B8%94&quot;&gt;페이지 테이블&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#ptbr&quot;&gt;PTBR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#tlb&quot;&gt;TLB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%97%90%EC%84%9C%EC%9D%98-%EC%A3%BC%EC%86%8C-%EB%B3%80%ED%99%98&quot;&gt;페이징에서의 주소 변환&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%97%94%ED%8A%B8%EB%A6%AC&quot;&gt;페이지 테이블 엔트리&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%90%EC%B2%B4%EC%99%80-%ED%94%84%EB%A0%88%EC%9E%84-%ED%95%A0%EB%8B%B9&quot;&gt;페이지 교체와 프레임 할당&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%9A%94%EA%B5%AC-%ED%8E%98%EC%9D%B4%EC%A7%95&quot;&gt;요구 페이징&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%90%EC%B2%B4-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98&quot;&gt;페이지 교체 알고리즘&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%8A%A4%EB%9E%98%EC%8B%B1%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%95%A0%EB%8B%B9&quot;&gt;스래싱과 프레임 할당&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%9D%98-%EC%9D%B4%EC%A0%90%EA%B3%BC-%EA%B3%84%EC%B8%B5%EC%A0%81-%ED%8E%98%EC%9D%B4%EC%A7%95&quot;&gt;페이징의 이점과 계층적 페이징&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%93%B0%EA%B8%B0-%EC%8B%9C-%EB%B3%B5%EC%82%AC&quot;&gt;쓰기 시 복사&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EA%B3%84%EC%B8%B5%EC%A0%81-%ED%8E%98%EC%9D%B4%EC%A7%80&quot;&gt;계층적 페이지&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;연속-메모리-할당&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%97%B0%EC%86%8D-%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9&quot; aria-label=&quot;연속 메모리 할당 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;연속 메모리 할당&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/32ac8300-3bb5-4504-9f7c-e9927ce6c95f&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;p&gt;프로세스에 연속적인 메모리 공간을 할당&lt;/p&gt;
+&lt;h3 id=&quot;스와핑&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8A%A4%EC%99%80%ED%95%91&quot; aria-label=&quot;스와핑 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;스와핑&lt;/h3&gt;
+&lt;p&gt;현재 사용되지 않는 프로세스들을 보조기억장치의 일부 영역(&lt;Mark&gt;스왑 영역&lt;/Mark&gt;)으로 쫓아내고, 그렇게 생긴 빈 공간에 새 프로세스 적재
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/c96b4cf5-f5a0-4461-8db9-896656bb5b7a&quot; alt=&quot;image&quot;&gt;
+→ 당장 사용할 수 있는 프로세스만 메모리(&lt;Mark&gt;스왑 인&lt;/Mark&gt;)에 배치 가능, 메모리에서 보조기억장치로 프로세스 이동(&lt;Mark&gt;스왑 아웃&lt;/Mark&gt;)&lt;/p&gt;
+&lt;p&gt;스와핑을 통해 프로세스들이 요구하는 메모리 공간 크기가 메모리보다 큰 경우 적절한 메모리 적재가 가능
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/ae060b26-5f8d-40ba-a503-a8c6e9224584&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;스왑 영역 크기 확인: free, top&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;메모리-할당&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9&quot; aria-label=&quot;메모리 할당 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;메모리 할당&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스는 메모리의 빈 공간에 할당되어야 한다.
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;최초 적합, 최적 적합, 최악 적합 → &lt;Mark&gt;연속 메모리 할당 방식&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;연속적으로 프로세스를 메모리에 내에 배치할 떄 어떤 빈 공간에 어떻게 적재할지에 따라서 나뉜 방식&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;최초 적합(first-fit)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;운영체제가 메모리 내의 빈 공간을 순서대로 검색하다 적재할 수 있는 공간을 발견하면 그 공간에 프로세스를 배치하는 방식&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;최적 적합(best-fit)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;운영체제가 빈 공간을 모두 검색해본 뒤, 적재 가능한 가장 작은 공간에 할당&lt;/li&gt;
+&lt;li&gt;외부 단편화 발생 가능성 크다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;최악 적합(worst-fit)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;운영체제가 빈 공간을 모두 검색해본 뒤, 적재 가능한 가장 큰 공간에 할당&lt;/li&gt;
+&lt;li&gt;외부 단편화 발생 가능성 적다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;외부-단편화&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%99%B8%EB%B6%80-%EB%8B%A8%ED%8E%B8%ED%99%94&quot; aria-label=&quot;외부 단편화 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;외부 단편화&lt;/h3&gt;
+&lt;p&gt;프로세스를 연속적으로 할당하는 방식은 메모리를 효율적으로 사용하는 방법이 아니다.&lt;/p&gt;
+&lt;p&gt;외부 단편화&lt;strong&gt;external fragmentation&lt;/strong&gt;라는 문제가 발생하기 때문&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;Mark&gt;프로세스들이 실행되고 종료되길 반복하며 메모리 사이에 빈 공간 발생&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;Mark&gt;외부 단편화&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스를 할당하기 어려울 만큼 &lt;Mark&gt;작은 메모리 공간들&lt;/Mark&gt;로 인해 &lt;Mark&gt;메모리가 낭비&lt;/Mark&gt;되는 현상&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;외부 단편화 해결&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;메모리 압축(compaction)
+&lt;ul&gt;
+&lt;li&gt;흩어져 있는 빈 공간들을 하나로 모으는 방식&lt;/li&gt;
+&lt;li&gt;프로세스를 적당히 재배치시켜 흩어져 있는 작은 빈 공간들을 하나의 큰 빈 공간으로 만드는 방법&lt;/li&gt;
+&lt;li&gt;부작용
+&lt;ul&gt;
+&lt;li&gt;빈 공간을 하나로 압축시키는 과정과, 프로세스들을 재배치하는 과정에서 오버헤드 발생&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;가상 메모리 기법, 페이징&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;페이징을-통한-가상-메모리-관리&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%9D%84-%ED%86%B5%ED%95%9C-%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC&quot; aria-label=&quot;페이징을 통한 가상 메모리 관리 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;페이징을 통한 가상 메모리 관리&lt;/h2&gt;
+&lt;p&gt;연속 메모리 할당의 두 가지 문제점&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;외부 단편화&lt;/li&gt;
+&lt;li&gt;물리 메모리보다 큰 프로세스 실행 불가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;가상 메모리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;실행하고자 하는 프로그램을 일부만 메모리에 적재하여 실제 물리 메모리크기보다 더 큰 프로세스를 실행할 수 있게 하는 기술&lt;/li&gt;
+&lt;li&gt;페이징, 세그멘테이션&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;페이징&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%95&quot; aria-label=&quot;페이징 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;페이징&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;각기 다른 크기의 프로세스가 메모리에 연속적으로 할당되었기 때문에 외부 단편화  발생&lt;/li&gt;
+&lt;li&gt;메모리에 적재되는 대상이 모두 일정한 크기를 갖고 있다면 외부 단편화 발생 ❌&lt;/li&gt;
+&lt;li&gt;페이징은 프로세스를 일정한 크기로 자르고, 이를 메모리에 불연속적으로 할당하여 외부 단편화를 해결한다&lt;/li&gt;
+&lt;li&gt;프로세스의 &lt;Mark&gt;논리 주소 공간을 페이지(page)&lt;/Mark&gt;라는 일정 단위로 자르고,&lt;/li&gt;
+&lt;li&gt;메모리의 &lt;Mark&gt;물리 주소 공간을 프레임(frame)&lt;/Mark&gt;이라는 페이지와 동일한 일정한 단위로 자른 뒤&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;페이지를 프레임에 할당하는 가상 메모리 관리 기법
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/19e5c44a-42dd-49a2-aa28-2a49377c733d&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;페이징에서의 스와핑
+&lt;ul&gt;
+&lt;li&gt;프로세스 단위의 스왑 인, 스왑 아웃이 아닌 페이지 단위의 스왑 인(&lt;Mark&gt;페이지 인&lt;/Mark&gt;), 스왑 아웃(&lt;Mark&gt;페이지 아웃&lt;/Mark&gt;)&lt;/li&gt;
+&lt;li&gt;메모리에 적재된 필요가 없는 페이지들은 보조기억장치로 스왑 아웃&lt;/li&gt;
+&lt;li&gt;실행에 필요한 페이지들은 메모리로 스왑 인
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/9114af0d-6764-416c-a5c6-6e6b6fd833c9&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;프로세스를 실행하기 위해 모든 페이지가 적재될 필요 없다&lt;/li&gt;
+&lt;li&gt;달리 말해 &lt;Mark&gt;물리 메모리보다 큰 프로세스도&lt;/Mark&gt; 실행 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;페이지-테이블&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%85%8C%EC%9D%B4%EB%B8%94&quot; aria-label=&quot;페이지 테이블 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;페이지 테이블&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스를 이루는 페이지가 어느 프레임에 적재되어 있는지 CPU가 일일이 알기란 어렵다&lt;/li&gt;
+&lt;li&gt;프로세스가 메모리에 불연속적으로 배치되어 있다면 CPU 입장에서 이를 순차적으로 실행할 수 ❌&lt;/li&gt;
+&lt;li&gt;CPU입장에서 ‘다음에 실행할 명령어 위치’를 찾기가 어려워짐&lt;/li&gt;
+&lt;li&gt;(실제 메모리 내의 주소인) 물리 주소에 불연속적으로 배치되더라도 (CPU가 바라보는 주소인)논리 주소에는 연속적으로 배치되도록 하는 방법&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;페이지 번호와 프레임 번호를 짝지어 주는 일종의 이정표&lt;/li&gt;
+&lt;li&gt;프로세스마다 페이지 테이블이 있다
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/021409ee-3f14-4a98-9b97-17231c42f184&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;물리적으로는 분산되어 저장되더라도 CPU 입장에서 바라본 논리 주소는 연속적으로 보임&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;CPU는 그저 논리 주소를 순차적으로 실행하면 될 뿐&lt;/li&gt;
+&lt;li&gt;내부 단편화
+&lt;ul&gt;
+&lt;li&gt;페이지 크기가 10KB, 프로세스 크기 108KB일 경우&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;2KB: 내부 단편화&lt;/li&gt;
+&lt;li&gt;하나의 페이지 크기보다 작은 크기로 발생&lt;/li&gt;
+&lt;li&gt;세그멘테이션 해결 가능 → 외부단편화 발생
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/1cf3a22a-d0d8-4121-9ae9-bfb6faee9018&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;ptbr&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ptbr&quot; aria-label=&quot;ptbr permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;ptbr&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;프로세스마다 페이지 테이블이 있고, 각 페이지 테이블은 CPU내의 &lt;Mark&gt;프로세스 테이블 베이스 레지스터(PTBR)&lt;/Mark&gt;가 가리킨다(저장).
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/a71f5f98-a406-4fdb-b2ed-37b64d4374fb&quot; alt=&quot;image&quot;&gt;
+프로세스 B 실행 시 PTBR은 프로세스 B의 페이지테이블 주소를 가리키고 이를 통해 CPU는 B의 페이지테이블에 접근해서 프로세스 B의 페이지가 각각 어떤 프레임에 할당되어 있는지 알 수 있다&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;그런데, 페이지 테이블이 메모리에 있다면 &lt;Mark&gt;메모리 접근 시간이 두배로 걸리는 문제가 생김&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;페이지 테이블(어떤 페이지가 어떤 프레임에 할당되어있는지 알 수 있다) 참조하기 위해 한번&lt;/li&gt;
+&lt;li&gt;페이지 참조하기 위해 한번&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;tlb&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#tlb&quot; aria-label=&quot;tlb permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;tlb&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU 곁에 페이지 테이블의 캐시 메모리&lt;/li&gt;
+&lt;li&gt;페이지 테이블의 일부를 가져와 저장하여 불필요한 메모리 접근을 줄일 수 있다&lt;/li&gt;
+&lt;li&gt;CPU가 접근하려는 논리 주소가 TLB에 있다면 → TLB 히트
+&lt;ul&gt;
+&lt;li&gt;메모리 접근 1번&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;CPU가 접근하려는 논리 주소가 TLB에 없다면 → TLB 미스
+&lt;ul&gt;
+&lt;li&gt;메모리 접근 2번
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/cd7e653f-6dd9-4570-b7b1-057f8e16afdd&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;페이징에서의-주소-변환&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%97%90%EC%84%9C%EC%9D%98-%EC%A3%BC%EC%86%8C-%EB%B3%80%ED%99%98&quot; aria-label=&quot;페이징에서의 주소 변환 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;페이징에서의 주소 변환&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;특정 주소에 접근할 때 필요한 정보
+&lt;ul&gt;
+&lt;li&gt;어떤 페이지/프레임에 접근하고 싶은지&lt;/li&gt;
+&lt;li&gt;접근하려는 주소가 그 페이지 혹은 프레임으로부터 &lt;Mark&gt;얼마나 떨어져 있는지&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;페이징 시스템에서의 논리 주소
+&lt;ul&gt;
+&lt;li&gt;페이지 번호(page number)와 변위(offset)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;&amp;#x3C;페이지 번호, 변위&gt;&lt;/Mark&gt;로 이루어진 논리 주소는 페이지 테이블을 통해 &lt;Mark&gt;&amp;#x3C;프레임 번호, 변위&gt;&lt;/Mark&gt;로 이루어진 물리주소로 변환
+&lt;ul&gt;
+&lt;li&gt;논리주소에서의 변위와 물리주소에서의 변위는 &lt;Mark&gt;같다
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/36004ddb-27a5-4e54-88a9-2f1330ae98c7&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;페이지-테이블-엔트리&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%97%94%ED%8A%B8%EB%A6%AC&quot; aria-label=&quot;페이지 테이블 엔트리 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;페이지 테이블 엔트리&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;페이지 테이블 각각의 행: 페이지 테이블 엔트리(PTE)
+&lt;ul&gt;
+&lt;li&gt;PTE에는 페이지 번호, 프레임 번호 등이 있으며 이외에도 여러가지 정보가 있음
+&lt;ul&gt;
+&lt;li&gt;유효비트
+&lt;ul&gt;
+&lt;li&gt;현재 해당 페이지에 접근 가능한지 여부
+&lt;ul&gt;
+&lt;li&gt;현재 페이지가 스왑 영역으로  스왑아웃 되있는지 아닌지, 메모리에 적재되어 있는지 아닌지를 나타낸다
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/0fc11f87-f1f4-4735-81ba-350858a873cd&quot; alt=&quot;image&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;유효 비트가 0인 페이지(메모리에 적재❌)에 접근하는 경우
+&lt;ul&gt;
+&lt;li&gt;페이지 폴트(page fault)라는 인터럽트 발생
+&lt;ol&gt;
+&lt;li&gt;CPU는 기존의 작업 내용을 백업&lt;/li&gt;
+&lt;li&gt;페이지 폴트 처리 루틴(&lt;Mark&gt;인터럽트 서비스 루틴&lt;/Mark&gt;)을 실행&lt;/li&gt;
+&lt;li&gt;페이지 처리 루틴은 원하는 페이지를 메모리로 가져온 뒤 유효 비트를 1로 변경&lt;/li&gt;
+&lt;li&gt;페이지 폴트를 처리했다면 이제 CPU는 해당 페이지에 접근할 수 있음&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;보호 비트
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;페이지 보호 기능을 위해 존재하는 비트
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/275f2846-329a-43a7-bd5b-046d98310b91&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;c.f. )프로세스의 코드 영역은 read-only영역, 읽기만 가능하므로 쓰기 권한&lt;/li&gt;
+&lt;li&gt;페이지에 접근할 권한을 제한하여 페이지를 보호하는 비트&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;참조 비트
+&lt;ul&gt;
+&lt;li&gt;CPU가 이 페이지에 접근한 적이 있는지 여부
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/b2091785-2d8f-4154-974d-6a1f26287f63&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;수정 비트(=dirty bit)
+&lt;ul&gt;
+&lt;li&gt;CPU가 이 페이지에 데이터를 쓴 적이 있는지 여부
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/c6528fbf-7e16-4582-ac40-ca44915f7320&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;수정비트의 존재 이유 → 스와핑
+&lt;ul&gt;
+&lt;li&gt;페이지가 메모리에서 삭제될 때 보조기억장치의 쓰기작업을 해야 되는지 여부를 판단하기 위해서 존재&lt;/li&gt;
+&lt;li&gt;만약 CPU 페이지의 내용을 변경했다면(쓰기) 해당 페이지는 스왑 아웃될 때 변경된 내용을 보조기억장치에도 반영해야(쓰기) 한다 → 수정 비트를 통해서 판단&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;페이지-교체와-프레임-할당&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%90%EC%B2%B4%EC%99%80-%ED%94%84%EB%A0%88%EC%9E%84-%ED%95%A0%EB%8B%B9&quot; aria-label=&quot;페이지 교체와 프레임 할당 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;페이지 교체와 프레임 할당&lt;/h2&gt;
+&lt;p&gt;물리 메모리보다 큰 프로세스를 실행할 수 있지만, 그럼에도 &lt;Mark&gt;물리 메모리의 크기는 한정&lt;/Mark&gt;되어 있다&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;기존에 적재된 불필요한 페이지를 선별해 보조기억장치로 내보내야하고 → &lt;Mark&gt;페이지 교체 알고리즘&lt;/li&gt;
+&lt;li&gt;프로세스들에게 적절한 수의 프레임을 할당해야 한다 → &lt;Mark&gt;프레임 할당&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;요구-페이징&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%9A%94%EA%B5%AC-%ED%8E%98%EC%9D%B4%EC%A7%95&quot; aria-label=&quot;요구 페이징 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;요구 페이징&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;처음부터 모든 페이지를 적재하지 않고 필요한 페이지만을 메모리에 적재하는 기법&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;요구되는 페이지만&lt;/Mark&gt; 적재하는 기법
+&lt;ol&gt;
+&lt;li&gt;CPU가 특정 페이지에 접근하는 명령어를 실행&lt;/li&gt;
+&lt;li&gt;해당 페이지가 현재 메모리에 있을 경우(&lt;Mark&gt;페이지 테이블 엔트리에 유효비트가 1일 경우&lt;/Mark&gt;) CPU는 페이지가 적재된 프레임에 접근&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;&lt;strong&gt;해당 페이지가 현재 메모리에 없을 경우&lt;/strong&gt;(유효비트:0)&lt;/Mark&gt; &lt;Mark&gt;페이지 폴트&lt;/Mark&gt;가 발생&lt;/li&gt;
+&lt;li&gt;페이지 폴트 처리 루틴은 해당 페이지를 메모리로 적재하고 유효 비트를 1로 설정&lt;/li&gt;
+&lt;li&gt;다시 1️⃣을 수행&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;c.f.) 어떤 프로세스를 실행하고자 할 때 어떤 페이지도 적재하지 않은채 실행하는 기법을 &lt;Mark&gt;순수 요구 페이징&lt;/Mark&gt;이라 함&lt;/li&gt;
+&lt;li&gt;요구 페이징 시스템이 안정적으로 작동하려면 &lt;Mark&gt;페이지 교체&lt;/Mark&gt;와 &lt;Mark&gt;프레임 할당&lt;/Mark&gt;을 해야 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;페이지-교체-알고리즘&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%90%EC%B2%B4-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98&quot; aria-label=&quot;페이지 교체 알고리즘 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;페이지 교체 알고리즘&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;요구 페이징 기법으로 페이지들을 적재하다보면 언젠가 메모리가 가득 차게 된다&lt;/li&gt;
+&lt;li&gt;당장 실행에 필요한 페이지를 적재하려면 적재된 페이지를 보조기억장치로 내보내야 하는데 &lt;Mark&gt;어떤 페이지를&lt;/Mark&gt; 내보내는 방법(알고리즘)이 &lt;Mark&gt;페이지 교체 알고리즘&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;페이지 폴트가 적은 알고리즘&lt;/Mark&gt;이 좋은 페이지 교체 알고리즘🔥
+&lt;ul&gt;
+&lt;li&gt;페이지 폴트가 발생하면 보조기억장치로부터 필요한 페이지를 다시 갖고와야 하므로 메모리에 적재된 페이지를 가지고 오는 것보다 느려지기 떄문 → 보조기억장치에 접근해야 해서 성능 저하
+&lt;ul&gt;
+&lt;li&gt;e.g. ) 어떤 페이지 교체 알고리즘을 통해서 페이지를 스왑아웃시켰더니 페이지 폴트가 자주 발생  == 보조기억장치로 내보내야 할 페이지를 잘 못 골랐다, 내보내면 안되는 페이지를 보조기억장치로 내보냄&lt;/li&gt;
+&lt;li&gt;e.g. ) 어떤 페이지 교체 알고리즘을 통해 고른 페이지를 스왑아웃시켜도 페이지폴트가 자주 발생하지 않는다면 보조기억장치로 내보낼 페이지를 잘 골랐음을 의미&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;페이지 폴트 횟수
+&lt;ul&gt;
+&lt;li&gt;페이지 참조열(page reference string)
+&lt;ul&gt;
+&lt;li&gt;CPU가 참조하는 페이지들 중 연속된 페이지를 생략한 페이지열
+&lt;ul&gt;
+&lt;li&gt;e.g. )2 2 2 3 5 5 5 3 3 7 → 2 3 5 3 7&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;FIFO 페이지 교체 알고리즘
+&lt;ul&gt;
+&lt;li&gt;가장 단순한 방식&lt;/li&gt;
+&lt;li&gt;메모리에 가장 먼저 올라온 페이지부터 내보내는 방식
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/55266032-0a5d-4dc5-8d73-e6ce40ce3469&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;프로그램 실행 초기에 잠깐 실행될 페이지&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;프로그램 실행 내내 사용될 페이지&lt;/Mark&gt; ← 먼저 적재되었다고 내보내면 ❌&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;FIFO 페이지 교체 알고리즘 - 보완책
+&lt;ul&gt;
+&lt;li&gt;&lt;Mark&gt;2차 기회(second-chance) 페이지 교체 알고리즘&lt;/li&gt;
+&lt;li&gt;참조 비트 1: CPU가 한 번 참조한 적이 있는 페이지 → 바로 내보내지 않고 참조 비트를 0으로 초기화 후 적재된 시간을 현재 시간으로 설정하고 가장 최근에 적재된 페이지로 간주&lt;/li&gt;
+&lt;li&gt;참조 비트 0: CPU가 참조한 적이 없는 페이지 →  가장 오랬동안 메모리에 머물렀음에도 CPU가 참조한 적이 없음을 의미하므로 내보냄
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/ba7d2b7f-6d8c-482b-9812-0c7ce3d39497&quot; alt=&quot;image&quot;&gt;
+&lt;/br&gt;
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/255c0d2d-d4f7-46d9-b426-77679fb7f8aa&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;최적 페이지 교체 알고리즘
+&lt;ul&gt;
+&lt;li&gt;CPU에 의해 참조되는 횟수를 고려&lt;/li&gt;
+&lt;li&gt;메모리에 오래 남아야 할 페이지는 &lt;Mark&gt;자주 사용될 페이지&lt;/li&gt;
+&lt;li&gt;메모리에 없어도 될 페이지는 오랫동안 &lt;Mark&gt;사용되지 않을 페이지&lt;/li&gt;
+&lt;li&gt;앞으로의 사용 빈도가 가장 낮은 페이지를 교체하는 알고리즘
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/b2af5866-39da-49fd-89e8-808ec778fc06&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;가장 낮은 페이 폴트율을 보장&lt;/Mark&gt;하는 페이지 교체 알고리즘&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;실제 구현이 어렵다&lt;/Mark&gt; → 예측할 수 ❌&lt;/li&gt;
+&lt;li&gt;다른 페이지 교체 알고리즘 성능을 평가하기 위한 하한선으로 간주&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;LRU(Least-Recently-Used) 페이지 교체 알고리즘
+&lt;ul&gt;
+&lt;li&gt;최적 페이지 교체 알고리즘: 가장 오래 사용되지 &lt;Mark&gt;않을&lt;/Mark&gt; 페이지 교체&lt;/li&gt;
+&lt;li&gt;LRU 페이지 교체 알고리즘: 가장 오래 사용되지 &lt;Mark&gt;않은&lt;/Mark&gt; 페이지 교체
+&lt;ul&gt;
+&lt;li&gt;“최근에 사용되지 않은 페이지는 앞으로도 사용되지 않지 않을 것..”
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/71db495a-3ff0-42ee-81e9-8d1e8aabdece&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;기타 페이지 교체 알고리즘
+&lt;ul&gt;
+&lt;li&gt;이외에도 많은 페이지 교체 알고리즘이 존재(e.g. LRU 페이지 교체 알고리즘의 파생 알고리즘)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;페이지 교체 알고리즘이란 무엇인지&lt;/li&gt;
+&lt;li&gt;페이지 교체는 왜 해야 하는지&lt;/li&gt;
+&lt;li&gt;무엇이 좋은 페이지 교체 알고리즘인지&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;스래싱과-프레임-할당&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8A%A4%EB%9E%98%EC%8B%B1%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%95%A0%EB%8B%B9&quot; aria-label=&quot;스래싱과 프레임 할당 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;스래싱과 프레임 할당&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;페이지 폴트가 자주 발생하는 이유&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;나쁜 페이지 교체 알고리즘을 사용해서&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;프로세스가 사용할 수 있는 프레임 자체가 적어서, 많으면 상대적으로 자주 일어나지 않을 것&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;스래싱&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스가 실행되는 시간보다 페이징에 더 많은 시간을 소요하여 성능(CPU 이용률)이 저해되는 문제
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/ead703e8-3ff7-43ef-aba6-c470835a53e2&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;동시 실행되는 프로세스의 수를 늘린다고 CPU 이용률이 높아지는 것이 아니다&lt;/li&gt;
+&lt;li&gt;페이지 폴트가 너무 빈번하게 발생하기 때문에 막상 실행해야 하는 프로세스를 실행하지 못하는 상태
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/c33d9220-ad92-415d-b002-8ebde9e8f386&quot; alt=&quot;image&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;멀티프로그래밍의 정도: 메모리에 동시에 실행되는 프로세스의 수&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;각 프로세스가 필요로 하는 최소한의 프레임 수가 보장되지 않았기 때문&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;각 프로세스가 필요로 하는 최소한의 프레임 수를 파악하고 프로세스들에게 적절한 프레임을 할당해주어야 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;운영체제의 프레임 할당 방식&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;균등 할당(equal allocation)
+&lt;ul&gt;
+&lt;li&gt;가장 단순한 할당 방식&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;모든 프로세스들에게 균등하게 프레임을 할당하는 방식 → 실행되는 프로세스들의 크기는 각기 다를텐데 동일한 프레임의 수를 할당하는 방식은 비합리적&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;비례 할당(proportional allocation)
+&lt;ul&gt;
+&lt;li&gt;프로세스의 크기를 고려&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;프로세스 크기에 비례하여 프레임 할당 방식&lt;/li&gt;
+&lt;li&gt;크기가 큰 프로세스인데 막상 실행해보니 많은 프레임을 필요로 하지 않을 수도있고 크기가 작은 프로세스인데 막상 실행해보니 많은 프레임을 필요로 할 수 도 있음 → 결국 프로세스가 필요로 하는 프레임 수는 &lt;Mark&gt;실행해봐야 알 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;c.f.) 균등, 비례 할당은 프로세스의 실행 과정을 고려하지 않고 프로세스의 크기나 물리 메모리의 크기만 고려한 방식이라는 점에서  &lt;Mark&gt;정적 할당 방식&lt;/Mark&gt;이라 부르기도&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;작업 집합 모델(Working set Model)
+&lt;ul&gt;
+&lt;li&gt;프로세스가 실행하는 과정에서 배분할 프레임 결정&lt;/li&gt;
+&lt;li&gt;스레싱이 발생하는 이유는 빈번한 페이지 교체 때문
+&lt;ul&gt;
+&lt;li&gt;그렇다면 &lt;Mark&gt;CPU가 특정 시간 동안 주로 참조한 페이지 개수만큼만 프레임을 할당&lt;/Mark&gt;하면 된다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;‘프로세스가 일정 기간 동안 참조한 페이지 집합’을 기억하여 빈번한 페이 교체를 방지하는 방식이 작업 집합 모델 기반의 프레임 할당 방식
+&lt;ul&gt;
+&lt;li&gt;&lt;Mark&gt;작업 집합&lt;/Mark&gt;이란 “실행 중인 프로세스가 일정 시간 동안 참조한 페이지의 집합”을 의미&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;작업 집합을 구하려면
+&lt;ol&gt;
+&lt;li&gt;프로세스가 참조한 페이지&lt;/li&gt;
+&lt;li&gt;시간 간격이 필요
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/f3f3ee0d-d97e-4bd6-9282-ed3541a9514d&quot; alt=&quot;image&quot;&gt;
+최소 5개의 프레임이 t2라는 순간에 필요 → 작업 집합 모델 기반의 프레임 할당 방식&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;페이지 폴트 빈도
+&lt;ul&gt;
+&lt;li&gt;프로세스가 실행하는 과정에서 배분할 프레임 결정&lt;/li&gt;
+&lt;li&gt;두 개의 가정에서 생겨난 아이디어
+&lt;ol&gt;
+&lt;li&gt;페이지 폴트율이 너무 높으면 그 프로세스는 너무 적은 프레임을 갖고 있다&lt;/li&gt;
+&lt;li&gt;페이지 폴트율이 너무 낮으면 그 프로세스는 너무 많은 프레임을 갖고 있다
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/0bf93504-be6e-419d-add9-c6650cf4e5cd&quot; alt=&quot;image&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;페이지 폴트율에 상한선과 하한선을 정하고, 그 내부 범위 안에서만 프레임을 할당하는 방식&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;c.f.) 작업 집합 모델, 페이지 폴트 빈도: &lt;Mark&gt;동적 할당 방식&lt;/Mark&gt; → 프로세스가 실행하는 과정을 통해서 프레임을 할당하는 방식&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;페이징의-이점과-계층적-페이징&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8E%98%EC%9D%B4%EC%A7%95%EC%9D%98-%EC%9D%B4%EC%A0%90%EA%B3%BC-%EA%B3%84%EC%B8%B5%EC%A0%81-%ED%8E%98%EC%9D%B4%EC%A7%95&quot; aria-label=&quot;페이징의 이점과 계층적 페이징 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;페이징의 이점과 계층적 페이징&lt;/h2&gt;
+&lt;h3 id=&quot;쓰기-시-복사&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%93%B0%EA%B8%B0-%EC%8B%9C-%EB%B3%B5%EC%82%AC&quot; aria-label=&quot;쓰기 시 복사 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;쓰기 시 복사&lt;/h3&gt;
+&lt;p&gt;페이징 → 외부 단편화 해결 가능, 프로세스 간 페이지 공유 가능(&lt;strong&gt;쓰기 시 복사,&lt;/strong&gt; 공유 라이브러리)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;이론적인 fork()
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;프로세스는 기본적으로 자원을 공유하지 ❌&lt;/p&gt;
+&lt;p&gt;→ 부모 프로세스가 적재된 별도의 공간에 자식 프로세스가 통째로 복제되어 적재(&lt;Mark&gt;프로세스 생성 시간 지연, 메모리 낭비&lt;/Mark&gt;)
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/a5c20ba4-9dcb-4555-a251-752e4d9d2573&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;쓰기 시 복사
+&lt;ul&gt;
+&lt;li&gt;부모 프로세스와 동일한 자식 프로세스가 복제되어 생성되면 자식 프로세스는 부모 프로세스와 &lt;Mark&gt;동일한 프레임&lt;/Mark&gt;을 가리킴(&lt;Mark&gt;쓰기 작업 없다면 이 상태 유지&lt;/Mark&gt;)
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/d050921c-7473-43da-a0b1-b935e1100d53&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;프로세스 간 기본적으로는 자원을 공유 ❌ → &lt;Mark&gt;부모 프로세스/자식 프로세스 둘 중 하나가 페이지에 쓰기 작업 수행 시&lt;/Mark&gt; 해당 페이지는 별도의 공간으로 복제(&lt;Mark&gt;프로세스 생성 시간 절약, 메모리 절약&lt;/Mark&gt;)
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/8d2d048d-782a-4953-8db0-9802cc7a18d7&quot; alt=&quot;image&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;부모 프로세스와 자식 프로세스가 별도의 자원을 유지하면서 중복해서 메모리를 저장❌ (메모리 효율 &amp;#x26; 프로세스 간 자원 공유를 막는 방식 → &lt;Mark&gt;쓰기 시 복사&lt;/Mark&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;계층적-페이지&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B3%84%EC%B8%B5%EC%A0%81-%ED%8E%98%EC%9D%B4%EC%A7%80&quot; aria-label=&quot;계층적 페이지 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;계층적 페이지&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스 테이블의 크기는 생각보다 작지 않다&lt;/li&gt;
+&lt;li&gt;프로세스를 이루는 모든 페이지 테이블 엔트리를 메모리에 두는 것은 큰 낭비&lt;/li&gt;
+&lt;li&gt;프로세스를 이루는 모든 페이지 테이블 엔트리를 항상 메모리에 유지하지 않을 방법&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;페이지 테이블을 페이징&lt;/Mark&gt;하여 여러 단계의 페이지를 두는 방식
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/c1936155-89a9-4630-a5ae-0ea4703436b3&quot; alt=&quot;image&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;페이지 테이블을 여러 페이지로 쪼개고 이 페이지를 가리키는 페이지 테이블(Outer 페이지 테이블)을 두는 방식&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;모든 페이지 테이블을 항상 메모리에 있을 필요가 없어짐
+&lt;ul&gt;
+&lt;li&gt;CPU와 가장 가까이 위치한 페이지 테이블(Outer 페이지 테이블)은 항상 메모리에 유지&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;계층적 페이징을 이용하는 환경에서의 논리 주소
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;Mark&gt;바깥 페이지 번호 + 안쪽 페이지 번호 + 변위(2단계, 이상의 단계도 가능)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;바깥 페이지 번호를 통해 &lt;Mark&gt;페이지 테이블의 페이지&lt;/Mark&gt;를 찾기&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;페이지 테이블의 페이지&lt;/Mark&gt;를 통해 &lt;Mark&gt;프레임 번호&lt;/Mark&gt;를 찾고 변위를 더함으로서 물리 주소 얻기&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;c.f.) 계층이 많을 경우, 페이지 폴트(참조하고자 하는 페이지가 현재 메모리에 존재하지 않는 경우)가 발생했을 경우에 메모리를 많이 참조해야 하기 때문에 계층이 많다고 해서 반드시 좋은 것은 ❌&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[프로세스의 동기화와 교착상태]]></title><description><![CDATA[프로세스의 동기화와 교착상태에 대해서 배웁니다]]></description><link>https://dltlaos11.github.io//posts/os/process-synchronization-deadlock</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/os/process-synchronization-deadlock</guid><pubDate>Wed, 13 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EB%8F%99%EA%B8%B0%ED%99%94&quot;&gt;프로세스 동기화&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%8F%99%EA%B8%B0%ED%99%94%EC%9D%98-%EC%9D%98%EB%AF%B8&quot;&gt;동기화의 의미&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EA%B3%B5%EC%9C%A0-%EC%9E%90%EC%9B%90%EA%B3%BC-%EC%9E%84%EA%B3%84-%EA%B5%AC%EC%97%AD&quot;&gt;공유 자원과 임계 구역&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%8F%99%EA%B8%B0%ED%99%94-%EA%B8%B0%EB%B2%95&quot;&gt;동기화 기법&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%AE%A4%ED%85%8D%EC%8A%A4-%EB%9D%BD&quot;&gt;뮤텍스 락&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%84%B8%EB%A7%88%ED%8F%AC%EC%96%B4&quot;&gt;세마포어&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EB%AA%A8%EB%8B%88%ED%84%B0&quot;&gt;모니터&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A9-%EC%83%81%ED%83%9C&quot;&gt;교착 상태&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%EC%9E%90%EC%9B%90-%ED%95%A0%EB%8B%B9-%EA%B7%B8%EB%9E%98%ED%94%84&quot;&gt;자원 할당 그래프&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A9-%EC%83%81%ED%83%9C-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95&quot;&gt;교착 상태 해결 방법&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A9-%EC%83%81%ED%83%9C-%EC%98%88%EB%B0%A9&quot;&gt;교착 상태 예방&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A9-%EC%83%81%ED%83%9C-%ED%9A%8C%ED%94%BC&quot;&gt;교착 상태 회피&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A9-%EC%83%81%ED%83%9C-%EA%B2%80%EC%B6%9C-%ED%9B%84-%ED%9A%8C%EB%B3%B5&quot;&gt;교착 상태 검출 후 회복&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A8%EC%83%81%ED%83%9C-%EB%AC%B4%EC%8B%9C&quot;&gt;교차상태 무시&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;프로세스-동기화&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EB%8F%99%EA%B8%B0%ED%99%94&quot; aria-label=&quot;프로세스 동기화 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로세스 동기화&lt;/h2&gt;
+&lt;p&gt;동시다발적으로 실행되는 프로세스들은 서로 협력하며 영향을 주고 받는다, 이 과정에서 &lt;Mark&gt;동기화&lt;/Mark&gt;(=자원의 일관성)를 보장해야 한다&lt;/p&gt;
+&lt;h3 id=&quot;동기화의-의미&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%8F%99%EA%B8%B0%ED%99%94%EC%9D%98-%EC%9D%98%EB%AF%B8&quot; aria-label=&quot;동기화의 의미 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;동기화의 의미&lt;/h3&gt;
+&lt;p&gt;공동의 목적을 위해 동시에 수행되는 프로세스&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;e.g. 워드 프로세서 프로그램
+&lt;ul&gt;
+&lt;li&gt;맞춤법 검사 프로세스&lt;/li&gt;
+&lt;li&gt;입력 내용을 화면에 출력하는 프로세스&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;→ 아무렇게나 실행하면 ❌ → 올바른 수행을 위해 프로세스들은 &lt;Mark&gt;동기화&lt;/Mark&gt;되어야 → 자원의 일관성&lt;/p&gt;
+&lt;p&gt;프로세스들의 &lt;Mark&gt;수행 시기를 맞추는 것&lt;/p&gt;
+&lt;p&gt;&lt;Mark&gt;실행 순서 제어&lt;/Mark&gt;: 프로세스를 올바른 순서대로 실행하기&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;실행 순서 제어를 위한 동기화: reader writer problem
+&lt;ul&gt;
+&lt;li&gt;Writer: Book.txt파일에 값을 저장하는 프로세스&lt;/li&gt;
+&lt;li&gt;Reader: Book.txt파일에 저장된 값을 읽어들이는 프로세스&lt;/li&gt;
+&lt;li&gt;Reader와 Writer 프로세스는 무작정 아무렇게나 실행 되면 ❌, &lt;Mark&gt;실행의 순서&lt;/Mark&gt; 떄문&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reader 프로세스는 ‘Book.txt 안에 값이 존재한다’는 &lt;Mark&gt;특정 조건이 만족되어야만&lt;/Mark&gt; 실행 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;Mark&gt;상호 배제&lt;/Mark&gt;: 동시에 접근해서는 안되는 자원에 하나의 프로세스만 접근하게 하기&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;상호 배제를 위한 동기화: Bank account problem&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;한 번에 하나의 프로세스만 접근해야 하는 자원&lt;/Mark&gt;에 동시 접근을 피하기 위한 동기화
+&lt;ul&gt;
+&lt;li&gt;현재 계좌에 잔액: 10만원&lt;/li&gt;
+&lt;li&gt;프로세스 A는 현재 잔액에 2만원을 추가하는 프로세스&lt;/li&gt;
+&lt;li&gt;프로세스 B는 현재 잔액에 5만원을 추가하는 프로세스
+&lt;ul&gt;
+&lt;li&gt;동시에 실행된다면 아래와 같은 문제 발생
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/a3a2394b-8e6d-4e28-9c63-afa6021a6ea3&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;동기화 된 프로세스의 실행 예제
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/de95d343-0d22-46e3-a8dd-e090f2d2fa87&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;Mark&gt;Producer &amp;#x26; Consumer problem&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;물건을 계속해서 생산하는 생성자(producer, 프로세스 혹은 스레드)&lt;/li&gt;
+&lt;li&gt;물건을 계속해서 생산하는 소비자(consumer, 프로세스 혹은 스레드)&lt;/li&gt;
+&lt;li&gt;‘총합’ 변수 공유
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;총합&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+생산자&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    버퍼에 데이터 삽입
+    &lt;span class=&quot;token char&quot;&gt;&apos;총합&apos;&lt;/span&gt; 변수 &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; 증가
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+소비자&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    버퍼에 데이터 삽입
+    &lt;span class=&quot;token char&quot;&gt;&apos;총합&apos;&lt;/span&gt; 변수 &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; 감소
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+동기화가 되지 않아 소비자&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; 생산자를 &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;000&lt;/span&gt;번 실행하면 총합은 달라짐
+동시에 접근해서는 안되는 자원에 동시에 접근해서 발생한 문제&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;c.f. ) 실행의 문맥을 갖는 모든 대상은 동기화 대상이기에 &lt;Mark&gt;스레드&lt;/Mark&gt; 또한 동기화 대상&lt;/p&gt;
+&lt;h3 id=&quot;공유-자원과-임계-구역&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B3%B5%EC%9C%A0-%EC%9E%90%EC%9B%90%EA%B3%BC-%EC%9E%84%EA%B3%84-%EA%B5%AC%EC%97%AD&quot; aria-label=&quot;공유 자원과 임계 구역 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;공유 자원과 임계 구역&lt;/h3&gt;
+&lt;p&gt;&lt;Mark&gt;공유 자원&lt;/Mark&gt;: 여러 프로세스 혹은 스레드가 공유하는 자원&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;전역 변수, 파일, 입출력장치, 보조기억장치, …&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;Mark&gt;임계 구역&lt;/Mark&gt;: 동시에 실행하면 문제가 발생하는 자원에 접근하는 &lt;Mark&gt;코드 영역&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;앞선 예시의 ‘총합’ 변수 …&lt;/li&gt;
+&lt;li&gt;임계 구역에 진입하고자 하면 진입한 프로세스 이외에는 대기해야
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/90d59066-667f-4d46-bfe1-d360ad472959&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;임계 구역에 동시에 접근하면 자원의 일관성이 깨질 수 있다. 이를 &lt;Mark&gt;경쟁 조건&lt;/Mark&gt;(race condition)이라 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;운영체제가 임계구역 문제를 해결하는 세 가지 원칙🔥&lt;/p&gt;
+&lt;p&gt;(상호 배제를 위한 동기화를 위한 세 가지 원칙)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;Mark&gt;상호 배제&lt;/Mark&gt;mutual exclusion&lt;/p&gt;
+&lt;p&gt;한 프로세스가 임계구역에 진입했다면 다른 프로세스는 들어올 수 ❌&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;Mark&gt;진행&lt;/Mark&gt;progress&lt;/p&gt;
+&lt;p&gt;임계 구역에 어떤 프로세스도 진입하지 않았다면 &lt;Mark&gt;진입하고자 하는 프로세스는 들어갈 수 있어야 한다&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;Mark&gt;유한 대기&lt;/Mark&gt;bounded waiting&lt;/p&gt;
+&lt;p&gt;한 프로세스가 임계 구역에 진입하고 싶다면 언젠가는 임계 구역에 들어올 수 있어야 한다(임계구역에 들어오기 위해 무한정 대기해서는 안 된다.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;동기화-기법&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%8F%99%EA%B8%B0%ED%99%94-%EA%B8%B0%EB%B2%95&quot; aria-label=&quot;동기화 기법 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;동기화 기법&lt;/h2&gt;
+&lt;p&gt;동기화 기법 중 뮤텍스 락, 세마포어, 모니터에 대해서 알아보자&lt;/p&gt;
+&lt;h3 id=&quot;뮤텍스-락&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%AE%A4%ED%85%8D%EC%8A%A4-%EB%9D%BD&quot; aria-label=&quot;뮤텍스 락 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;뮤텍스 락&lt;/h3&gt;
+&lt;p&gt;상호 배제를 위한 동기화 도구(자물쇠 역할), 뮤텍스 락&lt;/p&gt;
+&lt;p&gt;뮤텍스 락의 단순한 형태&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;전역 변수 하나, 함수 두개&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;자물쇠 역할: 프로세스들이 공유하는 전역 변수 lock&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;임계 구역을 잠그는 역할: acquire 함수&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;임계 구역의 잠금을 해제하는 역할: release 함수&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;&lt;span class=&quot;token function&quot;&gt;acquire&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lock &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; true&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 만약 임계 구역이 잠겨 있다면&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 임계 구역이 잠겨 있는지를 반복적으로 확인&lt;/span&gt;
+    lock &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; true&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 만약 임계 구역이 잠겨 있지 않다면 임계 구역 잠금&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;release&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    lock &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; false&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 임계 구역 작업이 끝났으니 잠금 해제&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;acquire&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 자물쇠 잠겨 있는지 확인, 잠겨 있지 않다면 잠그고 들어가기&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 임계구역  // 임계 구역에서의 작업 진행&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;release&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 자물쇠 반환&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;acuire 함수
+&lt;ul&gt;
+&lt;li&gt;프로세스가 임계 구역에 진입하기 전에 호출&lt;/li&gt;
+&lt;li&gt;임계 구역이 잠겨 있다면
+&lt;ul&gt;
+&lt;li&gt;임계 구역이 열릴 때까지(lock이 false가 될 때까지) 임계 구역을 반복적으로 확인&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;임계 구역이 열려있다면
+&lt;ul&gt;
+&lt;li&gt;임계 구역을 잠그기(lock를 true로 바꾸기)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;바쁜 대기(busy waiting)
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lock &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; true&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 만약 임계 구역이 잠겨 있다면&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 임계 구역이 잠겨 있는지를 반복적으로 확인&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;반복적으로 무한히 대기하면서 임계 구역이 잠겨 있는지를 반복적으로 확인&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;release 함수
+&lt;ul&gt;
+&lt;li&gt;임계 구역에서의 작업이 끝나고 호출&lt;/li&gt;
+&lt;li&gt;현재 잠긴 임계 구역을 열기(lock을 false로 바꾸기)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;세마포어&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%84%B8%EB%A7%88%ED%8F%AC%EC%96%B4&quot; aria-label=&quot;세마포어 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;세마포어&lt;/h3&gt;
+&lt;p&gt;일반화된 방식의 동기화 도구&lt;/p&gt;
+&lt;p&gt;&lt;Mark&gt;공유 자원이 여러 개 있는 경우에도&lt;/Mark&gt; 적용 가능&lt;/p&gt;
+&lt;p&gt;세마포어의 종류(이진 세마포어, 카운팅 세마포어) 중 카운팅 세마포어&lt;/p&gt;
+&lt;p&gt;임계구역 앞에서 멈춤 신호를 받으면 잠시 기다리기&lt;/p&gt;
+&lt;p&gt;임계구역 앞에서 가도 좋다는 신호를 받으면 임계 구여 진입&lt;/p&gt;
+&lt;p&gt;세마포어의 단순한 형태&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;전역 변수 하나, 함수 두개&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;임계 구역에 진입할 수 있는 프로세스의 개수(사용 가능한 공유 자원의 개수)를 나타내는 &lt;Mark&gt;전역 변수 S&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;임계구역에 들어가도 좋은지, 기다려야 할지를 알려주는 &lt;Mark&gt;wait함수&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;임계구역 앞에서 기다리는 프로세스에 ‘이제 가도 좋다’고 신호를 주는 &lt;Mark&gt;signal 함수&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;    &lt;span class=&quot;token function&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 임계구역&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;    &lt;span class=&quot;token function&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;S &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 만일 임계 구역에 진입할 수 잇는 프로세스 개수가 0 이하라면&lt;/span&gt;
+                    &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 사용할 수 있는 자원이 있는지 반복적으로 확인하고&lt;/span&gt;
+        S&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 임계 구역에 진입할 수 있는 프로세스 개수가 하나 이상이면 S를 1감소시키고 임계 구역 진입&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Busy waiting
+&lt;ul&gt;
+&lt;li&gt;CPU 사이클 낭비 → 해결(&lt;Mark&gt;대기 상태, 준비 상태&lt;/Mark&gt;)&lt;/li&gt;
+&lt;li&gt;프로세스 상태를 바꿈으로서 CPU 사이클 낭비를 방지
+&lt;ul&gt;
+&lt;li&gt;사용할 수 있는 자원이 없을 경우 &lt;Mark&gt;대기 상태&lt;/Mark&gt;로 만듦
+&lt;ul&gt;
+&lt;li&gt;해당 프로세스의 PCB를 대기 큐에 삽입&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;사용할 수 있는 자원이 생겼을 경우 대기 큐의 프로세스를 &lt;Mark&gt;준비 상태&lt;/Mark&gt;로 만듦
+&lt;ul&gt;
+&lt;li&gt;해당 프로세스의 PCB를 대기 큐에서 꺼내 준비 큐에 삽입&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;    &lt;span class=&quot;token function&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        S&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;S &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            add this process to Queue&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 해당 프로세스 PCB를 대기 큐에 삽입&lt;/span&gt;
+            &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 대기 상태로 접어든다&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        S&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 임계 구역에서의 작업을 마친 뒤 S를 1증가&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;S &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            remove a proccess p from Queue &lt;span class=&quot;token comment&quot;&gt;// 대기 큐에 있는 프로세스 p를 제거&lt;/span&gt;
+            &lt;span class=&quot;token function&quot;&gt;wakeup&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;p&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 프로세스 p를 대기 상태에서 준비 상태로 만든다&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;세마포어를 활용한 실행 &lt;Mark&gt;순서 동기화&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;세마포어의 변수 S를 &lt;Mark&gt;0&lt;/Mark&gt;으로 두고&lt;/li&gt;
+&lt;li&gt;먼저 실행할 프로세스 &lt;Mark&gt;뒤에 signal&lt;/Mark&gt; 함수,&lt;/li&gt;
+&lt;li&gt;다음에 실행할 프로세스 &lt;Mark&gt;앞에 wait 함수를&lt;/Mark&gt; 붙이면 됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;모니터&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%AA%A8%EB%8B%88%ED%84%B0&quot; aria-label=&quot;모니터 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;모니터&lt;/h3&gt;
+&lt;p&gt;매번 임계구역 앞뒤로 &lt;code class=&quot;language-text&quot;&gt;wait()&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;signal()&lt;/code&gt;을 호출해야하는 번거로움&lt;/p&gt;
+&lt;p&gt;사용자(개발자)가 다루기에 편한 동기화 도구&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;상호 배제를 위한 동기화&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;인터페이스를 위한 큐&lt;/li&gt;
+&lt;li&gt;공유자원에 접근하고자 하는 프로세스를 (인터페이스를 위한) 큐에 삽입&lt;/li&gt;
+&lt;li&gt;큐에 삽입된 순서대로 (한 번에 하나의 프로세스만)  공유 자원 이용
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/5b1d247e-b64a-49a0-a17a-696c6867ad00&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;실행 순서 제어를 위한 동기화&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;조건 변수condition variable 이용
+&lt;ul&gt;
+&lt;li&gt;condition variable: 프로세스나 스레드의 실행 순서를 제어하기 위해 사용하는 특별한 변수
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/569bcfbd-c50a-4958-8e1e-e76c601201b8&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;조건변수.wait(): 대기 상태로 변경, 조건 변수에 대한 큐에 삽입&lt;/li&gt;
+&lt;li&gt;조건변수.signal(): wait()으로 대기 상태로 접어든 조건 변수를 실행 상태로 변경&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;모니터 안에는 하나의 프로세스만이 있을 수 있다&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;wait()를 호출했던 프로세스는 signal()을 호출한 프로세스가 모니터를 떠난 뒤에 수행을 재게&lt;/li&gt;
+&lt;li&gt;signal()을 호출한 프로세스의 실행을 일시 중단하고 자신이 실행된 뒤 다시 signal()을 호출한 프로세스의 수행을 재게&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;실행 순서 제어를 위한 동기화&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;특정 프로세스가 아직 실행될 조건이 되지 않았을 때에는 wait를 통해 실행 중단&lt;/li&gt;
+&lt;li&gt;특정 프로세스가 실행될 조건이 충족되었을 때에는 signal을 통해 실행을 재게&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;교착-상태&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A9-%EC%83%81%ED%83%9C&quot; aria-label=&quot;교착 상태 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;교착 상태&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;두 개 이상의 프로세스가 서로 상대방이 가지고 있는 자원을 기다리면서 무한정 대기하게 되는 상황&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;자원-할당-그래프&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%9E%90%EC%9B%90-%ED%95%A0%EB%8B%B9-%EA%B7%B8%EB%9E%98%ED%94%84&quot; aria-label=&quot;자원 할당 그래프 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;자원 할당 그래프&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;교착 상태가 발생했을 때의 상황을 정확히 표현해보기&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;교착 상태 발생 조건 파악가능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;어떤 프로세스가 어떤 자원을 할당 받아 사용 중인지 확인 가능&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;어떤 프로세스가 어떤 자원을 기다리고 있는지 확인 가능&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/ff0654e3-fbc6-47ea-b360-562b2b86fa31&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;웹 브라우저 프로세스는 자원 B를 할당받았고, 자원 A의 사용을 기다리고 있고&lt;/li&gt;
+&lt;li&gt;게임 프로세스는 자원 A를 할당받았고, 자원 B의 사용을 기다리고 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;교착 상태가 일어난 그래프의 특징&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;자원 할당 그래프가 &lt;Mark&gt;원의 형태&lt;/Mark&gt;를 띄고 있다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;교착 상태가 일어나는 근본적인 이유 이해하기&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;교착 상태가 발생할 조건&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;Mark&gt;상호 배제&lt;strong&gt;mutual exclusion&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;한 프로세스가 사용하는 자원을 다른 프로세스가 사용할 수 없는 상태&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;Mark&gt;점유와 대기&lt;strong&gt;hold and wait&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;자원을 할당 받은 상태에서 다른 자원의 할당 받기를 기다리는 상태&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;Mark&gt;비선점&lt;strong&gt;Nonpreemption&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;어떤 프로세스도 다은 프로세스의 자원을 강제로 빼앗지 못하는 상태&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;Mark&gt;환형 대기&lt;strong&gt;circular wait&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;프로세스들이 원의 형태로 자원을 대기하는 상태&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;위 네 가지 조건 중 하나라도 만족하지 않으면 &lt;Mark&gt;교착상태가 발생하지 않음&lt;/p&gt;
+&lt;p&gt;위 네 가지 조건을 모두 만족하면 &lt;Mark&gt;교착 상태가 발생할 수 있음&lt;/p&gt;
+&lt;h2 id=&quot;교착-상태-해결-방법&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A9-%EC%83%81%ED%83%9C-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95&quot; aria-label=&quot;교착 상태 해결 방법 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;교착 상태 해결 방법&lt;/h2&gt;
+&lt;p&gt;교착 상태 해결&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;예방, 회피, 검출 후 회복&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;교착-상태-예방&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A9-%EC%83%81%ED%83%9C-%EC%98%88%EB%B0%A9&quot; aria-label=&quot;교착 상태 예방 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;교착 상태 예방&lt;/h3&gt;
+&lt;h3 id=&quot;&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#&quot; aria-label=&quot; permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;애초에 교착 상태가 발생하지 않도록 교착 상태 발생 조건(상호 배제, 점유와 대기, 비선점, 환형 대기) 중 하나를 없애버리기
+&lt;ul&gt;
+&lt;li&gt;상호 배제를 없애면?
+&lt;ul&gt;
+&lt;li&gt;모든 자원을 공유 → 이론적으론 가능, 현실적으론 ❌&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;점유와 대기를 없애면?
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;특정 프로세스에 자원을 모두 할당하거나, 아예 할당하지 않는 방식으로 배분&lt;/p&gt;
+&lt;p&gt;→ 자원의 활용룰 낮출 수 있는 방식&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;비선점 조건을 없애면?
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;선점이 가능한 자원(e.g. CPU)에 한해 효과적&lt;/p&gt;
+&lt;p&gt;→ 모든 자원이 선점 가능한 것은 아니다&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;환형 대기 조건을 없애면?
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;자원에 &lt;Mark&gt;번호&lt;/Mark&gt;를 붙이고 &lt;Mark&gt;오름차순&lt;/Mark&gt;으로 할당하면 원형 대기는 발생하지 않음&lt;/p&gt;
+&lt;p&gt;→ 자원에 번호 붙이는 것은 어려운 작업, 어떤 자원에 어떤 번호를 붙이느냐에 따라 활용률이 달라진다&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;교착 상태가 발생하지 않음을 보장할 수 있으나 부작용이 따르는 방식&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;교착-상태-회피&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A9-%EC%83%81%ED%83%9C-%ED%9A%8C%ED%94%BC&quot; aria-label=&quot;교착 상태 회피 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;교착 상태 회피&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;교착 상태를 &lt;Mark&gt;무분별한 자원 할당으로 인해 발생&lt;/Mark&gt;했다고 간주&lt;/li&gt;
+&lt;li&gt;교착 상태가 발생하지 않을 만큼 &lt;Mark&gt;적절하게 할당&lt;/Mark&gt;하기&lt;/li&gt;
+&lt;li&gt;배분할 수 있는 자원의 양을 고려하여 교착 상태가 발생하지 않을 만큼만 자원 배분&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;안전 순서열: 교착 상태 없이 안전하게 프로세스들에 자원을 할당할 수 있는 순서&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;안전 상태: 교착 상태 없이 모든 프로세스가 자원을 할당 받고 종료될 수 있는 상태&lt;/p&gt;
+&lt;p&gt;안전 순서열이 있는 상태
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/38e5374d-fa0d-4200-b79c-5339298da6ea&quot; alt=&quot;image&quot;&gt;
+P2 → P1 → P3이라는 안전 순서열대로 할당하면 모든 프로세스 실행 가능&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;불안전 상태: 교착 상태가 발생할 수도 있는 상태&lt;/p&gt;
+&lt;p&gt;안전 순서열이 없는 상태
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/ec6d7c4f-d4cc-46f9-8675-45ebf2ffd283&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;안전 상태에서 안전 상태로 움직이는 경우에만 자원을 할당하는 방식&lt;/li&gt;
+&lt;li&gt;항시 안전 상태를 유지하도록 자원을 할당하는 방식&lt;/li&gt;
+&lt;li&gt;c.f. 은행원 알고리즘&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;교착-상태-검출-후-회복&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A9-%EC%83%81%ED%83%9C-%EA%B2%80%EC%B6%9C-%ED%9B%84-%ED%9A%8C%EB%B3%B5&quot; aria-label=&quot;교착 상태 검출 후 회복 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;교착 상태 검출 후 회복&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;교착 상태의 발생을 인정하고 사후에 조치하는 방식&lt;/li&gt;
+&lt;li&gt;프로세스가 자원을 요구하면 일단 할당, 교착 상태가 검출되면 회복&lt;/li&gt;
+&lt;li&gt;&lt;Mark&gt;선점을 통한 회복, 프로세스 강제 종료를 통한 회복
+&lt;ul&gt;
+&lt;li&gt;선점을 통한 회복
+&lt;ul&gt;
+&lt;li&gt;교착 상태가 해결될 때까지 한 프로세스씩 자원을 몰아주는 방식&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;프로세스 강제 종료를 통한 회복
+&lt;ul&gt;
+&lt;li&gt;교착 상태에 놓인 프로세스 모두 강제 종료 → 작업 내용을 잃을 위험&lt;/li&gt;
+&lt;li&gt;교착 상태가 해결될 떄까지 한 프로세스씩 강제 종료 → 오버헤드&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;교차상태-무시&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%90%EC%B0%A8%EC%83%81%ED%83%9C-%EB%AC%B4%EC%8B%9C&quot; aria-label=&quot;교차상태 무시 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;교차상태 무시&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;타조 알고리즘&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;교착 상태가 발생할 수 있지만, 이를 무시하고 시스템을 계속 운영하는 방법. 이 방법은 교착 상태의 심각성이 낮거나 복구 비용이 더 큰 경우에 적용.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[프로세스와 스레드]]></title><description><![CDATA[프로세스와 스레드에 대해서 배웁니다]]></description><link>https://dltlaos11.github.io//posts/os/process-thread</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/os/process-thread</guid><pubDate>Tue, 12 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C%EC%99%80-%EA%B3%84%EC%B8%B5%EA%B5%AC%EC%A1%B0&quot;&gt;프로세스 상태와 계층구조&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C&quot;&gt;프로세스 상태&lt;/a&gt;&lt;/li&gt;
@@ -22,6 +1202,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%84%A0%EC%A0%90%ED%98%95%EA%B3%BC-%EB%B9%84%EC%84%A0%EC%A0%90%ED%98%95-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81&quot;&gt;선점형(Preemptive)과 비선점형 스케줄링(Non-preemptive)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98&quot;&gt;CPU 스케줄링 알고리즘&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;프로세스-상태와-계층구조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C%EC%99%80-%EA%B3%84%EC%B8%B5%EA%B5%AC%EC%A1%B0&quot; aria-label=&quot;프로세스 상태와 계층구조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로세스 상태와 계층구조&lt;/h2&gt;
 &lt;h3 id=&quot;프로세스-상태&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C&quot; aria-label=&quot;프로세스 상태 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로세스 상태&lt;/h3&gt;
@@ -291,7 +1472,130 @@ def &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=
 &lt;li&gt;스케줄러 결정: &lt;Mark&gt;스케줄러는 실행 중인 프로세스 중 하나를 중단하고 다른 프로세스를 실행하도록 결정할 때 발생&lt;/Mark&gt;합니다. 이를 통해 다양한 프로세스 간에 CPU 시간을 공정하게 분배할 수 있음.&lt;/li&gt;
 &lt;li&gt;입출력 작업: 입출력 작업을 수행하는 동안 CPU가 대기 상태에 들어가는 경우, 다른 프로세스로 전환하여 시스템 자원을 최대한 활용합니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;문맥 교환은 오버헤드를 발생시킬 수 있으므로, 효율적으로 수행하기 위해 하드웨어와 운영 체제가 최적화되어야 한다. 문맥 교환은 다중 프로그래밍 환경에서 여러 작업이 동시에 실행될 수 있도록 해주는 핵심적인 운영 체제 기능 중 하나&lt;/p&gt;</content:encoded></item><item><title><![CDATA[운영체제의 큰 그림]]></title><description><![CDATA[운영체제를 알아야 하는 이유에 대해서 배웁니다]]></description><link>https://dltlaos11.github.io//posts/os</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/os</guid><pubDate>Sat, 09 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;문맥 교환은 오버헤드를 발생시킬 수 있으므로, 효율적으로 수행하기 위해 하드웨어와 운영 체제가 최적화되어야 한다. 문맥 교환은 다중 프로그래밍 환경에서 여러 작업이 동시에 실행될 수 있도록 해주는 핵심적인 운영 체제 기능 중 하나&lt;/p&gt;
+&lt;h2 id=&quot;cpu-스케줄링-알고리즘&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98&quot; aria-label=&quot;cpu 스케줄링 알고리즘 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;cpu 스케줄링 알고리즘&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;선입 선처리 스케줄링&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;FCFS(First Come First Served) 스케줄링&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;단순히 준비 큐에 삽입된 순서대로 처리하는 비선점 스케줄링&lt;/li&gt;
+&lt;li&gt;먼저 CPU를 요청한 프로세스부터 CPU 할당&lt;/li&gt;
+&lt;li&gt;단점: 프로세스들이 기다리는 시간이 매우 길어질 수 있다는 부작용(=호위 효과)
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/1c69dc56-e150-4184-a615-8404e80b1fd6&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;최단 작업 우선 스케줄링&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;SJF(Shortest Job First) 스케줄링&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;호위 효과를 방지하려면&lt;/li&gt;
+&lt;li&gt;CPU 사용이 긴 프로세스는 나중에 실행, CPU 사용 시간이 짧은 프로세스는 먼저 실행
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/d7e0510c-a903-43d5-b125-457e10ec52fc&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;CPU 사용 시간이 가장 짧은 프로세스부터 처리하는 스케줄링 방식
+&lt;ul&gt;
+&lt;li&gt;선점형 → 최소 잔여 시간 우선 스케줄링&lt;/li&gt;
+&lt;li&gt;비선점형 → 주로&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;라운드 로빈 스케줄링&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RR(Round Robin) 스케줄링&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;선입 선처리 스케줄링 + &lt;Mark&gt;타임 슬라이스(time slice)&lt;/li&gt;
+&lt;li&gt;타임 슬라이스: 각 프로세스가 CPU를 사용할 수 있는 정해진 시간
+&lt;ul&gt;
+&lt;li&gt;타임 슬라이스의 크기가 중요, 너무 커지면 FCFS와 유사해져서 호위 효과가 생길 수도&lt;/li&gt;
+&lt;li&gt;너무 작으면 문맥교환이 발생하는 오버헤드 떄문에 CPU 부담이 너무 커짐&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;정해진 타임 슬라이스만큼의 시간 동안 돌아가며 CPU를 이용하는 선점형 스케줄링
+&lt;ul&gt;
+&lt;li&gt;큐에 삽입된 프로세스들은 순서대로 CPU를 이용하되 정해진 시간만큼만 이용&lt;/li&gt;
+&lt;li&gt;정해진 시간을 모두 사용하였음에도 아직 프로세스가 완료되지 않았다면 다시 큐의 맨 뒤에 삽입(문맥교환)
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/0a55b185-8bb3-4fef-9548-2c8a3a577545&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;최소 잔여 시간 우선 스케줄링&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;SRT(Shortest Remaining Time) 스케줄링&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;최단 작업 우선 스케줄링 + 라운드 로빈 스케줄링&lt;/li&gt;
+&lt;li&gt;최단 작업 우선 스케줄링: 작업 시간이 짧은 프로세스부터 처리하는 스케줄링 알고리즘&lt;/li&gt;
+&lt;li&gt;라운드 로빈 스케줄링: 정해진 타임 슬라이스만큼 돌아가며 사용하는 스케줄링 알고리즘&lt;/li&gt;
+&lt;li&gt;정해진 시간만큼 CPU를 이용하되, 다음으로 CPU를 사용할 프로세스로는 &lt;Mark&gt;남은 작업 시간이 가장 적은 프로세스 선택&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;우선순위 스케줄링&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;프로세스들에 우선순위를 부여하고, 우선순위 높은 프로세스부터 실행&lt;/li&gt;
+&lt;li&gt;우선순위가 같은 프로세스들은 선입 선처리로 스케줄링&lt;/li&gt;
+&lt;li&gt;최단 작업 우선 스케줄링, 최소 잔여 시간 스케줄링 C 우선 순위 스케줄링
+&lt;ul&gt;
+&lt;li&gt;최단작업우선스케줄링: 작업시간이 짧은 프로세스한테 높은 우선수위를 부여하는 방식&lt;/li&gt;
+&lt;li&gt;최소잔여시간스케줄링: 남아있는 시간이 짧은 프로세스한테 높은 우선순위를 부여하는 방식&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;우선순위 스케줄링의 근본적인 문제점, &lt;Mark&gt;기아(starvation)현상&lt;/li&gt;
+&lt;li&gt;우선순위 높은 프로세스만 주구장창 실행&lt;/li&gt;
+&lt;li&gt;우선순위 낮은 프로세스는 (준비 큐에 먼저 삽입되었음에도 불구하고) 실행 연기&lt;/li&gt;
+&lt;li&gt;기아현상을 방지하기 위한 기법: &lt;Mark&gt;에이징(aging)&lt;/li&gt;
+&lt;li&gt;오랫동안 대기한 프로세스의 우선순위를 점차 높이는 방식&lt;/li&gt;
+&lt;li&gt;대기 중인 프로세스의 우선순위를 점차 증가시키는 방법
+&lt;ul&gt;
+&lt;li&gt;우선순위가 낮아도 언젠가는 우선순위가 높아진다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;다단계 큐 스케줄링&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Multilevel queue 스케줄링&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;우선순위 스케줄링의 발전된 형태&lt;/li&gt;
+&lt;li&gt;우선순위별로 준비 큐를 여러개 사용하는 스케줄링 방식
+&lt;ul&gt;
+&lt;li&gt;우선순위가 가장 높은 큐에 있는 프로세스를 먼저 처리&lt;/li&gt;
+&lt;li&gt;우선순위가 가장 높은 큐가 비어 있으면 그 다음 우선순위 큐에 있는 프로세스 처리
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/dd6f2ca2-8b02-4995-81b3-62b5907b9989&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;li&gt;큐 간의 이동이 불가, 우선순위가 낮은 프로세스는 우선순위가 낮은 큐에서 높은 큐로 이동 불가능하므로 &lt;Mark&gt;기아현상&lt;/Mark&gt; 발생 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;다단계 피드백 큐 스케줄링&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Multilevel feedback queue 스케줄링&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;다단계 큐 스케줄링의 발전된 형태&lt;/li&gt;
+&lt;li&gt;큐 간의 이동이 가능한 다단계 큐 스케줄링&lt;/li&gt;
+&lt;li&gt;다단계 큐 스케줄링에서는 기본적으로 큐 간의 이동 불가
+&lt;ul&gt;
+&lt;li&gt;우선순위 낮은 프로세스는 계속해서 실행 연기 우려&lt;/li&gt;
+&lt;li&gt;기아 현상 발생 가능
+&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/d36488cf-0cbc-4c6c-92df-d25d060ca790&quot; alt=&quot;image&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;준비상태의 프로세스를 가장 높은 우선순위 큐에 삽입, 차례가 오면 CPU할당 받고 실행, 실행이 안끝났으면 다음 실행 우선순위 큐로 이동해서 실행.. 스케줄링의 반복. 타임 슬라이스 동안 실행을 다 못 끝내면 낮은 우선순위로 이동
+&lt;ul&gt;
+&lt;li&gt;자연스럽게 CPU 집중 프로세스의 우선순위는 상대적으로 낮아지고
+&lt;ul&gt;
+&lt;li&gt;다단계 피드백 큐에서도 에이징 기법 적용 가능 →  기아현상 해결 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;입출력 집중 프로세스의 우선순위는 상대적으로 높아짐&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;즉, 어떤 프로세스의 CPU 시간이 길면 우선순위가 낮아지고 어떤 프로세스가 낮은 우선순위 큐에서 너무 오래 기다리면 우선순위를 높이는 방식&lt;/p&gt;
+&lt;p&gt;일반적인 CPU 스케줄링 방식으로 알려져 있음&lt;/p&gt;</content:encoded></item><item><title><![CDATA[운영체제의 큰 그림]]></title><description><![CDATA[운영체제를 알아야 하는 이유에 대해서 배웁니다]]></description><link>https://dltlaos11.github.io//posts/os/purpose</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/os/purpose</guid><pubDate>Sat, 09 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%EB%A5%BC-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0&quot;&gt;운영체제를 알아야 하는 이유&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%EC%9D%98-%ED%81%B0-%EA%B7%B8%EB%A6%BC&quot;&gt;운영체제의 큰 그림&lt;/a&gt;
 &lt;ul&gt;
@@ -603,7 +1907,7 @@ $ csrutil enable&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;커널영역은 따로 존재, 메모리 안에서&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[다양한 입출력장치의 특성]]></title><description><![CDATA[다양한 입출력장치의 특성에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Tue, 05 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[다양한 입출력장치의 특성]]></title><description><![CDATA[다양한 입출력장치의 특성에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer-architecture/characteristics-of-various-io-devices</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer-architecture/characteristics-of-various-io-devices</guid><pubDate>Tue, 05 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#raid%EC%9D%98-%EC%A0%95%EC%9D%98%EC%99%80-%EC%A2%85%EB%A5%98&quot;&gt;RAID의 정의와 종류&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#raid%EC%9D%98-%EC%A0%95%EC%9D%98&quot;&gt;RAID의 정의&lt;/a&gt;&lt;/li&gt;
@@ -982,7 +2286,7 @@ c.f. ) 패리티 비트는 오류 검출만 가능할 뿐 오류 복구는 불�
 &lt;p&gt;e.g. PCI 버스, PCI express (PCIe) 버스와 입출력 장치를 연결짓는 슬롯&lt;/p&gt;
 &lt;p&gt;슬롯 → 입출력 버스 → 시스템 버스&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://github.com/adamschwartz/magic-of-css/assets/74396128/50b5411e-9d17-4757-9de1-4fd77493e52a&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
-&lt;p&gt;더욱 발전한 DMA, 입출력 프로세서(입출력 채널) → 입출력장치가 입출력 전용 CPU, RAM을 탑재한 경우도 있다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[다양한 메모리의 특성]]></title><description><![CDATA[다양한 메모리의 특성에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Mon, 04 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;더욱 발전한 DMA, 입출력 프로세서(입출력 채널) → 입출력장치가 입출력 전용 CPU, RAM을 탑재한 경우도 있다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[다양한 메모리의 특성]]></title><description><![CDATA[다양한 메모리의 특성에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer-architecture/characteristics-of-various-memories</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer-architecture/characteristics-of-various-memories</guid><pubDate>Mon, 04 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#ram%EC%9D%98-%ED%8A%B9%EC%84%B1%EA%B3%BC-%EC%A2%85%EB%A5%98&quot;&gt;RAM의 특성과 종류&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#ram%EC%9D%98-%ED%8A%B9%EC%A7%95&quot;&gt;RAM의 특징&lt;/a&gt;&lt;/li&gt;
@@ -1350,7 +2654,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;ul&gt;
 &lt;li&gt;&lt;Mark&gt;읽기와 쓰기&lt;/Mark&gt;는 &lt;Mark&gt;페이지 단위&lt;/Mark&gt;로 이루어짐&lt;/li&gt;
 &lt;li&gt;&lt;Mark&gt;삭제&lt;/Mark&gt;는 &lt;Mark&gt;블록(페이지보다 큰) 단위&lt;/Mark&gt;로 이루어짐&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[명령어 집합구조, CISC와 RISC]]></title><description><![CDATA[명령어 집합구조, CISC와 RISC에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Fri, 01 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[명령어 집합구조, CISC와 RISC]]></title><description><![CDATA[명령어 집합구조, CISC와 RISC에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer-architecture/instruction-set-architecture-cisc-and-risc</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer-architecture/instruction-set-architecture-cisc-and-risc</guid><pubDate>Fri, 01 Sep 2023 20:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A7%91%ED%95%A9%EA%B5%AC%EC%A1%B0,-CISC%EC%99%80-RISC&quot;&gt;명령어 집합구조, CISC와 RISC&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A7%91%ED%95%A9&quot;&gt;명령어 집합&lt;/a&gt;&lt;/li&gt;
@@ -1426,7 +2730,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;/ul&gt;
 &lt;h4 id=&quot;summary&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#summary&quot; aria-label=&quot;summary permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Summary&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&quot;https://github.com/boost-library/yong-study/assets/74396128/f15253b0-64e9-4923-85c8-b3fc803cfd4a&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
-&lt;p&gt;c.f. ) 현대 CISC의 활용: 마이크로 명령어, 가급적 명령어의 실행을 1 클럭 내로 잘게 쪼개서 실행하므로, 내부적으로는 RISC처럼 실행&lt;/p&gt;</content:encoded></item><item><title><![CDATA[명령어 병렬 처리 기법]]></title><description><![CDATA[명령어 병렬 처리 기법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Fri, 01 Sep 2023 18:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;c.f. ) 현대 CISC의 활용: 마이크로 명령어, 가급적 명령어의 실행을 1 클럭 내로 잘게 쪼개서 실행하므로, 내부적으로는 RISC처럼 실행&lt;/p&gt;</content:encoded></item><item><title><![CDATA[명령어 병렬 처리 기법]]></title><description><![CDATA[명령어 병렬 처리 기법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer-architecture/instruction-parallel-processing-technique</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer-architecture/instruction-parallel-processing-technique</guid><pubDate>Fri, 01 Sep 2023 18:35:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%B3%91%EB%A0%AC-%EC%B2%98%EB%A6%AC%EA%B8%B0%EB%B2%95&quot;&gt;명령어 병렬 처리기법&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8&quot;&gt;명령어 파이프라인&lt;/a&gt;
@@ -1532,7 +2836,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;/li&gt;
 &lt;li&gt;슈퍼스칼라 기법: 명령어 파이프라인을 여러개 두는 방식&lt;/li&gt;
 &lt;li&gt;비순차적 명령어 처리: 의존성이 없는 명령어간 순서를 바꿔서 실행하는 방식&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[명령어 사이클과 인터럽트]]></title><description><![CDATA[명령어 사이클과 인터럽트에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Mon, 28 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[명령어 사이클과 인터럽트]]></title><description><![CDATA[명령어 사이클과 인터럽트에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer-architecture/instruction-cycles-and-interrupts</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer-architecture/instruction-cycles-and-interrupts</guid><pubDate>Mon, 28 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&quot;#%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%82%AC%EC%9D%B4%ED%81%B4&quot;&gt;명령어 사이클&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -1690,7 +2994,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;ul&gt;
 &lt;li&gt;실행 사이클이 끝나고 인터럽트 여부를 확인했을 떄 인터럽트가 발생했을 경우&lt;/li&gt;
 &lt;li&gt;결국 CPU는 메모리에 있는 프로그램을 위와 같은 &lt;Mark&gt;정형화된 흐름&lt;/Mark&gt;에 따라서 처리&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[빠른 CPU를 위한 설계 기법]]></title><description><![CDATA[빠른 CPU를 위한 설계 기법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Mon, 28 Aug 2023 18:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[빠른 CPU를 위한 설계 기법]]></title><description><![CDATA[빠른 CPU를 위한 설계 기법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer-architecture/design-techniques-for-fast-cpus</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer-architecture/design-techniques-for-fast-cpus</guid><pubDate>Mon, 28 Aug 2023 18:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%ED%81%B4%EB%9F%AD&quot;&gt;클럭&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#cpu-%EC%86%8D%EB%8F%84%EB%A5%BC-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95&quot;&gt;CPU 속도를 빠르게 하는 방법&lt;/a&gt;&lt;/li&gt;
@@ -1818,7 +3122,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[CPU의 내부 구성]]></title><description><![CDATA[컴퓨터 구조의 CPU의 내부 구성 - ALU&제어장치&레지스터에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Fri, 25 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[CPU의 내부 구성]]></title><description><![CDATA[컴퓨터 구조의 CPU의 내부 구성 - ALU&제어장치&레지스터에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer-architecture/cpu-internal-structure-of-computer-structure</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer-architecture/cpu-internal-structure-of-computer-structure</guid><pubDate>Fri, 25 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#CPU%EC%9D%98-%EB%82%B4%EB%B6%80-%EA%B5%AC%EC%84%B1&quot;&gt;CPU의 내부 구성&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#ALU&quot;&gt;ALU&lt;/a&gt;&lt;/li&gt;
@@ -1950,7 +3254,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;p&gt;베이스 레지스터는 &lt;Mark&gt;기준 주소 저장&lt;/Mark&gt; 역할&lt;/p&gt;
 &lt;p&gt;c.f.) 메모리에 저장되어 있는 주소(200, 250번지)와 CPU가 인식하는 주소는 다르다.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[C 언어의 컴파일 과정]]></title><description><![CDATA[컴퓨터 구조, C 언어의 컴파일 과정에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/c</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/c</guid><pubDate>Fri, 25 Aug 2023 22:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[C 언어의 컴파일 과정]]></title><description><![CDATA[컴퓨터 구조, C 언어의 컴파일 과정에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/c/compile-process</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/c/compile-process</guid><pubDate>Fri, 25 Aug 2023 22:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%A0%84%EC%B2%98%EB%A6%AC&quot;&gt;전처리 과정&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%BB%B4%ED%8C%8C%EC%9D%BC&quot;&gt;컴파일 과정&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%96%B4%EC%85%88%EB%B8%94&quot;&gt;어셈블 과정&lt;/a&gt;&lt;/li&gt;
@@ -2023,7 +3327,7 @@ L1I: 명령어만 담기 위한 캐시 메모리&lt;/code&gt;&lt;/pre&gt;&lt;/di
 &lt;img width=&quot;653&quot; alt=&quot;image&quot; src=&quot;https://github.com/dltlaos11/dltlaos11.github.io/assets/74396128/9ee1e23d-270c-4a3f-b146-ed960efb0959&quot;&gt;
 &lt;/br&gt;
 &lt;img width=&quot;662&quot; alt=&quot;image&quot; src=&quot;https://github.com/dltlaos11/dltlaos11.github.io/assets/74396128/d0c535dc-77b9-4ea6-aca3-477bf316c512&quot;&gt;
-&lt;p&gt;→ main.o와 helper.o의 목적코드를 하나의 실행파일로 연결시켜주는 링킹 작업이 필요&lt;/p&gt;</content:encoded></item><item><title><![CDATA[배열과 연결리스트]]></title><description><![CDATA[자바스크립트에서 사용되는 배열과 연결리스트에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/algorithms</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/algorithms</guid><pubDate>Fri, 25 Aug 2023 21:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;→ main.o와 helper.o의 목적코드를 하나의 실행파일로 연결시켜주는 링킹 작업이 필요&lt;/p&gt;</content:encoded></item><item><title><![CDATA[배열과 연결리스트]]></title><description><![CDATA[자바스크립트에서 사용되는 배열과 연결리스트에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/algorithms/array&amp;linked-list</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/algorithms/array&amp;linked-list</guid><pubDate>Fri, 25 Aug 2023 21:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%B0%B0%EC%97%B4&quot;&gt;배열&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%A0%95%EC%9D%98%EC%99%80-%EC%84%B1%EC%A7%88&quot;&gt;정의와 성질&lt;/a&gt;&lt;/li&gt;
@@ -2312,7 +3616,7 @@ linkedList&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span
 console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;linkedList&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// [&apos;A&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h5 id=&quot;reference&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#reference&quot; aria-label=&quot;reference permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Reference&lt;/h5&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=C6MX5u7r72E&amp;#x26;list=PLtqbFd2VIQv4O6D6l9HcD732hdrnYb6CY&amp;#x26;index=5&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;[바킹독의 실전 알고리즘] 0x04강 - 연결 리스트&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=dvKuG3gfLFQ&amp;#x26;t=752s&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;[2022 JS 알고리즘] 002. 연결리스트&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[명령어의 구조와 주소 지정 방식]]></title><description><![CDATA[컴퓨터 구조의 명령어의 구조와 주소 지정 방식에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Thu, 24 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=dvKuG3gfLFQ&amp;#x26;t=752s&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;[2022 JS 알고리즘] 002. 연결리스트&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[명령어의 구조와 주소 지정 방식]]></title><description><![CDATA[컴퓨터 구조의 명령어의 구조와 주소 지정 방식에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer-architecture/instruction-structure-and-addressing-method</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer-architecture/instruction-structure-and-addressing-method</guid><pubDate>Thu, 24 Aug 2023 23:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%97%B0%EC%82%B0-%EC%BD%94%EB%93%9C&quot;&gt;연산 코드&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%98%A4%ED%8D%BC%EB%9E%9C%EB%93%9C&quot;&gt;오퍼랜드&lt;/a&gt;
 &lt;ul&gt;
@@ -2412,7 +3716,7 @@ CPU마다 연산코드의 종류가 다르므로 유형을 파악
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[JS 인터프리터 언어, 컴파일 언어🤔]]></title><description><![CDATA[자바스크립트 코드 실행 동작 원리: 엔진, 가상머신, 인터프리터, AST 기초 등에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/javaScript</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/javaScript</guid><pubDate>Thu, 24 Aug 2023 21:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[JS 인터프리터 언어, 컴파일 언어🤔]]></title><description><![CDATA[자바스크립트 코드 실행 동작 원리: 엔진, 가상머신, 인터프리터, AST 기초 등에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/javascript/how-javascript-code-execution-works</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/javascript/how-javascript-code-execution-works</guid><pubDate>Thu, 24 Aug 2023 21:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EA%B3%A0%EA%B8%89%EC%96%B8%EC%96%B4%EC%99%80-%EC%A0%80%EA%B8%89%EC%96%B8%EC%96%B4&quot;&gt;고급언어와 저급언어&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EA%B3%A0%EA%B8%89%EC%96%B8%EC%96%B4&quot;&gt;고급언어&lt;/a&gt;&lt;/li&gt;
@@ -2521,7 +3825,7 @@ CPU마다 연산코드의 종류가 다르므로 유형을 파악
 &lt;/ul&gt;
 &lt;h3 id=&quot;참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;참고자료&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://velog.io/@seungchan__y/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-Compiler-Interpreter-%EC%96%B8%EC%96%B4%EB%8B%A4#%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B5%AC%EB%8F%99%EC%9B%90%EB%A6%AC&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;자바스크립트는 Compiler / Interpreter 언어다?&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://devlog-of-yein.tistory.com/m/6&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;컴파일이란 무엇이며, 자바스크립트는 인터프리터 언어인가?&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[0과1로 문자,숫자를 표현하는 방법]]></title><description><![CDATA[컴퓨터 구조의 0과1로 문자,숫자를 표현하는 방법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Thu, 24 Aug 2023 20:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://devlog-of-yein.tistory.com/m/6&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;컴파일이란 무엇이며, 자바스크립트는 인터프리터 언어인가?&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[0과1로 문자,숫자를 표현하는 방법]]></title><description><![CDATA[컴퓨터 구조의 0과1로 문자,숫자를 표현하는 방법에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer-architecture/expression-letters-and-numbers-with-0&amp;1</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer-architecture/expression-letters-and-numbers-with-0&amp;1</guid><pubDate>Thu, 24 Aug 2023 20:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#0%EA%B3%BC-1%EB%A1%9C-%EC%88%AB%EC%9E%90%EB%A5%BC-%ED%91%9C%ED%98%84%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95&quot;&gt;0과 1로 숫자를 표현하는 방법&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%A0%95%EB%B3%B4-%EB%8B%A8%EC%9C%84&quot;&gt;정보 단위&lt;/a&gt;&lt;/li&gt;
@@ -2730,7 +4034,7 @@ c.f.) 이전 단위를 1024개씩 묶은 단위는 kiB, MiB, GiB, …&lt;/p&gt;
 &lt;img width=&quot;705&quot; alt=&quot;image&quot; src=&quot;https://github.com/boost-library/yong-study/assets/74396128/3d746a61-4e43-4b3f-b7d7-963007aa7479&quot;&gt;
 &lt;img width=&quot;702&quot; alt=&quot;image&quot; src=&quot;https://github.com/boost-library/yong-study/assets/74396128/125a4af8-837d-45cd-a3f0-e512f7c46441&quot;&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;⇒ utf-8은 유니코드 문자를 인코딩하는 방법, utf-8로 인코딩한 값은 &lt;Mark&gt;가변길이 인코딩&lt;/Mark&gt;이기 떄문에 1바이트~4바이트가 될 수 있다. 어떤 식으로 인코딩이 진행되는지는 &lt;Mark&gt;유니코드 문자에 부여된 코드 포인트의 범위&lt;/Mark&gt;에 따라서 코드 포인트를 형식에 맞게 넣어주면 인코딩 된 결과.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[알고리즘 기초 코드 작성 요령]]></title><description><![CDATA[알고리즘의 기초 코드 작성 요령에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/algorithms</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/algorithms</guid><pubDate>Thu, 24 Aug 2023 17:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;p&gt;⇒ utf-8은 유니코드 문자를 인코딩하는 방법, utf-8로 인코딩한 값은 &lt;Mark&gt;가변길이 인코딩&lt;/Mark&gt;이기 떄문에 1바이트~4바이트가 될 수 있다. 어떤 식으로 인코딩이 진행되는지는 &lt;Mark&gt;유니코드 문자에 부여된 코드 포인트의 범위&lt;/Mark&gt;에 따라서 코드 포인트를 형식에 맞게 넣어주면 인코딩 된 결과.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[알고리즘 기초 코드 작성 요령]]></title><description><![CDATA[알고리즘의 기초 코드 작성 요령에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/algorithms/basic-code-writing-tips</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/algorithms/basic-code-writing-tips</guid><pubDate>Thu, 24 Aug 2023 17:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%8B%9C%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84&quot;&gt;시간복잡도&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EB%B9%85%EC%98%A4%ED%91%9C%EA%B8%B0%EB%B2%95&quot;&gt;빅오표기법(Big-O)&lt;/a&gt;&lt;/li&gt;
@@ -2912,7 +4216,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
 &lt;ul&gt;
 &lt;li&gt;출력 맨 마지막 공백 혹은 줄바꿈이 추가로 있어도 상관이 없다.&lt;/li&gt;
 &lt;li&gt;디버거는 굳이 사용하지 않아도 된다. log 사용 권장&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[컴퓨터 구조의 큰 그림]]></title><description><![CDATA[컴퓨터 구조의 큰 그림에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer_architecture</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer_architecture</guid><pubDate>Wed, 23 Aug 2023 17:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[컴퓨터 구조의 큰 그림]]></title><description><![CDATA[컴퓨터 구조의 큰 그림에 대해서 배웁니다.]]></description><link>https://dltlaos11.github.io//posts/computer-architecture/purpose</link><guid isPermaLink="false">https://dltlaos11.github.io//posts/computer-architecture/purpose</guid><pubDate>Wed, 23 Aug 2023 17:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%BB%B4%ED%93%A8%ED%84%B0-%EA%B5%AC%EC%A1%B0%EB%A5%BC-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0&quot;&gt;컴퓨터 구조를 알아야 하는 이유&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%EC%BB%B4%ED%93%A8%ED%84%B0-%EA%B5%AC%EC%A1%B0&quot;&gt;컴퓨터 구조&lt;/a&gt;
 &lt;ul&gt;

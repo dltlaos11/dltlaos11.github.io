@@ -1,0 +1,460 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.25.7"/><meta name="description" content="다양한 입출력장치의 특성에 대해서 배웁니다." data-gatsby-head="true"/><meta name="twitter:card" content="summary_large_image" data-gatsby-head="true"/><meta name="twitter:title" content="다양한 입출력장치의 특성 - Blog by Yong Jun" data-gatsby-head="true"/><meta name="twitter:description" content="다양한 입출력장치의 특성에 대해서 배웁니다." data-gatsby-head="true"/><meta name="og:title" content="다양한 입출력장치의 특성 - Blog by Yong Jun" data-gatsby-head="true"/><meta name="og:type" content="website" data-gatsby-head="true"/><meta name="og:description" content="다양한 입출력장치의 특성에 대해서 배웁니다." data-gatsby-head="true"/><meta name="theme-color" content="hsl(31, 92%, 62%)"/><style data-href="/styles.47a42cfb2e9f2b180db6.css" data-identity="gatsby-global-css">:after,:before,:root{--color-white:hsla(0,0%,100%,.994);--color-primary:#5c92ff;--color-secondary:#f7a145;--color-prism-background:#eaeaeb;--color-typographic-base-font:#242933;--color-typographic-link-p-font:#5c92ff;--color-typographic-link-s-font:#f7a145;--color-page-border:#eaeaeb;--color-page-background:hsla(0,0%,100%,.994);--color-sidebar-border:#eaeaeb;--color-sidebar-border-fade:hsla(0,0%,100%,.994);--color-contacts-border:#eaeaeb;--color-button-border:#eaeaeb;--color-button-color:#242933;--color-theme-switcher:#3f485a;--color-theme-switcher-hover:#5c92ff}.dark :after,.dark :before,:root.dark{--color-white:hsla(0,0%,100%,.994);--color-primary:#5c92ff;--color-secondary:#f7a145;--color-prism-background:#191d24;--color-typographic-base-font:hsla(0,0%,100%,.994);--color-typographic-link-p-font:#5c92ff;--color-typographic-link-s-font:#f7a145;--color-page-border:#3f485a;--color-page-background:#242933;--color-sidebar-border:#3f485a;--color-sidebar-border-fade:#242933;--color-contacts-border:#3f485a;--color-button-border:#3f485a;--color-button-color:hsla(0,0%,100%,.994);--color-theme-switcher:#eaeaeb;--color-theme-switcher-hover:#5c92ff}html{font-size:100}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background:var(--color-page-background);color:var(--color-typographic-base-font);font-size:16px;line-height:1.625;margin:0 0 0 calc(100vw - 100%);text-rendering:optimizelegibility}body,h1,h2,h3,h4,h5,h6{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:40px;line-height:52px;margin-bottom:26px;margin-top:104px}h2{font-size:27px;line-height:39px}h2,h3{margin-bottom:13px;margin-top:52px}h3{font-size:22px;line-height:26px}h4{font-size:19.2px;margin-top:39px}h4,h5{line-height:26px;margin-bottom:13px}h5,h6{font-size:16px;margin-top:65px}h6{line-height:26px;margin-bottom:13px}img{max-width:100%}hr,img{border:0;display:block}hr{background-image:linear-gradient(180deg,transparent 1px,transparent 11px,#242933 0,#242933 15px,transparent 0,transparent 26px);background-size:100% 26px;color:var(--color-typographic-base-font);height:26px;margin:52px auto;width:100px}a{color:var(--color-typographic-link-p-font);text-decoration:none}a:active,a:focus,a:hover{color:var(--color-typographic-link-s-font)}b,strong{font-weight:600}ul{list-style:square;margin-bottom:26px}ul li{margin-bottom:10px;padding:0 5px}p{line-height:26px;margin-bottom:26px}blockquote{font-style:italic;padding:0;text-align:center}figure{display:block;height:auto;width:100%}figcaption{color:var(--color-typographic-base-font);font-size:14px;font-style:italic;line-height:19.5px;margin-bottom:0;margin-top:6.5px;text-align:center}@media screen and (min-width:685px){figure.float-left,figure.float-right{max-width:310px;padding:0 26px}.float-right{float:right}.float-left{float:left}}code[class*=language-],pre[class*=language-]{word-wrap:normal;color:#657b83;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:var(--color-prism-background)}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:#073642}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#93a1a1}.token.punctuation{color:#586e75}.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#268bd2}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string,.token.url{color:#2aa198}.token.entity{background:#eee8d5;color:#657b83;cursor:help}.token.atrule,.token.attr-value,.token.keyword{color:#859900}.token.class-name,.token.function{color:#b58900}.token.important,.token.regex,.token.variable{color:#cb4b16}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.Feed-module--feed--a6204 .Feed-module--item--c7a63{margin-bottom:32.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63:last-child{margin-bottom:13px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f{font-size:27px;line-height:39px;margin-bottom:13px;margin-top:0}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b{color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:hover{border-bottom:1px solid #242933;color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--description--57348{font-size:16px;line-height:26px;margin-bottom:19.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--time--72864{color:var(--color-typographic-base-font);font-size:14px;font-weight:600;text-transform:uppercase}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--divider--81a18{margin:0 13px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b{color:var(--color-secondary);font-size:14px;font-weight:600;text-transform:uppercase}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:hover{color:#5c92ff}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e{color:var(--color-primary);font-size:16px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:hover{border-bottom:1px solid #5c92ff;color:var(--color-primary)}.Layout-module--layout--2c933{margin-left:auto;margin-right:auto;max-width:1070px}.Layout-module--layout--2c933:before{content:"";display:table}.Layout-module--layout--2c933:after{clear:both;content:"";display:table}.Page-module--page--24e03{margin-bottom:52px}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:26px 19.5px 0}.Page-module--page--24e03 .Page-module--title--90338{font-size:40px;font-weight:600;line-height:52px;margin-bottom:37.7px;margin-top:0}.Page-module--page--24e03 .Page-module--body--561c4{font-size:16px;line-height:26px;margin:0 0 26px}@media screen and (min-width:685px){.Page-module--page--24e03{width:calc(58.275% - 12.5px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(12n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(12n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:32.5px 19.5px 0}}@media screen and (min-width:960px){.Page-module--page--24e03{width:calc(66.6% - 10px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(3n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(3n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:39px 26px 0}}.Pagination-module--pagination--d61cb{display:flex;margin-top:52px}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b{text-align:left;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:focus,.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8{text-align:right;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:focus,.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.ThemeSwitcher-module--themeSwitcher--8a77f{--color:var(--color-theme-switcher)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b{align-items:center;background:transparent;border:0;cursor:pointer;display:flex;justify-content:center;outline:0}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b svg{stroke:var(--color);pointer-events:none;transition:stroke .4s}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b:hover{--color:var(--color-theme-switcher-hover)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--moon--10537{stroke-dasharray:0 1px;opacity:0;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--sun--2163a{stroke-dasharray:1px 1px;opacity:1;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--moon--10537{stroke-dasharray:1px 1px;opacity:1}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--sun--2163a{stroke-dasharray:0 1px;opacity:0}.Author-module--author--cbd31 .Author-module--photo--9787b{background-clip:padding-box;border-radius:50%;display:inline-block;height:75px;margin-bottom:0;width:75px}.Author-module--author--cbd31 .Author-module--photo--9787b img{border-radius:50%}.Author-module--author--cbd31 .Author-module--title--cf7e5{font-size:18px;font-weight:600;line-height:29.25px;margin:0}.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:focus,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:hover{color:var(--color-typographic-base-font)}.Author-module--author--cbd31 .Author-module--subtitle--86ec5{color:#7f8ba4;line-height:26px;margin-bottom:26px}.Author-module--author--cbd31 .Author-module--titleContainer--4f576{align-items:center;display:flex;justify-content:space-between;margin:13px 0}.Icon-module--icon--1d7da{fill:currentcolor;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;speak:none;stroke:currentcolor;stroke-width:0;display:inline-block;font-style:normal;font-variant:normal;font-weight:400;height:1em;line-height:1em;text-align:center;text-transform:none;width:1em}.Contacts-module--contacts--09178{margin-bottom:26px}.Contacts-module--contacts--09178 .Contacts-module--list--9670b{display:flex;flex-flow:row wrap;flex-grow:0;flex-shrink:0;list-style:none;margin:13px 0;max-width:165px;padding:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0{align-content:center;align-items:center;border:1px solid var(--color-contacts-border);border-radius:50%;display:flex;height:40px;justify-content:center;line-height:40px;margin:6.5px;padding:0;text-align:center;width:40px}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0:nth-child(3n+1){margin-left:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0{border:0;color:var(--color-typographic-base-font);cursor:pointer;display:flex}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:focus,.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:hover{color:var(--color-typographic-link-p-font)}.Menu-module--menu--113a9{margin-bottom:26px}.Menu-module--menu--113a9 .Menu-module--list--e1ae3{list-style:none;margin:0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679{margin:13px 0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02{border:0;color:var(--color-typographic-base-font);font-size:16px;font-weight:400}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:focus,.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:hover{border-bottom:1px solid #5c92ff;color:#5c92ff}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02.Menu-module--active--6cb74{border-bottom:1px solid var(--color-typographic-base-font);color:var(--color-typographic-base-font)}.Sidebar-module--sidebar--1bfa1{width:100%}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:26px 19.5px 0;position:relative}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{background:var(--color-sidebar-border);background:linear-gradient(to bottom,var(--color-sidebar-border) 0,var(--color-sidebar-border) 48%,var(--color-sidebar-border-fade) 100%)}@media screen and (min-width:685px){.Sidebar-module--sidebar--1bfa1{width:calc(41.625% - 17.5px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:32.5px 19.5px 0}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{bottom:0;content:"";height:540px;position:absolute;right:-10px;top:30px;width:1px}}@media screen and (min-width:960px){.Sidebar-module--sidebar--1bfa1{width:calc(33.3% - 20px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:39px}}.Button-module--button--b1113{border:1px solid var(--color-button-border);border-radius:20px;color:var(--color-button-color);display:inline-block;font-size:16px;font-weight:400;height:40px;line-height:40px;margin-left:auto;margin-right:auto;padding:0 26px;text-align:center;text-decoration:none}.Button-module--button--b1113:focus,.Button-module--button--b1113:hover{color:#5c92ff}.Author-module--author--1c58d{border-top:1px solid var(--color-page-border);line-height:26px;margin-bottom:52px;margin-top:26px;max-width:940px;padding-top:26px}.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647{display:block;text-decoration:underline}.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647:focus,.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647:hover{color:var(--color-typographic-link-s-font)}@media screen and (min-width:685px){.Author-module--author--1c58d{margin-left:auto;margin-right:auto}}.Content-module--content--80d58{margin:0 auto;max-width:1245px;padding:0 13px}.Content-module--content--80d58 .Content-module--title--09504{font-size:32px;font-weight:600;line-height:42.9px;margin:26px auto 0;max-width:940px;text-align:center}.Content-module--content--80d58 .Content-module--body--726c2 figure{margin-bottom:26px}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote{font-style:italic;margin-top:0;padding:26px 0;text-align:center}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote p{font-size:26.9072px;line-height:39px;margin-bottom:26px;margin-top:0;max-width:940px}.Content-module--content--80d58 .Content-module--body--726c2 a{text-decoration:underline}.Content-module--content--80d58 .Content-module--body--726c2 *{margin-left:auto;margin-right:auto;max-width:940px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{visibility:hidden}.Content-module--content--80d58 .Content-module--body--726c2 h2>a>svg{fill:var(--color-typographic-base-font)}.Content-module--content--80d58 .Content-module--body--726c2 img{max-width:100%}@media screen and (min-width:960px){.Content-module--content--80d58{padding:0}.Content-module--content--80d58 .Content-module--title--09504{font-size:48px;line-height:58.5px;margin-bottom:39px;margin-top:58.5px}.Content-module--content--80d58 .Content-module--body--726c2,.Content-module--content--80d58 .Content-module--body--726c2 p{font-size:18px;line-height:29.25px;margin-bottom:29.25px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{padding-right:13px;visibility:unset}}.Meta-module--meta--dae0a .Meta-module--date--4d30d{font-style:italic}.Tags-module--tags--18589{margin-bottom:13px}.Tags-module--tags--18589 .Tags-module--list--82ae6{list-style:none;padding:0}.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015{display:inline-block;margin:6.5px 0}@media screen and (min-width:685px){.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015:first-child{margin-left:0;padding-left:0}}.Post-module--post--3a994 .Post-module--content--3c6e5{margin:0 auto}.Post-module--post--3a994 .Post-module--comments--d3b99,.Post-module--post--3a994 .Post-module--footer--f8705{margin:0 auto;max-width:940px;padding:0 13px}.Post-module--post--3a994 .Post-module--buttons--2972d{align-items:center;display:flex;justify-content:center;margin:26px 0 0;text-align:center}.Post-module--post--3a994 .Post-module--buttons--2972d .Post-module--buttonArticles--d793a{margin:0 13px 0 0}@media screen and (min-width:960px){.Post-module--post--3a994 .Post-module--comments--d3b99,.Post-module--post--3a994 .Post-module--footer--f8705{padding:0}.Post-module--post--3a994 .Post-module--buttons--2972d{left:30px;margin:0 13px 0 0;max-width:none;position:fixed;top:30px}}</style><title data-gatsby-head="true">다양한 입출력장치의 특성 - Blog by Yong Jun</title><link rel="alternate" type="application/rss+xml" title="Blog by Yong Jun" href="/rss.xml"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73379983-2"></script><script>
+      
+      
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer && window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-73379983-2', {"send_page_view":false});
+      }
+      </script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><link rel="icon" href="/favicon-32x32.png?v=ffb0298fbaec30f9528f8f5fb1f12bde" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><script>
+          void function() {
+            var cachedMode;
+
+            try {
+              var preferredTheme = JSON.parse(localStorage.getItem('diesel:theme-atom'));
+
+              if (preferredTheme && preferredTheme.mode) {
+                cachedMode = preferredTheme.mode;
+              }
+            } catch (err) { }
+
+            function setTheme(newTheme) {
+              document.documentElement.className = newTheme;
+            }
+
+            var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+            setTheme(cachedMode || (darkQuery.matches ? 'dark' : 'light'));
+          }()
+        </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--2c933"><div class="Post-module--post--3a994"><div class="Post-module--buttons--2972d"><a class="Button-module--button--b1113 Post-module--buttonArticles--d793a" href="/">All Articles</a></div><div class="Post-module--content--3c6e5"><div class="Content-module--content--80d58"><h1 class="Content-module--title--09504">다양한 입출력장치의 특성</h1><div class="Content-module--body--726c2"><ul>
+<li><a href="#raid%EC%9D%98-%EC%A0%95%EC%9D%98%EC%99%80-%EC%A2%85%EB%A5%98">RAID의 정의와 종류</a>
+<ul>
+<li><a href="#raid%EC%9D%98-%EC%A0%95%EC%9D%98">RAID의 정의</a></li>
+<li><a href="#raid">RAID</a></li>
+</ul>
+</li>
+<li><a href="#%EC%9E%A5%EC%B9%98-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC%EC%99%80-%EC%9E%A5%EC%B9%98-%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84">장치 컨트롤러와 장치 드라이버</a>
+<ul>
+<li><a href="#%EC%9E%85%EC%B6%9C%EB%A0%A5%EC%9E%A5%EC%B9%98-%EC%A0%95%EB%B3%B4-%EC%A3%BC%EA%B3%A0%EB%B0%9B%EA%B8%B0">입출력장치 정보 주고받기</a></li>
+<li><a href="#%EC%9E%A5%EC%B9%98-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC%EC%9D%98-%EC%97%AD%ED%95%A0">장치 컨트롤러의 역할</a></li>
+<li><a href="#%EC%9E%A5%EC%B9%98-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC%EC%9D%98-%EA%B5%AC%EC%A1%B0">장치 컨트롤러의 구조</a></li>
+<li><a href="#%EC%9E%A5%EC%B9%98-%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84">장치 드라이버</a></li>
+</ul>
+</li>
+<li><a href="#%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EB%B0%A9%EB%B2%95">다양한 입출력 방법</a>
+<ul>
+<li><a href="#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%9E%85%EC%B6%9C%EB%A0%A5">프로그램 입출력</a>
+<ul>
+<li><a href="#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A7%B5-%EC%9E%85%EC%B6%9C%EB%A0%A5">메모리 맵 입출력</a></li>
+<li><a href="#%EA%B3%A0%EB%A6%BD%ED%98%95-%EC%9E%85%EC%B6%9C%EB%A0%A5">고립형 입출력</a></li>
+</ul>
+</li>
+<li><a href="#%EC%9D%B8%ED%84%B0%EB%9F%BD%ED%8A%B8-%EA%B8%B0%EB%B0%98-%EC%9E%85%EC%B6%9C%EB%A0%A5">인터럽트 기반 입출력</a></li>
+<li><a href="#dma-%EC%9E%85%EC%B6%9C%EB%A0%A5">DMA 입출력</a>
+<ul>
+<li><a href="#dma">DMA</a></li>
+<li><a href="#dma-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EA%B3%BC%EC%A0%95">DMA 입출력 과정</a></li>
+</ul>
+</li>
+<li><a href="#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EB%B2%84%EC%8A%A4">입출력 버스</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="raid의-정의와-종류" style="position:relative;"><a href="#raid%EC%9D%98-%EC%A0%95%EC%9D%98%EC%99%80-%EC%A2%85%EB%A5%98" aria-label="raid의 정의와 종류 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>raid의 정의와 종류</h2>
+<p>1TB 하드디스크 네 개로 RAID를 구성하면 4TB 하드 디스크 한 개의 성능과 안전성을 능가할 수 있다.</p>
+<p>HDD, SSD같은 저장장치를 관리할 때 안전하고 성능을 높이는 방식은 RAID만 있는 것은 아니다. 다양하다</p>
+<h3 id="raid의-정의" style="position:relative;"><a href="#raid%EC%9D%98-%EC%A0%95%EC%9D%98" aria-label="raid의 정의 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>raid의 정의</h3>
+<p>Redundant(복수) Array of Independent Disks</p>
+<ul>
+<li>하드 디스크와 SSD로 사용하는 기술</li>
+<li><Mark>데이터의 안전성 혹은 높은 성능</Mark>을 위해 여러 물리적 보조기억장치를 마치 하나의 논리적 보조기억장치처럼 사용하는 기술</li>
+<li>1TB + 1TB + 1TB + 1TB = 4TB, 마치 4TB를 하나의 논리적인 장치로 사용하는 것</li>
+</ul>
+<p>RAID 레벨</p>
+<ul>
+<li>RAID를 구성하는 기술</li>
+<li><Mark>RAID 0, RAID 1</Mark>, RAID 2, RAID 3, <Mark>RAID 4, RAID 5, RAID 6</Mark></li>
+<li>그로부터 파생된(nested) RAID 10, RADI 50, …</li>
+</ul>
+<ol>
+<li>RAID 0
+<ul>
+<li>
+<p>데이터를 단순히 나누어 저장하는 구성 방식</p>
+</li>
+<li>
+<p>각 하드 디스크는 번갈아 가며 데이터를 저장</p>
+</li>
+<li>
+<p>저장되는 데이터가 하드 디스크 개수만큼 나뉘어 저장
+<img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/90e44776-b2c1-4d97-a4a8-1193e6e66a3a" alt="image"></p>
+<ul>
+<li>스트라입(stripe): 마치 줄무늬처럼 분산되어 저장된 데이터</li>
+<li>스트라이핑(striping): 분산하여 저장하는 것</li>
+</ul>
+</li>
+<li>
+<p>장점: 입출력 속도의 향상
+<img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/8a14838c-16e0-4e83-882b-2501d9f4780f" alt="image"></p>
+</li>
+<li>
+<p>단점: 저장된 정보가 안전하지 않음</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/89f37c1c-596b-4737-ae53-445a3f9d93cb" alt="image"></p>
+</li>
+</ul>
+</li>
+<li>RAID 1
+<ul>
+<li>
+<p>미러링(mirroring): 복사본을 만드는 방식</p>
+</li>
+<li>
+<p>데이터를 쓸 떄 원본과 복사본 두 군데에 씀(느린 쓰기 속도)</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/c456f444-4551-436e-8990-2a68a529c267" alt="image"></p>
+</li>
+<li>
+<p>장점: <Mark>백업과 복구</Mark>의 속도 향상, 안전하게 데이터를 저장할 수 있다</p>
+</li>
+<li>
+<p>단점:  하드 디스크 개수가 한정되었을 떄 사용 가능한 용량이 적어짐</p>
+<ul>
+<li>복사본이 만들어지는 용량만큼 사용 불가 → 많은 양의 하드 디스크가 필요 → 비용 증가</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RAID 4
+<ul>
+<li>
+<p>(RAID 1 처럼 완전한 복사본을 만드는 대신) <Mark>패리티 비트</Mark>를 저장</p>
+</li>
+<li>
+<p>패리티를 저장한 장치를 이용해 다른 장치들의 오류를 검출하고, 오류가 있다면 복구</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/ded80437-ac70-425c-b397-b95411c749d4" alt="image">
+c.f. ) 패리티 비트는 오류 검출만 가능할 뿐 오류 복구는 불가능, 하지만 RAID에서 사용되는 패리티  비트는 오류의 검출 뿐만이 아니라 오류 복구까지 가능</p>
+<ul>
+<li>RAID 1 보다 적은 하드 디스크로도 데이터를 안전하게 보관</li>
+</ul>
+</li>
+<li>
+<p>단점: 패리티 디스크의 병목(많은 I/O 떄문)</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/7f57c674-5530-4dd5-821b-cdf2295038e7" alt="image"></p>
+</li>
+</ul>
+</li>
+<li>RAID 5
+<ul>
+<li>
+<p>패리티 정보를 분산하여 저장하는 방식</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/6e86ba99-ee88-4371-b17a-1946651053e4" alt="image"></p>
+<ul>
+<li>RAID 4는 패리티를 저장한 장치를 따로 두는 방식</li>
+<li>RAID 5는 패리티를 분산하여 저장하는 방식</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RAID 6
+<ul>
+<li>두 종류의 패리티(오류를 검출하고 복구할 수 있는 수단)
+<ul>
+<li>
+<p>RAID 5보다 안전, 쓰기는 RAID 5보다 느림</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/a099229e-a69a-48c3-bf4c-01fce434b192" alt="image"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="raid" style="position:relative;"><a href="#raid" aria-label="raid permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>raid</h3>
+<ul>
+<li>
+<p>각 RAID 레벨마다 장단점이 있음</p>
+<ul>
+<li>빠른 입출력 → RAID 0, 안전의 중요성 → RAID 1 or RAID 6</li>
+</ul>
+</li>
+<li>
+<p>어떤 상황에서 무엇을 최우선으로 원하는지에 따라 최적의 RAID 레벨은 달라질 수 있음</p>
+</li>
+<li>
+<p>각 RAID 레벨의 대략적인 구성과 특징을 아는 것이 중요</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/5edf0de5-ffb6-46b8-9216-bbf3574a1038" alt="image"></p>
+<ul>
+<li>실제로 RAID 구성 가능</li>
+</ul>
+</li>
+</ul>
+<h2 id="장치-컨트롤러와-장치-드라이버" style="position:relative;"><a href="#%EC%9E%A5%EC%B9%98-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC%EC%99%80-%EC%9E%A5%EC%B9%98-%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84" aria-label="장치 컨트롤러와 장치 드라이버 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>장치 컨트롤러와 장치 드라이버</h2>
+<p>보조기억장치도 입출력장치의 한 종류로 볼 수 있음 → 메모리를 보조하는 입출력장치</p>
+<h3 id="입출력장치-정보-주고받기" style="position:relative;"><a href="#%EC%9E%85%EC%B6%9C%EB%A0%A5%EC%9E%A5%EC%B9%98-%EC%A0%95%EB%B3%B4-%EC%A3%BC%EA%B3%A0%EB%B0%9B%EA%B8%B0" aria-label="입출력장치 정보 주고받기 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>입출력장치 정보 주고받기</h3>
+<ol>
+<li>장치가 다양하면 장치마다 속도, 데이터 전송 형식 등도 다양하다.</li>
+</ol>
+<p>→ 다양한 입출력장치와 정보를 주고받는 방식을 <Mark>규격화</Mark>하기 어렵다</p>
+<ol>
+<li>일반적으로 CPU와 메모리의 데이터 전송률은 높지만 입출력장치의 데이터 <Mark>전송률</Mark>은 낮다.
+<ul>
+<li>전송률: 데이터를 얼마나 빨리 교환할 수 있는지를 나타내는 지표</li>
+</ul>
+</li>
+</ol>
+<p>이런 이유로 입출력장치는 <Mark>장치 컨트롤러</Mark>를 통해 컴퓨터와 정보를 주고받으며 연결된다</p>
+<ul>
+<li>입출력 제어기(I/O controller), 입출력 모듈(I/O module)</li>
+</ul>
+<h3 id="장치-컨트롤러의-역할" style="position:relative;"><a href="#%EC%9E%A5%EC%B9%98-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC%EC%9D%98-%EC%97%AD%ED%95%A0" aria-label="장치 컨트롤러의 역할 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>장치 컨트롤러의 역할</h3>
+<ul>
+<li>CPU와 입출력장치의 통신 중개
+<ul>
+<li>규격화의 어려움을 해결하는 일종의 번역기 역할 수행</li>
+</ul>
+</li>
+<li>오류검출</li>
+<li>데이터 버퍼링
+<ul>
+<li>버퍼링
+<ul>
+<li>전송률이 높은 장치와 낮은 장치 사이에 주고받는 데이터를 <Mark>버퍼</Mark>라는 임시저장 공간에 저장하여 전송률을 비슷하게 맞추는 방법</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="장치-컨트롤러의-구조" style="position:relative;"><a href="#%EC%9E%A5%EC%B9%98-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC%EC%9D%98-%EA%B5%AC%EC%A1%B0" aria-label="장치 컨트롤러의 구조 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>장치 컨트롤러의 구조</h3>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/76e35b8a-d528-4dad-a453-4f136b107876" alt="image"></p>
+<ul>
+<li>장치 컨트롤러는 입/출력 버스에 연결된다.</li>
+<li>주고받는 정보는 데이터, 상태, 제어로 나뉜다.</li>
+</ul>
+<p>c.f. ) 상태 레지스터와 제어 레지스터는 하나의 레지스터(상태/제어 레지스터)로 사용되기도</p>
+<p>데이터 레지스터</p>
+<ul>
+<li>CPU와 입출력장치 사이에 주고받을 데이터가 담기는 레지스터(버퍼의 역할)</li>
+<li>RAM을 사용하기도</li>
+</ul>
+<p>상태 레지스터</p>
+<ul>
+<li>상태 정보 저장
+<ul>
+<li>입출력장치가 입출력 작업을 할 준비가 되었는지,</li>
+<li>입출력 작업이 완료되었는지</li>
+<li>입출력장치에 오류는 없는지 등의 상태 정보</li>
+</ul>
+</li>
+</ul>
+<p>제어 레지스터</p>
+<ul>
+<li>입출력장치가 수행할 내용에 대한 제어 정보</li>
+</ul>
+<h3 id="장치-드라이버" style="position:relative;"><a href="#%EC%9E%A5%EC%B9%98-%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84" aria-label="장치 드라이버 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>장치 드라이버</h3>
+<p><strong>장치 컨트롤러의 동작을 감지하고 제어하는 프로그램</strong></p>
+<p>장치 드라이버를 인식하고 실행시키는 주체는 운영체제</p>
+<p>장치 컨트롤러가 입출력장치를 연결하기 위한 <Mark>하드웨어적 통로</Mark>라면, 장치 드라이버는 입출력장치를 연결하기 위한 <Mark>소프트웨어적 통로</p>
+<p>→ 장치 드라이버가 설치되어 있지 않다면 해당 입출력장치를 사용할 수 없다</p>
+<p>컴퓨터가(<Mark>운영체제</Mark>) 연결된 장치의 드라이버를 인식하고 실행할 수 있다면 컴퓨터 내부와 정보를 주고받을 수 있음</p>
+<p>반대로 컴퓨터(운영체제)가 장치 드라이버를 인식하거나 실행할 수 없다면 그 장치는 컴퓨터 내부와 정보를 주고받을 수없음</p>
+<p><Mark>→ CPU는 연결된 장치 컨트롤러를 어떻게 제어하고 동작시키는지 모르기 떄문</p>
+<h2 id="다양한-입출력-방법" style="position:relative;"><a href="#%EB%8B%A4%EC%96%91%ED%95%9C-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EB%B0%A9%EB%B2%95" aria-label="다양한 입출력 방법 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>다양한 입출력 방법</h2>
+<p>세 가지 입출력 방식: 프로그램 입출력, 인터럽트 기반 입출력, DMA 입출력에 대해서 알아보자</p>
+<h3 id="프로그램-입출력" style="position:relative;"><a href="#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%9E%85%EC%B6%9C%EB%A0%A5" aria-label="프로그램 입출력 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>프로그램 입출력</h3>
+<p>프로그램 속 명령어로 입출력장치를 제어하는 방법</p>
+<p>입출력 명령어로써 장치 컨트롤러와 상호작용</p>
+<p>메모리에 저장된 정보를 하드 디스크에 <Mark>백업</Mark>(=하드 디스크에 새로운 정보 <Mark>쓰기</Mark>)</p>
+<ol>
+<li>
+<p>CPU는 하드 디스크 컨트롤러의<Mark>제어 레지스터</Mark>에 <Mark>쓰기</Mark> 명령 내보내기</p>
+</li>
+<li>
+<p>하드 디스크 컨트롤러는 하드 디스크 상태 확인 → 상태 레지스터에 <Mark>준비 완료</Mark> 표시</p>
+</li>
+<li>
+<p>CPU는 상태 레지스터를 주기적으로 읽어보며 하드 디스크의 준비 여부를 확인</p>
+</li>
+<li>
+<p>하드 디스크가 준비되었다면 백업할 메모리의 정보를 데이터 레지스터에 쓰기</p>
+</li>
+</ol>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/6264cddc-a243-4f5c-a3ee-8c9e543c5e75" alt="image"></p>
+<p>아직 백업 작업(쓰기 작업)이 끝나지 않았다면 1번부터 반복, 쓰기가 끝났다면 작업 종료</p>
+<p>하드 디스크 컨트롤러의 특정 레지스터에 입출력 명령어로서 입출력 작업을 수행하는 것이 프로그램 입출력 방식</p>
+<ul>
+<li><Mark>CPU가 장치 컨트롤러의 레지스터 값을 읽고 씀</Mark>으로서 이루어진다</li>
+</ul>
+<p>프로그램 입출력 방식</p>
+<p>CPU가 장치 컨트롤러의 레지스터 값들을 알기 위한 방법으로 <Mark>메모리 맵 입출력 &#x26; 고립형 입출력이 있다.</p>
+<h4 id="메모리-맵-입출력" style="position:relative;"><a href="#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A7%B5-%EC%9E%85%EC%B6%9C%EB%A0%A5" aria-label="메모리 맵 입출력 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>메모리 맵 입출력</h4>
+<ul>
+<li><Mark>메모리</Mark>에 접근하기 위한 주소공간과 <Mark>입출력장치</Mark>에 접근하기 위한 주소 공간을 <Mark>하나의 주소 공간</Mark>으로 간주하는 방법</li>
+<li>별도의 입출력 명령어가 필요하지 않은 방식, 메모리를 읽고 쓰는것과 동일하게 장치컨트롤러의 레지스터에 값을 읽고 쓸수 있음</li>
+</ul>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/b117970c-5594-407a-b5c0-14ea749d3ff7" alt="image"></p>
+<ul>
+<li>516번지: 프린터 컨트롤러의 데이터 레지스터</li>
+<li>517번지: 프린터 컨트롤러의 상태 레지스터
+<ul>
+<li><Mark>‘517 번지를 읽어 들여라’ == 프린터 상태 읽기</li>
+</ul>
+</li>
+<li>518번지: 하드 디스크 컨트롤러의 데이터 레지스터
+<ul>
+<li><Mark>‘518 번지에 a를 써라’ == 하드 디스크에 a 쓰기</li>
+</ul>
+</li>
+<li>519번지: 하드 디스크 컨트롤러의 상태 레지스터</li>
+</ul>
+<p><Mark>메모리 접근 명령어 == 입출력장치 접근 명령어가 동일한 입출력 방식</p>
+<h4 id="고립형-입출력" style="position:relative;"><a href="#%EA%B3%A0%EB%A6%BD%ED%98%95-%EC%9E%85%EC%B6%9C%EB%A0%A5" aria-label="고립형 입출력 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>고립형 입출력</h4>
+<p><Mark>메모리를 위한 주소 공간</Mark>과 <Mark>입출력 장치를 위한 주소 공간</Mark>을 <Mark>분리</Mark>하는 방법</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/667df59b-b7f9-42fb-973d-bc72348c7832" alt="image"></p>
+<p>(입출력 읽기/쓰기 선을 활성화시키는) 입출력 전용 명령어 사용, 메모리 전용 명령어도 존재</p>
+<p>제어 버스에서 각기(<Mark>메모리, 입출력장치</Mark>) 전용 명령어를 통해 읽기/쓰기 선이 활성화</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/6f889f7e-efa1-4bca-a3ad-14d00e3c5861" alt="image"></p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/8dc172ee-da9f-42fa-a1d5-f0f5635c2651" alt="image"></p>
+<h3 id="인터럽트-기반-입출력" style="position:relative;"><a href="#%EC%9D%B8%ED%84%B0%EB%9F%BD%ED%8A%B8-%EA%B8%B0%EB%B0%98-%EC%9E%85%EC%B6%9C%EB%A0%A5" aria-label="인터럽트 기반 입출력 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>인터럽트 기반 입출력</h3>
+<ul>
+<li>(하드웨어) 인터럽트의 개념
+<ul>
+<li>CPU 사이클의 낭비를 막기 위해서 입출력장치가 일을 할 동안 다른 일을 할 수 있도록 일종의 알람 같은 개념</li>
+</ul>
+</li>
+<li>플래그 레지스터 속 인터럽트 비트
+<ul>
+<li>인터럽트 비트가 활성화되면 (하드웨어)인터럽트를 받아들일 수 있게되고 비활성화되면 받을 수 없게 됨</li>
+</ul>
+</li>
+<li>인터럽트 요청 신호
+<ul>
+<li>입출력장치가 CPU에게 요청을 신호로서 보내는 것</li>
+</ul>
+</li>
+<li>인터럽트 서비스 루틴
+<ul>
+<li>CPU가 인터럽트 요청 신호를 받으면 인터럽트를 처리하기 위한 특별한 프로그램</li>
+</ul>
+</li>
+</ul>
+<p>하드웨어 인터럽트는 장치 컨트롤러에 의해 발생 → CPU 사이클을 효율적으로 관리 가능</p>
+<ul>
+<li>메모리에 저장된 정보를 하드 디스크에 백업할 때 CPU가 상태 레지스터를 주기적으로 읽지만(인터럽트와 반대되는 <Mark>폴링</Mark>이라고도 함), 인터럽트는 요청 신호를 발생</li>
+</ul>
+<p>동시다발적인 인터럽트: 많은 입출력장치의 장치 컨트롤러들이 CPU에게 인터럽트 요청 신호를 보내는 상황을 생각해보자</p>
+<p>인터럽트 발생 순서대로 처리 가능</p>
+<ul>
+<li>플래그 레지스터 속 인터럽트 비트를 비활성화한 채 인터럽트를 처리하는 경우
+<ul>
+<li>NMI - 순차적으로 처리가 불가능한 인터럽트가 있음(정전, 고장) critical한 인터럽트가 발생하는 경우</li>
+</ul>
+</li>
+</ul>
+<p>현실적으로 모든 인터럽트를 순차적으로 처리할 수 는 없다, 인터럽트 중에서도 <Mark>더 빨리 처리해야하는(우선순위가 높은) 인터럽트</Mark>가 있다.</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/da66f3b4-da51-494c-95c4-824fc752299e" alt="image"></p>
+<p>→ NMI가 발생한 경우, 플래그 레지스터 속 인터럽트 비트를 활성화한 채 인터럽트를 처리하는 경우</p>
+<p>동시다발적인 인터럽트 - 우선순위를 반영한 인터럽트</p>
+<p>PIC(Programmable Interrupt Controller)</p>
+<p>장치 컨트롤러와 CPU사이에서 어떤 인터럽트를 가장 우선으로 처리해야 하는지를 판단해서 CPU가 처리해야 하는 인터럽트를 알려줌(<Mark>다중 인터럽트 가능</Mark>)</p>
+<ol>
+<li>여러 장치 컨트롤러에 연결되어</li>
+<li>장치 컨트롤러의 하드웨어 인터럽트의 우선순위를 판단한 뒤</li>
+<li>CPU에게 지금 처리해야 하는 인터럽트가 무엇인지 판단하는 하드웨어</li>
+</ol>
+<p>c.f. ) NMI 우선순위까지 판단하지는 않음</p>
+<h3 id="dma-입출력" style="position:relative;"><a href="#dma-%EC%9E%85%EC%B6%9C%EB%A0%A5" aria-label="dma 입출력 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>dma 입출력</h3>
+<p>프로그램 입출력, 인터럽트 기반 입출력의 공통점</p>
+<ul>
+<li>입력장치와 메모리 간의 데이터 이동은 <Mark>CPU가 주도하고</li>
+<li>이동하는 데이터도 반드시 <Mark>CPU를 거친다</li>
+</ul>
+<p>→ 하드디스크의 데이터를 메모리에 저장하는 경우, 하드디스크의 <Mark>데이터 레지스터에 저장되어 있는 값</Mark>을 입출력장치를 읽어들임으로서 <Mark>CPU레지스터로 읽어들이게 되고</Mark> 레지스터로 읽어들인 값을 메모리로 쓰게 된다.</p>
+<p>하드 디스크 백업과 같이 대용량 데이터를 이동한다면 CPU의 효율이 떨어짐 → DMA 등장</p>
+<h4 id="dma" style="position:relative;"><a href="#dma" aria-label="dma permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>dma</h4>
+<p>Direct Memory Access</p>
+<p>CPU를 거치지 않고 입출력장치와 메모리간의 데이터를 <Mark>직접적으로 주고받는</Mark> 입출력 방식</p>
+<h4 id="dma-입출력-과정" style="position:relative;"><a href="#dma-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EA%B3%BC%EC%A0%95" aria-label="dma 입출력 과정 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>dma 입출력 과정</h4>
+<ol>
+<li>
+<p>CPU는 DMA 컨트롤러에 입출력 작업을 명령</p>
+</li>
+<li>
+<p>DMA 컨트롤러는 CPU대신 장치 컨트롤러와 상호작용하며 입출력 작업을 수행</p>
+<ul>
+<li>이 떄 HDD에 메모리 정보를 백업하는 입출력작업이라면 DMA 컨트롤러는 필요한 경우 메모리에 직접 접근</li>
+<li>DMA 컨트롤러가 메모리와 장치컨트롤러가 상호작용하면서 입출력하는 도중 CPU는 다른 작업이 가능</li>
+<li>메모리와 장치컨트롤러 사이의 주고받는 데이터는 CPU를 거치지 ❌</li>
+</ul>
+</li>
+<li>
+<p>입출력 작업이 끝나면 DMA 컨트롤러는 인터럽트를 통해 CPU에 작업이 끝났음을 알림</p>
+</li>
+</ol>
+<p>결과적으로 CPU는 입출력 작업의 <Mark>시작과 끝</Mark>만 관여</p>
+<p>앞선 예시의 DMA 과정에서 시스템 버스를 이용</p>
+<p>그런데, 시스템 버스는 공용 자원이기에 동시 사용이 불가능</p>
+<p>CPU가 시스템 버스를 사용할 때 DMA 컨트롤러는 시스템 버스를 사용할 수 없고, DMA컨트롤러는 시스템 버스를 사용할 떄는 CPU가 시스템 버스를 사용할 수 없음</p>
+<p>그래서 DMA 컨트롤러는</p>
+<ol>
+<li>CPU가 시스템 버스를 이용하지 않을 때마다 조금씩 시스템 버스 이용</li>
+<li>CPU가 일시적으로 시스템 버스를 이용하지 않도록 허락을 구하고 시스템 버스 이용</li>
+</ol>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/84e516ac-a1dc-48ee-bdcb-8fb351b7d471" alt="image"></p>
+<p>→ DMA 컨트롤러가 시스템 버스를 이런식으로 이용하는 양상을 Cycle Stealing이라고도 함</p>
+<h3 id="입출력-버스" style="position:relative;"><a href="#%EC%9E%85%EC%B6%9C%EB%A0%A5-%EB%B2%84%EC%8A%A4" aria-label="입출력 버스 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>입출력 버스</h3>
+<p>DMA 컨트롤러가 시스템 버스를 (불필요하게)이용하는 것을 방지하기 위해 등장</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/d87c3126-394b-4894-9997-cb50ba708a60" alt="image"></p>
+<p>e.g. PCI 버스, PCI express (PCIe) 버스와 입출력 장치를 연결짓는 슬롯</p>
+<p>슬롯 → 입출력 버스 → 시스템 버스</p>
+<p><img src="https://github.com/adamschwartz/magic-of-css/assets/74396128/50b5411e-9d17-4757-9de1-4fd77493e52a" alt="image"></p>
+<p>더욱 발전한 DMA, 입출력 프로세서(입출력 채널) → 입출력장치가 입출력 전용 CPU, RAM을 탑재한 경우도 있다.</p></div></div></div><div class="Post-module--footer--f8705"><div class="Meta-module--meta--dae0a"><p class="Meta-module--date--4d30d">Published<!-- --> <!-- -->Sep 6, 2023</p></div><div class="Tags-module--tags--18589"><ul class="Tags-module--list--82ae6"><li class="Tags-module--item--52015"><a class="Button-module--button--b1113" href="/tag/computerarchitecture/">ComputerArchitecture</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113" href="/tag/cs/">CS</a></li></ul></div><div class="Author-module--author--1c58d"><p class="Author-module--bio--08950">안녕하세요 Web Developer 주용준 입니다.<a class="Author-module--twitter--90647" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"></a></p></div></div><div class="Post-module--comments--d3b99"><div></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/computer-architecture/characteristics-of-various-io-devices";window.___webpackCompilationHash="1c1385ac869436d9885a";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-19c76501ff95dc31920e.js"],"app":["/app-6e5933bc9309ffd7a771.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-0c915c7b1bdb5eac4fdf.js"],"component---src-templates-categories-template-categories-template-tsx":["/component---src-templates-categories-template-categories-template-tsx-591f3455d53c3b8ef831.js"],"component---src-templates-category-template-category-template-tsx":["/component---src-templates-category-template-category-template-tsx-17938cc106fc95d14669.js"],"component---src-templates-index-template-index-template-tsx":["/component---src-templates-index-template-index-template-tsx-943badbf7518b3416f8c.js"],"component---src-templates-not-found-template-not-found-template-tsx":["/component---src-templates-not-found-template-not-found-template-tsx-7471aa4b082ff96c2ebc.js"],"component---src-templates-page-template-page-template-tsx":["/component---src-templates-page-template-page-template-tsx-2a71e80d83152f260a5a.js"],"component---src-templates-post-template-post-template-tsx":["/component---src-templates-post-template-post-template-tsx-d85673e1cfef65e7fb92.js"],"component---src-templates-tag-template-tag-template-tsx":["/component---src-templates-tag-template-tag-template-tsx-1899bf0abfbfc5726bf7.js"],"component---src-templates-tags-template-tags-template-tsx":["/component---src-templates-tags-template-tags-template-tsx-4c5531dc9d52ed72d7d1.js"]};/*]]>*/</script><script src="/polyfill-19c76501ff95dc31920e.js" nomodule=""></script><script src="/app-6e5933bc9309ffd7a771.js" async=""></script><script src="/framework-745d5d28c0250a1a333b.js" async=""></script><script src="/webpack-runtime-6cc06eb29695dce59a63.js" async=""></script></body></html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.25.7"/><meta name="description" content="프로세스와 스레드에 대해서 배웁니다" data-gatsby-head="true"/><meta name="twitter:card" content="summary_large_image" data-gatsby-head="true"/><meta name="twitter:title" content="프로세스와 스레드 - Blog by Yong Jun" data-gatsby-head="true"/><meta name="twitter:description" content="프로세스와 스레드에 대해서 배웁니다" data-gatsby-head="true"/><meta name="og:title" content="프로세스와 스레드 - Blog by Yong Jun" data-gatsby-head="true"/><meta name="og:type" content="website" data-gatsby-head="true"/><meta name="og:description" content="프로세스와 스레드에 대해서 배웁니다" data-gatsby-head="true"/><meta name="theme-color" content="hsl(31, 92%, 62%)"/><style data-href="/styles.47a42cfb2e9f2b180db6.css" data-identity="gatsby-global-css">:after,:before,:root{--color-white:hsla(0,0%,100%,.994);--color-primary:#5c92ff;--color-secondary:#f7a145;--color-prism-background:#eaeaeb;--color-typographic-base-font:#242933;--color-typographic-link-p-font:#5c92ff;--color-typographic-link-s-font:#f7a145;--color-page-border:#eaeaeb;--color-page-background:hsla(0,0%,100%,.994);--color-sidebar-border:#eaeaeb;--color-sidebar-border-fade:hsla(0,0%,100%,.994);--color-contacts-border:#eaeaeb;--color-button-border:#eaeaeb;--color-button-color:#242933;--color-theme-switcher:#3f485a;--color-theme-switcher-hover:#5c92ff}.dark :after,.dark :before,:root.dark{--color-white:hsla(0,0%,100%,.994);--color-primary:#5c92ff;--color-secondary:#f7a145;--color-prism-background:#191d24;--color-typographic-base-font:hsla(0,0%,100%,.994);--color-typographic-link-p-font:#5c92ff;--color-typographic-link-s-font:#f7a145;--color-page-border:#3f485a;--color-page-background:#242933;--color-sidebar-border:#3f485a;--color-sidebar-border-fade:#242933;--color-contacts-border:#3f485a;--color-button-border:#3f485a;--color-button-color:hsla(0,0%,100%,.994);--color-theme-switcher:#eaeaeb;--color-theme-switcher-hover:#5c92ff}html{font-size:100}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background:var(--color-page-background);color:var(--color-typographic-base-font);font-size:16px;line-height:1.625;margin:0 0 0 calc(100vw - 100%);text-rendering:optimizelegibility}body,h1,h2,h3,h4,h5,h6{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:40px;line-height:52px;margin-bottom:26px;margin-top:104px}h2{font-size:27px;line-height:39px}h2,h3{margin-bottom:13px;margin-top:52px}h3{font-size:22px;line-height:26px}h4{font-size:19.2px;margin-top:39px}h4,h5{line-height:26px;margin-bottom:13px}h5,h6{font-size:16px;margin-top:65px}h6{line-height:26px;margin-bottom:13px}img{max-width:100%}hr,img{border:0;display:block}hr{background-image:linear-gradient(180deg,transparent 1px,transparent 11px,#242933 0,#242933 15px,transparent 0,transparent 26px);background-size:100% 26px;color:var(--color-typographic-base-font);height:26px;margin:52px auto;width:100px}a{color:var(--color-typographic-link-p-font);text-decoration:none}a:active,a:focus,a:hover{color:var(--color-typographic-link-s-font)}b,strong{font-weight:600}ul{list-style:square;margin-bottom:26px}ul li{margin-bottom:10px;padding:0 5px}p{line-height:26px;margin-bottom:26px}blockquote{font-style:italic;padding:0;text-align:center}figure{display:block;height:auto;width:100%}figcaption{color:var(--color-typographic-base-font);font-size:14px;font-style:italic;line-height:19.5px;margin-bottom:0;margin-top:6.5px;text-align:center}@media screen and (min-width:685px){figure.float-left,figure.float-right{max-width:310px;padding:0 26px}.float-right{float:right}.float-left{float:left}}code[class*=language-],pre[class*=language-]{word-wrap:normal;color:#657b83;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:var(--color-prism-background)}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:#073642}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#93a1a1}.token.punctuation{color:#586e75}.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#268bd2}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string,.token.url{color:#2aa198}.token.entity{background:#eee8d5;color:#657b83;cursor:help}.token.atrule,.token.attr-value,.token.keyword{color:#859900}.token.class-name,.token.function{color:#b58900}.token.important,.token.regex,.token.variable{color:#cb4b16}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.Feed-module--feed--a6204 .Feed-module--item--c7a63{margin-bottom:32.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63:last-child{margin-bottom:13px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f{font-size:27px;line-height:39px;margin-bottom:13px;margin-top:0}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b{color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:hover{border-bottom:1px solid #242933;color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--description--57348{font-size:16px;line-height:26px;margin-bottom:19.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--time--72864{color:var(--color-typographic-base-font);font-size:14px;font-weight:600;text-transform:uppercase}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--divider--81a18{margin:0 13px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b{color:var(--color-secondary);font-size:14px;font-weight:600;text-transform:uppercase}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:hover{color:#5c92ff}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e{color:var(--color-primary);font-size:16px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:hover{border-bottom:1px solid #5c92ff;color:var(--color-primary)}.Layout-module--layout--2c933{margin-left:auto;margin-right:auto;max-width:1070px}.Layout-module--layout--2c933:before{content:"";display:table}.Layout-module--layout--2c933:after{clear:both;content:"";display:table}.Page-module--page--24e03{margin-bottom:52px}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:26px 19.5px 0}.Page-module--page--24e03 .Page-module--title--90338{font-size:40px;font-weight:600;line-height:52px;margin-bottom:37.7px;margin-top:0}.Page-module--page--24e03 .Page-module--body--561c4{font-size:16px;line-height:26px;margin:0 0 26px}@media screen and (min-width:685px){.Page-module--page--24e03{width:calc(58.275% - 12.5px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(12n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(12n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:32.5px 19.5px 0}}@media screen and (min-width:960px){.Page-module--page--24e03{width:calc(66.6% - 10px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(3n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(3n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:39px 26px 0}}.Pagination-module--pagination--d61cb{display:flex;margin-top:52px}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b{text-align:left;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:focus,.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8{text-align:right;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:focus,.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.ThemeSwitcher-module--themeSwitcher--8a77f{--color:var(--color-theme-switcher)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b{align-items:center;background:transparent;border:0;cursor:pointer;display:flex;justify-content:center;outline:0}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b svg{stroke:var(--color);pointer-events:none;transition:stroke .4s}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b:hover{--color:var(--color-theme-switcher-hover)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--moon--10537{stroke-dasharray:0 1px;opacity:0;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--sun--2163a{stroke-dasharray:1px 1px;opacity:1;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--moon--10537{stroke-dasharray:1px 1px;opacity:1}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--sun--2163a{stroke-dasharray:0 1px;opacity:0}.Author-module--author--cbd31 .Author-module--photo--9787b{background-clip:padding-box;border-radius:50%;display:inline-block;height:75px;margin-bottom:0;width:75px}.Author-module--author--cbd31 .Author-module--photo--9787b img{border-radius:50%}.Author-module--author--cbd31 .Author-module--title--cf7e5{font-size:18px;font-weight:600;line-height:29.25px;margin:0}.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:focus,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:hover{color:var(--color-typographic-base-font)}.Author-module--author--cbd31 .Author-module--subtitle--86ec5{color:#7f8ba4;line-height:26px;margin-bottom:26px}.Author-module--author--cbd31 .Author-module--titleContainer--4f576{align-items:center;display:flex;justify-content:space-between;margin:13px 0}.Icon-module--icon--1d7da{fill:currentcolor;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;speak:none;stroke:currentcolor;stroke-width:0;display:inline-block;font-style:normal;font-variant:normal;font-weight:400;height:1em;line-height:1em;text-align:center;text-transform:none;width:1em}.Contacts-module--contacts--09178{margin-bottom:26px}.Contacts-module--contacts--09178 .Contacts-module--list--9670b{display:flex;flex-flow:row wrap;flex-grow:0;flex-shrink:0;list-style:none;margin:13px 0;max-width:165px;padding:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0{align-content:center;align-items:center;border:1px solid var(--color-contacts-border);border-radius:50%;display:flex;height:40px;justify-content:center;line-height:40px;margin:6.5px;padding:0;text-align:center;width:40px}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0:nth-child(3n+1){margin-left:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0{border:0;color:var(--color-typographic-base-font);cursor:pointer;display:flex}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:focus,.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:hover{color:var(--color-typographic-link-p-font)}.Menu-module--menu--113a9{margin-bottom:26px}.Menu-module--menu--113a9 .Menu-module--list--e1ae3{list-style:none;margin:0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679{margin:13px 0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02{border:0;color:var(--color-typographic-base-font);font-size:16px;font-weight:400}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:focus,.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:hover{border-bottom:1px solid #5c92ff;color:#5c92ff}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02.Menu-module--active--6cb74{border-bottom:1px solid var(--color-typographic-base-font);color:var(--color-typographic-base-font)}.Sidebar-module--sidebar--1bfa1{width:100%}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:26px 19.5px 0;position:relative}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{background:var(--color-sidebar-border);background:linear-gradient(to bottom,var(--color-sidebar-border) 0,var(--color-sidebar-border) 48%,var(--color-sidebar-border-fade) 100%)}@media screen and (min-width:685px){.Sidebar-module--sidebar--1bfa1{width:calc(41.625% - 17.5px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:32.5px 19.5px 0}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{bottom:0;content:"";height:540px;position:absolute;right:-10px;top:30px;width:1px}}@media screen and (min-width:960px){.Sidebar-module--sidebar--1bfa1{width:calc(33.3% - 20px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:39px}}.Button-module--button--b1113{border:1px solid var(--color-button-border);border-radius:20px;color:var(--color-button-color);display:inline-block;font-size:16px;font-weight:400;height:40px;line-height:40px;margin-left:auto;margin-right:auto;padding:0 26px;text-align:center;text-decoration:none}.Button-module--button--b1113:focus,.Button-module--button--b1113:hover{color:#5c92ff}.Author-module--author--1c58d{border-top:1px solid var(--color-page-border);line-height:26px;margin-bottom:52px;margin-top:26px;max-width:940px;padding-top:26px}.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647{display:block;text-decoration:underline}.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647:focus,.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647:hover{color:var(--color-typographic-link-s-font)}@media screen and (min-width:685px){.Author-module--author--1c58d{margin-left:auto;margin-right:auto}}.Content-module--content--80d58{margin:0 auto;max-width:1245px;padding:0 13px}.Content-module--content--80d58 .Content-module--title--09504{font-size:32px;font-weight:600;line-height:42.9px;margin:26px auto 0;max-width:940px;text-align:center}.Content-module--content--80d58 .Content-module--body--726c2 figure{margin-bottom:26px}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote{font-style:italic;margin-top:0;padding:26px 0;text-align:center}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote p{font-size:26.9072px;line-height:39px;margin-bottom:26px;margin-top:0;max-width:940px}.Content-module--content--80d58 .Content-module--body--726c2 a{text-decoration:underline}.Content-module--content--80d58 .Content-module--body--726c2 *{margin-left:auto;margin-right:auto;max-width:940px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{visibility:hidden}.Content-module--content--80d58 .Content-module--body--726c2 h2>a>svg{fill:var(--color-typographic-base-font)}.Content-module--content--80d58 .Content-module--body--726c2 img{max-width:100%}@media screen and (min-width:960px){.Content-module--content--80d58{padding:0}.Content-module--content--80d58 .Content-module--title--09504{font-size:48px;line-height:58.5px;margin-bottom:39px;margin-top:58.5px}.Content-module--content--80d58 .Content-module--body--726c2,.Content-module--content--80d58 .Content-module--body--726c2 p{font-size:18px;line-height:29.25px;margin-bottom:29.25px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{padding-right:13px;visibility:unset}}.Meta-module--meta--dae0a .Meta-module--date--4d30d{font-style:italic}.Tags-module--tags--18589{margin-bottom:13px}.Tags-module--tags--18589 .Tags-module--list--82ae6{list-style:none;padding:0}.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015{display:inline-block;margin:6.5px 0}@media screen and (min-width:685px){.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015:first-child{margin-left:0;padding-left:0}}.Post-module--post--3a994 .Post-module--content--3c6e5{margin:0 auto}.Post-module--post--3a994 .Post-module--comments--d3b99,.Post-module--post--3a994 .Post-module--footer--f8705{margin:0 auto;max-width:940px;padding:0 13px}.Post-module--post--3a994 .Post-module--buttons--2972d{align-items:center;display:flex;justify-content:center;margin:26px 0 0;text-align:center}.Post-module--post--3a994 .Post-module--buttons--2972d .Post-module--buttonArticles--d793a{margin:0 13px 0 0}@media screen and (min-width:960px){.Post-module--post--3a994 .Post-module--comments--d3b99,.Post-module--post--3a994 .Post-module--footer--f8705{padding:0}.Post-module--post--3a994 .Post-module--buttons--2972d{left:30px;margin:0 13px 0 0;max-width:none;position:fixed;top:30px}}</style><title data-gatsby-head="true">프로세스와 스레드 - Blog by Yong Jun</title><link rel="alternate" type="application/rss+xml" title="Blog by Yong Jun" href="/rss.xml"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73379983-2"></script><script>
+      
+      
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer && window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-73379983-2', {"send_page_view":false});
+      }
+      </script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><link rel="icon" href="/favicon-32x32.png?v=ffb0298fbaec30f9528f8f5fb1f12bde" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=ffb0298fbaec30f9528f8f5fb1f12bde"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><script>
+          void function() {
+            var cachedMode;
+
+            try {
+              var preferredTheme = JSON.parse(localStorage.getItem('diesel:theme-atom'));
+
+              if (preferredTheme && preferredTheme.mode) {
+                cachedMode = preferredTheme.mode;
+              }
+            } catch (err) { }
+
+            function setTheme(newTheme) {
+              document.documentElement.className = newTheme;
+            }
+
+            var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+            setTheme(cachedMode || (darkQuery.matches ? 'dark' : 'light'));
+          }()
+        </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--2c933"><div class="Post-module--post--3a994"><div class="Post-module--buttons--2972d"><a class="Button-module--button--b1113 Post-module--buttonArticles--d793a" href="/">All Articles</a></div><div class="Post-module--content--3c6e5"><div class="Content-module--content--80d58"><h1 class="Content-module--title--09504">프로세스와 스레드</h1><div class="Content-module--body--726c2"><ul>
+<li><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C%EC%99%80-%EA%B3%84%EC%B8%B5%EA%B5%AC%EC%A1%B0">프로세스 상태와 계층구조</a>
+<ul>
+<li><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C">프로세스 상태</a></li>
+<li><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B3%84%EC%B8%B5-%EA%B5%AC%EC%A1%B0">프로세스 계층 구조</a></li>
+<li><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%9D%EC%84%B1-%EA%B8%B0%EB%B2%95">프로세스 생성 기법</a></li>
+<li><a href="#rom-bios">ROM-BIOS</a></li>
+</ul>
+</li>
+<li><a href="#%EC%8A%A4%EB%A0%88%EB%93%9C">스레드</a>
+<ul>
+<li><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80-%EC%8A%A4%EB%A0%88%EB%93%9C">프로세스와 스레드</a></li>
+<li><a href="#%EB%A9%80%ED%8B%B0-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80-%EB%A9%80%ED%8B%B0-%EC%8A%A4%EB%A0%88%EB%93%9C">멀티 프로세스와 멀티 스레드</a></li>
+</ul>
+</li>
+<li><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0">프로세스 확인하기</a></li>
+<li><a href="#%EC%8A%A4%EB%A0%88%EB%93%9C-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0">스레드 확인하기</a></li>
+<li><a href="#cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EA%B0%9C%EC%9A%94">CPU 스케줄링 개요</a>
+<ul>
+<li><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84">프로세스 우선순위</a></li>
+<li><a href="#%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%ED%81%90">스케줄링 큐</a></li>
+</ul>
+</li>
+<li><a href="#%EC%84%A0%EC%A0%90%ED%98%95%EA%B3%BC-%EB%B9%84%EC%84%A0%EC%A0%90%ED%98%95-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81">선점형(Preemptive)과 비선점형 스케줄링(Non-preemptive)</a></li>
+<li><a href="#cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">CPU 스케줄링 알고리즘</a></li>
+</ul>
+<h2 id="프로세스-상태와-계층구조" style="position:relative;"><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C%EC%99%80-%EA%B3%84%EC%B8%B5%EA%B5%AC%EC%A1%B0" aria-label="프로세스 상태와 계층구조 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>프로세스 상태와 계층구조</h2>
+<h3 id="프로세스-상태" style="position:relative;"><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%81%ED%83%9C" aria-label="프로세스 상태 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>프로세스 상태</h3>
+<ul>
+<li>생성상태
+<ul>
+<li>이제 막 메모리에 적재되어 PCB를 할당 받은 상태</li>
+<li>준비가 완료되었다면 준비 상태로</li>
+</ul>
+</li>
+<li>준비상태
+<ul>
+<li>당장이라도 CPU를 할당 받아 실행할 수 있지만</li>
+<li>자신의 차례가 아니기에 기다리는 상태</li>
+<li>자신의 차례가 된다면 실행 상태로(=<Mark>디스패치</Mark>(준비→실행))</li>
+</ul>
+</li>
+<li>실행상태
+<ul>
+<li>CPU를 할당 받아 실행 중인 상태</li>
+<li>할당된 시간 모두 사용 시(<Mark>타이머 인터럽트</Mark>(할당된 시간을 전부 사용했음을 나타내는 하드웨어 인터럽트) 발생 시) 준비 상태로</li>
+<li>실행 도중 입출력장치를 사용하면 입출력 작업이 끝날 때까지(<Mark>입출력 완료 인터럽트를 받을 때까지</Mark>) 대기 상태로</li>
+</ul>
+</li>
+<li>대기상태(block state)
+<ul>
+<li>프로세스가 실행 도중 입출력장치를 사용하는 경우</li>
+<li>입출력 작업은 CPU에 비해 느리기에 이 경우 대기 상태로 접어듬</li>
+<li>입출력 작업이 끝나면 (입출력 완료 인터럽트를 받으면) 준비 상태로</li>
+</ul>
+</li>
+<li>종료상태
+<ul>
+<li>프로세스가 종료된 상태</li>
+<li>PCB, 프로세스의 메모리 영역 정리
+<img src="https://github.com/boost-library/yong-study/assets/74396128/eccf0a31-0da9-4dbb-83c2-c9b5983bc9e0" alt="image"></li>
+</ul>
+</li>
+</ul>
+<h3 id="프로세스-계층-구조" style="position:relative;"><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B3%84%EC%B8%B5-%EA%B5%AC%EC%A1%B0" aria-label="프로세스 계층 구조 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>프로세스 계층 구조</h3>
+<ul>
+<li>
+<p>프로세스 실행 도중(<Mark>시스템 호출을 통해</Mark>) 다른 프로세스 생성 가능</p>
+</li>
+<li>
+<p>새 프로세스를 생성한 프로세스: 부모 프로세스</p>
+</li>
+<li>
+<p>부모 프로세스에 의해 생성된 프로세스: 자식 프로세스</p>
+<ul>
+<li>부모 프로세스와 자식 프로세스는 <Mark>별개의 프로세스</Mark>이므로 <Mark>각기 다른 PID</Mark>를 가짐</li>
+<li>일부 운영체제에서는 자식 프로세스 <Mark>PCB에 부모 프로세스 PID(PPID)를 명시하기도</li>
+</ul>
+<p>→ 프로세스의 게층적인 구조 형성</p>
+</li>
+<li>
+<p>OS에서 데몬 프로세스는 백그라운드에서 실행되는 시스템 서비스나 작업을 수행하는 프로세스를 의미, 데몬 프로세스는 주로 리눅스와 유닉스 기반 운영 체제에서 많이 사용되며, Windows 운영 체제에서는 “서비스”</p>
+<ul>
+<li>
+<p>데몬 프로세스는 처음으로 시작되는 프로세스의 자식 프로세스</p>
+<div class="gatsby-highlight" data-language="c"><pre class="language-c"><code class="language-c">최초의 프로세스 확인
+pstree</code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>c.f.) Windows는 계층 구조 ❌</p>
+</li>
+</ul>
+<h3 id="프로세스-생성-기법" style="position:relative;"><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%83%9D%EC%84%B1-%EA%B8%B0%EB%B2%95" aria-label="프로세스 생성 기법 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>프로세스 생성 기법</h3>
+<p>부모 프로세스는 <Mark>fork 시스템 호출</Mark>을 통해 자신의 복사본을 자식 프로세스로 생성</p>
+<ul>
+<li>복사본(=자식 프로세스) 생성</li>
+<li>부모 프로세스의 자원 상속</li>
+</ul>
+<p>자식 프로세스는 <Mark>exec 시스템 호출</Mark>을 통해 <Mark>자신의 메모리 공간을 다른 프로그램으로 교체</p>
+<ul>
+<li>메모리 공간을 새로운 프로그램으로 덮어쓰기</li>
+<li>코드/데이터 영역은 실행할 프로그램 내용으로 바뀌고 나머지 영역은 초기화
+<ul>
+<li><Mark>이때 부모 프로세스가 갖고있는 프로그램 내용은 자식 프로세스와 다르다.(별개)</li>
+</ul>
+</li>
+</ul>
+<h3 id="rom-bios" style="position:relative;"><a href="#rom-bios" aria-label="rom bios permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rom bios</h3>
+<p>ROM-BIOS(Read-Only Memory - Basic Input/Output System)은 운영 체제나 프로세스와 직접적으로 관련된 프로세스가 아니다. ROM-BIOS는 컴퓨터의 부팅 및 기본 입출력 시스템을 관리하는 하드웨어와 소프트웨어의 조합</p>
+<p>ROM-BIOS는 컴퓨터의 기본 입력 및 출력 작업을 처리하며, 부팅 시 초기 하드웨어 설정 및 컴퓨터의 기본 동작을 관리. 이는 운영 체제의 부팅 전 단계에서 실행되며, 컴퓨터의 기본 하드웨어를 초기화하고 저장 장치에서 운영 체제를 로드. 이후 운영 체제가 로드되면 운영 체제가 컴퓨터 시스템을 제어하고 프로세스를 관리한다.</p>
+<p>따라서 ROM-BIOS는 운영 체제나 프로세스와는 <Mark>구분되는 역할</Mark>을 한다. ROM-BIOS는 컴퓨터의 하드웨어와 초기 부팅 프로세스를 다루는데 사용되며, 운영 체제와 어플리케이션은 이후에 실행되는 소프트웨어.</p>
+<h2 id="스레드" style="position:relative;"><a href="#%EC%8A%A4%EB%A0%88%EB%93%9C" aria-label="스레드 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>스레드</h2>
+<p>스레드(thread)는 프로세스를 구성하는 실행 흐름의 단위</p>
+<p>하나의 프로세스는 하나 이상의 스레드를 가질 수 있다
+<img src="https://github.com/boost-library/yong-study/assets/74396128/3c4fb422-9e0c-496e-972e-2e78e2e8897b" alt="image">
+한 프로세스를 여러개의 스레드로 동시에 실행</p>
+<h3 id="프로세스와-스레드" style="position:relative;"><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80-%EC%8A%A4%EB%A0%88%EB%93%9C" aria-label="프로세스와 스레드 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>프로세스와 스레드</h3>
+<p>실행 흐름이 하나인 프로세스(단일 스레드 프로세스)</p>
+<p>실행 흐름이 여러 개인 프로세스(멀티 스레드 프로세스)</p>
+<ul>
+<li>프로세스를 이루는 여러 명령어 동시 실행 가능</li>
+</ul>
+<p><strong>스레드의 구성 요소</strong></p>
+<p>스레드 ID, 프로그램 카운터를 비롯한 레지스터값, 스택 등</p>
+<p><Mark>실행에 필요한 최소한의 정보
+<img src="https://github.com/boost-library/yong-study/assets/74396128/d3363057-79d0-4a5d-a4a3-dcc086240e2f" alt="image">
+🔥<Mark>프로세스를 이루는 모든 스레드들은 그 프로세스의 자원을 공유할 수 있다</p>
+<ul>
+<li><Mark>리눅스</Mark> 운영체제에서의 스레드
+<ul>
+<li><Mark>프로세스와 스레드는 “실행의 문맥(context of execution)”, 별개의 것으로 구분할 필요 ❌ - 리눅스 토발즈</li>
+<li><Mark>task</Mark>라는 용어로 대체하여 사용</li>
+<li>다른 운영체제에서는 아직까지 구분한다.</li>
+</ul>
+</li>
+<li>c.f. ) 전통적인 관점의 전공서에서는 CPU한테 처리해야할 작업을 처리할 때 <Mark>프로세스 단위</Mark>로 전달한다고 나와있지만, 실제로 확인해보면 CPU한테 처리해야 할 작업을 전달하거나 CPU를 할당받아 실행되는 단위는 프로세스가 아니라 <Mark>스레드 단위</Mark>인 경우가 많다</li>
+</ul>
+<h3 id="멀티-프로세스와-멀티-스레드" style="position:relative;"><a href="#%EB%A9%80%ED%8B%B0-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80-%EB%A9%80%ED%8B%B0-%EC%8A%A4%EB%A0%88%EB%93%9C" aria-label="멀티 프로세스와 멀티 스레드 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>멀티 프로세스와 멀티 스레드</h3>
+<p>동일한 작업을 수행하는 <Mark>단일 스레드 프로세스 여러 개</Mark> 실행 vs 하나의 프로세스를 <Mark>여러 스레드</Mark>로 실행
+<img src="https://github.com/boost-library/yong-study/assets/74396128/6d5006ba-9a51-4c5c-9017-6607c1a8498e" alt="image">
+→ 프로세스끼리는 기본적으로 자원을 공유하지 않지만 스레드끼리는 같은 프로세스의 자원을 공유하는 차이점이 있다</p>
+<ul>
+<li>process
+<ul>
+<li>프로세스를 fork하면 코드/데이터/힙 영역 등 모든 자원이 복제되어 저장됨</li>
+<li>저장된 메모리 주소를 제외하면 모든 것이 동일한 프로세스 두 개가 통째로 메모리에 적재
+<ul>
+<li>c.f. ) 실제로는 fork 직후 같은 프로세스를 <Mark>통째로 메모리에 중복 저장하지 않으면서</Mark> 동시에 프로세스끼리 자원을 공유하지 않는 방법이 있다. 이를 <Mark>쓰기 시 복사(copy on write)기법</Mark>이라 한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>thread
+<ul>
+<li>스레드들은 각기 다른 스레드 ID, (별도의 실행을 위해 꼭 필요한) 프로그램 카운터 값을 포함한 레지스터 값, 스택을 가질 뿐 프로세스가 가지는 자원을 공유
+<img src="https://github.com/boost-library/yong-study/assets/74396128/52f79880-1bda-4bac-abd2-e0e0c012361d" alt="image"></li>
+</ul>
+</li>
+<li>프로세스끼리는 자원을 공유하지 않는다 → 남남처럼 독립적으로 실행
+<ul>
+<li>프로세스 간에도 자원을 주고받을 수 있다 → 프로세스 간 통신(IPC)</li>
+<li>파일을 통한 프로세스 간 통신, 공유 메모리를 통한 프로세스 간 통신</li>
+<li>c.f.) socket, pipe …</li>
+</ul>
+</li>
+<li>스레드는 프로세스의 자원을 공유 → 비교적 멀티프로세스에 비해 협력과 통신에 유리
+<ul>
+<li>스레드 하나에 문제가 생기면 전체 프로세스에 문제가 생길 수 있음</li>
+</ul>
+</li>
+</ul>
+<h2 id="프로세스-확인하기" style="position:relative;"><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0" aria-label="프로세스 확인하기 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>프로세스 확인하기</h2>
+<div class="gatsby-highlight" data-language="c"><pre class="language-c"><code class="language-c">vi test<span class="token punctuation">.</span>py
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"hello, os"</span><span class="token punctuation">)</span>
+python3 test<span class="token punctuation">.</span>py
+
+<span class="token comment">// PID 확인</span>
+vi test<span class="token punctuation">.</span>py
+
+import os
+os<span class="token punctuation">.</span><span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// PID 22662</span>
+
+<span class="token comment">// -----------------------------------</span>
+from multiprocessing import Process
+import os
+
+def <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token char">'foo: child process: '</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span><span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 자식 PID</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token char">'foo: paraent process: '</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span><span class="token function">getppid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 자식의 부모 PID(22784)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token char">'__main__'</span><span class="token operator">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token char">'paraent process: '</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span><span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// paraent process:  22784</span>
+    child <span class="token operator">=</span> <span class="token function">Process</span><span class="token punctuation">(</span>target<span class="token operator">=</span>foo<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 자식 프로세스 생성</span>
+<span class="token comment">// ------------------------------------</span>
+
+<span class="token comment">// 멀티 process 생성</span>
+from multiprocessing import Process
+import os
+
+def <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token char">'foo: child process: '</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span><span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token char">'foo: paraent process: '</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span><span class="token function">getppid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token char">'__main__'</span><span class="token operator">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token char">'paraent process: '</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span><span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    child1 <span class="token operator">=</span> <span class="token function">Process</span><span class="token punctuation">(</span>target<span class="token operator">=</span>foo<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    child2 <span class="token operator">=</span> <span class="token function">Process</span><span class="token punctuation">(</span>target<span class="token operator">=</span>foo<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    child3 <span class="token operator">=</span> <span class="token function">Process</span><span class="token punctuation">(</span>target<span class="token operator">=</span>foo<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
+<h2 id="스레드-확인하기" style="position:relative;"><a href="#%EC%8A%A4%EB%A0%88%EB%93%9C-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0" aria-label="스레드 확인하기 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>스레드 확인하기</h2>
+<div class="gatsby-highlight" data-language="c"><pre class="language-c"><code class="language-c">vi test<span class="token punctuation">.</span>py
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
+import threading
+import os
+
+def <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token char">'foo: thread id is: '</span><span class="token punctuation">,</span> threading<span class="token punctuation">.</span><span class="token function">get_native_id</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token char">'foo: my pid is: '</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span><span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+		<span class="token comment">// 23222, thread는 process의 자원 공유</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token char">'__main__'</span><span class="token operator">:</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token char">'PID: '</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span><span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 23222</span>
+    thread1 <span class="token operator">=</span> threading<span class="token punctuation">.</span><span class="token function">Thread</span><span class="token punctuation">(</span>target<span class="token operator">=</span>foo<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
+</code></pre></div>
+<h2 id="cpu-스케줄링-개요" style="position:relative;"><a href="#cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EA%B0%9C%EC%9A%94" aria-label="cpu 스케줄링 개요 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>cpu 스케줄링 개요</h2>
+<p>운영체제가 프로세스들에게 공정하고 합리적으로 CPU 자원을 배분하는 것</p>
+<h3 id="프로세스-우선순위" style="position:relative;"><a href="#%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84" aria-label="프로세스 우선순위 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>프로세스 우선순위</h3>
+<p><Mark>입출력 작업</Mark>이 많은 프로세스(=<Mark>I/O Bound Process</Mark>, 입출력 집중 프로세스)의 우선순위는</p>
+<p><Mark>CPU 작업</Mark>이 많은 프로세스(=<Mark>CPU Bound Process</Mark>, CPU 집중 프로세스)의 우선순위 보다 높다</p>
+<ul>
+<li>I/O Bound Process는 대기 상태에서 더 많이 존재하기에 입출력 작업이 우선순위가 높아서 프로세스 먼저 실행</li>
+</ul>
+<h3 id="스케줄링-큐" style="position:relative;"><a href="#%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%ED%81%90" aria-label="스케줄링 큐 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>스케줄링 큐</h3>
+<ul>
+<li>반드시 FIFO일 필요는 ❌</li>
+</ul>
+<p>특정 자원(cpu,hdd, i/o devcie)을 이용하고 싶어하는 프로세스들을 큐에 삽입해서 자원을 이용하도록 만듦</p>
+<ul>
+<li>준비 큐와 대기 큐
+<ul>
+<li>준비 큐: CPU를 이용하기 위해 기다리는 줄</li>
+<li>대기 큐: 입출력장치를 이용하기 위해 기다리는 줄
+<ul>
+<li>같은 장치를 요구한 프로세스들은 같은 큐에서 대기
+<img src="https://github.com/boost-library/yong-study/assets/74396128/dca033ec-bdaf-4241-a16c-d5189c97c5a9" alt="image"></li>
+<li>먼저 큐에 삽입되더라도 반드시 먼저 실행되는 것은 아님, 우선순위가 높은 프로세스가 CPU를 이용</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="선점형과-비선점형-스케줄링" style="position:relative;"><a href="#%EC%84%A0%EC%A0%90%ED%98%95%EA%B3%BC-%EB%B9%84%EC%84%A0%EC%A0%90%ED%98%95-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81" aria-label="선점형과 비선점형 스케줄링 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>선점형과 비선점형 스케줄링</h2>
+<p><strong>선점형 스케줄링(Preemptive)</strong></p>
+<ul>
+<li>현재 CPU를 사용중인 프로세스로부터 CPU 자원을 빼앗아 다른 프로세스에 할당</li>
+<li>어떤 프로세스 하나가 CPU 자원 하나를 독점해서 쓸 수 없는 스케줄링 방식</li>
+<li>프로세스마다 정해진 시간만큼 CPU를 쓰게 하고 정해진 시간을 모두써서 타임아웃 인터럽트가 발생하면 OS가 다음 프로세스에게 CPU자원을 넘겨줌</li>
+<li>장점
+<ul>
+<li>어느 한 프로세스의 자원 독점을 막고 프로세스들에 골고루 자원을 배분 가능</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>그만큼 문맥 교환 과정에서 오버헤드가 발생할 수 있다</li>
+</ul>
+</li>
+</ul>
+<p><strong>비선점형 스케줄링((Non-preemptive))</strong></p>
+<ul>
+<li>현재 CPU를 사용중인 프로세스의 작업이 끝날 때까지 프로세스 기다리기</li>
+<li>어느 한 프로세스가 자원을 이용하고 있다면 종료되거나 대기상태에 접어들기 전까지 다른 끼어들 수 ❌</li>
+<li>장점
+<ul>
+<li>선점형 스케줄링에 비해 문맥 교환에서 발생하는 오버헤드가 적다</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>모든 프로세스가 골고루 자원을 이용하기 어렵다</li>
+</ul>
+</li>
+</ul>
+<p>c.f. ) 문맥교환
+다중 프로그래밍 및 다중 작업 환경에서 발생하는 프로세스 간의 전환 작업을 의미</p>
+<p>문맥 교환은 현재 실행 중인 프로세스의 상태(문맥)를 저장하고, 다음으로 실행될 프로세스의 상태를 복원하는 과정을 포함. 이를 통해 여러 프로세스가 CPU를 공유하며 실행될 수 있습니다.</p>
+<p>문맥 교환은 다음과 같은 상황에서 발생할 수 있음:</p>
+<ol>
+<li>인터럽트: 하드웨어 인터럽트(예: 타이머 인터럽트, 입출력 완료 인터럽트) 또는 소프트웨어 인터럽트(예: 시스템 호출)에 의해 발생.</li>
+<li>스케줄러 결정: <Mark>스케줄러는 실행 중인 프로세스 중 하나를 중단하고 다른 프로세스를 실행하도록 결정할 때 발생</Mark>합니다. 이를 통해 다양한 프로세스 간에 CPU 시간을 공정하게 분배할 수 있음.</li>
+<li>입출력 작업: 입출력 작업을 수행하는 동안 CPU가 대기 상태에 들어가는 경우, 다른 프로세스로 전환하여 시스템 자원을 최대한 활용합니다.</li>
+</ol>
+<p>문맥 교환은 오버헤드를 발생시킬 수 있으므로, 효율적으로 수행하기 위해 하드웨어와 운영 체제가 최적화되어야 한다. 문맥 교환은 다중 프로그래밍 환경에서 여러 작업이 동시에 실행될 수 있도록 해주는 핵심적인 운영 체제 기능 중 하나</p>
+<h2 id="cpu-스케줄링-알고리즘" style="position:relative;"><a href="#cpu-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" aria-label="cpu 스케줄링 알고리즘 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>cpu 스케줄링 알고리즘</h2>
+<ol>
+<li>
+<p>선입 선처리 스케줄링</p>
+<p><strong>FCFS(First Come First Served) 스케줄링</strong></p>
+<ul>
+<li>단순히 준비 큐에 삽입된 순서대로 처리하는 비선점 스케줄링</li>
+<li>먼저 CPU를 요청한 프로세스부터 CPU 할당</li>
+<li>단점: 프로세스들이 기다리는 시간이 매우 길어질 수 있다는 부작용(=호위 효과)
+<img src="https://github.com/boost-library/yong-study/assets/74396128/1c69dc56-e150-4184-a615-8404e80b1fd6" alt="image"></li>
+</ul>
+</li>
+<li>
+<p>최단 작업 우선 스케줄링</p>
+<p><strong>SJF(Shortest Job First) 스케줄링</strong></p>
+<ul>
+<li>호위 효과를 방지하려면</li>
+<li>CPU 사용이 긴 프로세스는 나중에 실행, CPU 사용 시간이 짧은 프로세스는 먼저 실행
+<img src="https://github.com/boost-library/yong-study/assets/74396128/d7e0510c-a903-43d5-b125-457e10ec52fc" alt="image"></li>
+<li>CPU 사용 시간이 가장 짧은 프로세스부터 처리하는 스케줄링 방식
+<ul>
+<li>선점형 → 최소 잔여 시간 우선 스케줄링</li>
+<li>비선점형 → 주로</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>라운드 로빈 스케줄링</p>
+<p><strong>RR(Round Robin) 스케줄링</strong></p>
+<ul>
+<li>선입 선처리 스케줄링 + <Mark>타임 슬라이스(time slice)</li>
+<li>타임 슬라이스: 각 프로세스가 CPU를 사용할 수 있는 정해진 시간
+<ul>
+<li>타임 슬라이스의 크기가 중요, 너무 커지면 FCFS와 유사해져서 호위 효과가 생길 수도</li>
+<li>너무 작으면 문맥교환이 발생하는 오버헤드 떄문에 CPU 부담이 너무 커짐</li>
+</ul>
+</li>
+<li>정해진 타임 슬라이스만큼의 시간 동안 돌아가며 CPU를 이용하는 선점형 스케줄링
+<ul>
+<li>큐에 삽입된 프로세스들은 순서대로 CPU를 이용하되 정해진 시간만큼만 이용</li>
+<li>정해진 시간을 모두 사용하였음에도 아직 프로세스가 완료되지 않았다면 다시 큐의 맨 뒤에 삽입(문맥교환)
+<img src="https://github.com/boost-library/yong-study/assets/74396128/0a55b185-8bb3-4fef-9548-2c8a3a577545" alt="image"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>최소 잔여 시간 우선 스케줄링</p>
+<p><strong>SRT(Shortest Remaining Time) 스케줄링</strong></p>
+<ul>
+<li>최단 작업 우선 스케줄링 + 라운드 로빈 스케줄링</li>
+<li>최단 작업 우선 스케줄링: 작업 시간이 짧은 프로세스부터 처리하는 스케줄링 알고리즘</li>
+<li>라운드 로빈 스케줄링: 정해진 타임 슬라이스만큼 돌아가며 사용하는 스케줄링 알고리즘</li>
+<li>정해진 시간만큼 CPU를 이용하되, 다음으로 CPU를 사용할 프로세스로는 <Mark>남은 작업 시간이 가장 적은 프로세스 선택</li>
+</ul>
+</li>
+<li>
+<p>우선순위 스케줄링</p>
+<ul>
+<li>프로세스들에 우선순위를 부여하고, 우선순위 높은 프로세스부터 실행</li>
+<li>우선순위가 같은 프로세스들은 선입 선처리로 스케줄링</li>
+<li>최단 작업 우선 스케줄링, 최소 잔여 시간 스케줄링 C 우선 순위 스케줄링
+<ul>
+<li>최단작업우선스케줄링: 작업시간이 짧은 프로세스한테 높은 우선수위를 부여하는 방식</li>
+<li>최소잔여시간스케줄링: 남아있는 시간이 짧은 프로세스한테 높은 우선순위를 부여하는 방식</li>
+</ul>
+</li>
+<li>우선순위 스케줄링의 근본적인 문제점, <Mark>기아(starvation)현상</li>
+<li>우선순위 높은 프로세스만 주구장창 실행</li>
+<li>우선순위 낮은 프로세스는 (준비 큐에 먼저 삽입되었음에도 불구하고) 실행 연기</li>
+<li>기아현상을 방지하기 위한 기법: <Mark>에이징(aging)</li>
+<li>오랫동안 대기한 프로세스의 우선순위를 점차 높이는 방식</li>
+<li>대기 중인 프로세스의 우선순위를 점차 증가시키는 방법
+<ul>
+<li>우선순위가 낮아도 언젠가는 우선순위가 높아진다</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>다단계 큐 스케줄링</p>
+<p><strong>Multilevel queue 스케줄링</strong></p>
+<ul>
+<li>우선순위 스케줄링의 발전된 형태</li>
+<li>우선순위별로 준비 큐를 여러개 사용하는 스케줄링 방식
+<ul>
+<li>우선순위가 가장 높은 큐에 있는 프로세스를 먼저 처리</li>
+<li>우선순위가 가장 높은 큐가 비어 있으면 그 다음 우선순위 큐에 있는 프로세스 처리
+<img src="https://github.com/boost-library/yong-study/assets/74396128/dd6f2ca2-8b02-4995-81b3-62b5907b9989" alt="image"></li>
+<li>큐 간의 이동이 불가, 우선순위가 낮은 프로세스는 우선순위가 낮은 큐에서 높은 큐로 이동 불가능하므로 <Mark>기아현상</Mark> 발생 가능</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>다단계 피드백 큐 스케줄링</p>
+<p><strong>Multilevel feedback queue 스케줄링</strong></p>
+<ul>
+<li>다단계 큐 스케줄링의 발전된 형태</li>
+<li>큐 간의 이동이 가능한 다단계 큐 스케줄링</li>
+<li>다단계 큐 스케줄링에서는 기본적으로 큐 간의 이동 불가
+<ul>
+<li>우선순위 낮은 프로세스는 계속해서 실행 연기 우려</li>
+<li>기아 현상 발생 가능
+<img src="https://github.com/boost-library/yong-study/assets/74396128/d36488cf-0cbc-4c6c-92df-d25d060ca790" alt="image"></li>
+</ul>
+</li>
+<li>준비상태의 프로세스를 가장 높은 우선순위 큐에 삽입, 차례가 오면 CPU할당 받고 실행, 실행이 안끝났으면 다음 실행 우선순위 큐로 이동해서 실행.. 스케줄링의 반복. 타임 슬라이스 동안 실행을 다 못 끝내면 낮은 우선순위로 이동
+<ul>
+<li>자연스럽게 CPU 집중 프로세스의 우선순위는 상대적으로 낮아지고
+<ul>
+<li>다단계 피드백 큐에서도 에이징 기법 적용 가능 →  기아현상 해결 가능</li>
+</ul>
+</li>
+<li>입출력 집중 프로세스의 우선순위는 상대적으로 높아짐</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>즉, 어떤 프로세스의 CPU 시간이 길면 우선순위가 낮아지고 어떤 프로세스가 낮은 우선순위 큐에서 너무 오래 기다리면 우선순위를 높이는 방식</p>
+<p>일반적인 CPU 스케줄링 방식으로 알려져 있음</p></div></div></div><div class="Post-module--footer--f8705"><div class="Meta-module--meta--dae0a"><p class="Meta-module--date--4d30d">Published<!-- --> <!-- -->Sep 13, 2023</p></div><div class="Tags-module--tags--18589"><ul class="Tags-module--list--82ae6"><li class="Tags-module--item--52015"><a class="Button-module--button--b1113" href="/tag/os/">OS</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113" href="/tag/cs/">CS</a></li></ul></div><div class="Author-module--author--1c58d"><p class="Author-module--bio--08950">안녕하세요 Web Developer 주용준 입니다.<a class="Author-module--twitter--90647" href="https://www.twitter.com/undefined" rel="noopener noreferrer" target="_blank"></a></p></div></div><div class="Post-module--comments--d3b99"><div></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/os/process-thread";window.___webpackCompilationHash="1c1385ac869436d9885a";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-19c76501ff95dc31920e.js"],"app":["/app-6e5933bc9309ffd7a771.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-0c915c7b1bdb5eac4fdf.js"],"component---src-templates-categories-template-categories-template-tsx":["/component---src-templates-categories-template-categories-template-tsx-591f3455d53c3b8ef831.js"],"component---src-templates-category-template-category-template-tsx":["/component---src-templates-category-template-category-template-tsx-17938cc106fc95d14669.js"],"component---src-templates-index-template-index-template-tsx":["/component---src-templates-index-template-index-template-tsx-943badbf7518b3416f8c.js"],"component---src-templates-not-found-template-not-found-template-tsx":["/component---src-templates-not-found-template-not-found-template-tsx-7471aa4b082ff96c2ebc.js"],"component---src-templates-page-template-page-template-tsx":["/component---src-templates-page-template-page-template-tsx-2a71e80d83152f260a5a.js"],"component---src-templates-post-template-post-template-tsx":["/component---src-templates-post-template-post-template-tsx-d85673e1cfef65e7fb92.js"],"component---src-templates-tag-template-tag-template-tsx":["/component---src-templates-tag-template-tag-template-tsx-1899bf0abfbfc5726bf7.js"],"component---src-templates-tags-template-tags-template-tsx":["/component---src-templates-tags-template-tags-template-tsx-4c5531dc9d52ed72d7d1.js"]};/*]]>*/</script><script src="/polyfill-19c76501ff95dc31920e.js" nomodule=""></script><script src="/app-6e5933bc9309ffd7a771.js" async=""></script><script src="/framework-745d5d28c0250a1a333b.js" async=""></script><script src="/webpack-runtime-6cc06eb29695dce59a63.js" async=""></script></body></html>
