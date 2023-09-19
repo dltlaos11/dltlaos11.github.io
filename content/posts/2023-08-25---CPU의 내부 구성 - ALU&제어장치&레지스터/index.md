@@ -3,7 +3,7 @@ title: CPU의 내부 구성
 date: "2023-08-25T23:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/computer_architecture"
+slug: "/posts/computer-architecture/cpu-internal-structure-of-computer-structure"
 category: "CS"
 tags:
   - "ComputerArchitecture"

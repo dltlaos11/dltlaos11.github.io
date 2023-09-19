@@ -3,7 +3,7 @@ title: 명령어 집합구조, CISC와 RISC
 date: "2023-09-01T20:35:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/computer_architecture"
+slug: "/posts/computer-architecture/instruction-set-architecture-cisc-and-risc"
 category: "Computer Architecture"
 tags:
   - "ComputerArchitecture"

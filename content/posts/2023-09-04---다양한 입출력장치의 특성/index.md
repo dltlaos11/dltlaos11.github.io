@@ -3,7 +3,7 @@ title: 다양한 입출력장치의 특성
 date: "2023-09-05T20:35:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/computer_architecture"
+slug: "/posts/computer-architecture/characteristics-of-various-io-devices"
 category: "Computer Architecture"
 tags:
   - "ComputerArchitecture"

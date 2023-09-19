@@ -3,7 +3,7 @@ title: 명령어의 구조와 주소 지정 방식
 date: "2023-08-24T23:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/computer_architecture"
+slug: "/posts/computer-architecture/instruction-structure-and-addressing-method"
 category: "Computer Architecture"
 tags:
   - "ComputerArchitecture"

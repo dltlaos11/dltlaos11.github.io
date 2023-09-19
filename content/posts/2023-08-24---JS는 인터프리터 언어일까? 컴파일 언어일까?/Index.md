@@ -3,7 +3,7 @@ title: JS 인터프리터 언어, 컴파일 언어🤔
 date: "2023-08-24T21:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/javaScript"
+slug: "/posts/javascript/how-javascript-code-execution-works"
 category: "JavaScript"
 tags:
   - "CS"

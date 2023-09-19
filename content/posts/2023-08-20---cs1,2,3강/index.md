@@ -3,7 +3,7 @@ title: 컴퓨터 구조의 큰 그림
 date: "2023-08-23T17:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/computer_architecture"
+slug: "/posts/computer-architecture/purpose"
 category: "Computer Architecture"
 tags:
   - "ComputerArchitecture"

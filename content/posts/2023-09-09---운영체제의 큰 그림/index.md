@@ -3,7 +3,7 @@ title: 운영체제의 큰 그림
 date: "2023-09-09T20:35:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/os"
+slug: "/posts/os/purpose"
 category: "OS"
 tags:
   - "OS"

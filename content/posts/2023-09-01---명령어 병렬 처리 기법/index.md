@@ -3,7 +3,7 @@ title: 명령어 병렬 처리 기법
 date: "2023-09-01T18:35:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/computer_architecture"
+slug: "/posts/computer-architecture/instruction-parallel-processing-technique"
 category: "CS"
 tags:
   - "ComputerArchitecture"

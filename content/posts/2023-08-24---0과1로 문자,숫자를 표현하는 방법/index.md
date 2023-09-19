@@ -3,7 +3,7 @@ title: 0과1로 문자,숫자를 표현하는 방법
 date: "2023-08-24T20:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/computer_architecture"
+slug: "/posts/computer-architecture/expression-letters-and-numbers-with-0&1"
 category: "Computer Architecture"
 tags:
   - "ComputerArchitecture"

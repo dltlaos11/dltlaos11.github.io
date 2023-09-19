@@ -3,7 +3,7 @@ title: C 언어의 컴파일 과정
 date: "2023-08-25T22:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/c"
+slug: "/posts/c/compile-process"
 category: "C"
 tags:
   - "C"

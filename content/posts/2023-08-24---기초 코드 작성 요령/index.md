@@ -3,7 +3,7 @@ title: 알고리즘 기초 코드 작성 요령
 date: "2023-08-24T17:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/algorithms"
+slug: "/posts/algorithms/basic-code-writing-tips"
 category: "Algorithms"
 tags:
   - "Algorithms"

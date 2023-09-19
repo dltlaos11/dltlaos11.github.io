@@ -3,7 +3,7 @@ title: 명령어 사이클과 인터럽트
 date: "2023-08-28T23:40:32.169Z"
 template: "post"
 draft: false
-slug: "/posts/computer_architecture"
+slug: "/posts/computer-architecture/instruction-cycles-and-interrupts"
 category: "CS"
 tags:
   - "ComputerArchitecture"
