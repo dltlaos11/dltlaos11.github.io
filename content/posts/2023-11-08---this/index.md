@@ -4,9 +4,9 @@ date: "2023-11-08T23:35:32.169Z"
 template: "post"
 draft: false
 slug: "/posts/javascript/what-is-this"
-category: "Javascript"
+category: "JavaScript"
 tags:
-  - "Javascript"
+  - "JavaScript"
 description: "this의 특성에 대해 알아보자"
 ---
 
