@@ -15,7 +15,7 @@
   "license": "MIT",
   "author": "Alexander Shelepenok <alxshelepenok@gmail.com>",
   "scripts": {
-    "build": "npm run clean && gatsby build && gh-pages -d public -b master",
+    "build": "npm run clean && gatsby build && gh-pages -d public -b main",
     "deploy": "yarn run clean && gatsby build && gh-pages -d public -b main",
     "clean": "rimraf .cache public",
     "format": "npm run format:ts && npm run format:scss",
@@ -64,6 +64,7 @@
     "gatsby-plugin-manifest": "^4.25.0",
     "gatsby-plugin-offline": "^5.25.0",
     "gatsby-plugin-optimize-svgs": "^1.0.5",
+    "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sass": "^5.25.0",
     "gatsby-plugin-sharp": "^4.25.1",
     "gatsby-plugin-sitemap": "^5.25.0",
