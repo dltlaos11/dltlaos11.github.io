@@ -139,9 +139,6 @@ exports[`CategoriesTemplate renders correctly 1`] = `
         </ul>
       </div>
       <div>
-        All rights reserved.
-      </div>
-      <div>
         <ul>
           <li>
             <a
