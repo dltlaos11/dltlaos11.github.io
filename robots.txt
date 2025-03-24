@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://dltlaos11.github.io/sitemap-index.xml
+Host: https://dltlaos11.github.io
