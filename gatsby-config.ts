@@ -6,6 +6,7 @@ import * as types from "./internal/gatsby/types";
 export default {
   pathPrefix: config.pathPrefix,
   siteMetadata: {
+    siteUrl: config.url,
     url: config.url,
     menu: config.menu,
     title: config.title,
@@ -135,20 +136,25 @@ export default {
           {
             site {
               siteMetadata {
-                siteUrl: url
+                siteUrl
               }
             }
-            allSitePage(
-              filter: {
-                path: { regex: "/^(?!/404/|/404.html|/dev-404-page/)/" }
-              }
-            ) {
+            allSitePage {
               nodes {
                 path
               }
             }
           }
         `,
+        resolveSiteUrl: ({ site }) => site.siteMetadata.siteUrl,
+        serialize: ({ site, allSitePage }) =>
+          allSitePage.nodes.map((node: any) => {
+            return {
+              url: `${site.siteMetadata.siteUrl}${node.path}`,
+              changefreq: `daily`,
+              priority: 0.7,
+            };
+          }),
       },
     },
     {
