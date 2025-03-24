@@ -19,6 +19,14 @@ export default {
   plugins: [
     // "gatsby-plugin-robots-txt",
     {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://dltlaos11.github.io",
+        sitemap: "https://dltlaos11.github.io/sitemap-index.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "content",
