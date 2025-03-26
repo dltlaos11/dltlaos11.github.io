@@ -140,7 +140,24 @@ export default {
     {
       resolve: "gatsby-plugin-sitemap",
       options: {
-        output: "sitemap.xml",
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl: url
+              }
+            }
+            allSitePage(
+              filter: {
+                path: { regex: "/^(?!/404/|/404.html|/dev-404-page/)/" }
+              }
+            ) {
+              nodes {
+                path
+              }
+            }
+          }
+        `,
       },
     },
     {
