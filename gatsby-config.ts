@@ -140,7 +140,7 @@ export default {
     {
       resolve: "gatsby-plugin-sitemap",
       options: {
-        output: "/",
+        output: "",
       },
     },
     {
