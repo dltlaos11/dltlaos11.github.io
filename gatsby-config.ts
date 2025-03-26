@@ -22,7 +22,7 @@ export default {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: "https://dltlaos11.github.io",
-        sitemap: "https://dltlaos11.github.io/sitemap-index.xml",
+        sitemap: "https://dltlaos11.github.io/sitemap.xml",
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
@@ -137,12 +137,7 @@ export default {
         },
       },
     },
-    {
-      resolve: "gatsby-plugin-sitemap",
-      options: {
-        output: "",
-      },
-    },
+    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
